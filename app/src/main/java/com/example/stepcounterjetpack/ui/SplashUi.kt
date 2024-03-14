@@ -18,7 +18,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.example.stepcounterjetpack.R
 import com.example.stepcounterjetpack.activities.ui.theme.AppColor
 import com.example.stepcounterjetpack.activities.ui.theme.StepCounterJetpackTheme
-import com.example.stepcounterjetpack.activities.ui.theme.TileTextFont
+import com.example.stepcounterjetpack.activities.ui.theme.TitleTextFont
 import com.example.stepcounterjetpack.composableUI.LottieAnimations
 import com.example.stepcounterjetpack.composableUI.SimpleTextComponent
 import ir.kaaveh.sdpcompose.sdp
@@ -54,7 +54,7 @@ fun SplashUI() {
                 )
                 SimpleTextComponent(
                     text = "TrackFit",
-                    fontFamily = TileTextFont,
+                    fontFamily = TitleTextFont,
                     textSize = 25.ssp,
                     textColor = Color.White,
                     paddingTop = 20.sdp

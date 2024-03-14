@@ -36,5 +36,5 @@ val Typography = Typography(
     */
 )
 
-val TileTextFont = FontFamily(Font(R.font.apompadour_bold_sample))
+val TitleTextFont = FontFamily(Font(R.font.apompadour_bold_sample))
 val BodyTextFont = FontFamily(Font(R.font.apompadour_text_sample))

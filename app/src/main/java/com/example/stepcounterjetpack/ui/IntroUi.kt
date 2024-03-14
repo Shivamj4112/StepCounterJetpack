@@ -18,7 +18,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.stepcounterjetpack.activities.ui.theme.AppColor
 import com.example.stepcounterjetpack.activities.ui.theme.LightestAppColor
-import com.example.stepcounterjetpack.activities.ui.theme.TileTextFont
+import com.example.stepcounterjetpack.activities.ui.theme.TitleTextFont
 import com.example.stepcounterjetpack.composableUI.SimpleButton
 import com.example.stepcounterjetpack.fragments.IntroFragment1
 import com.example.stepcounterjetpack.fragments.IntroFragment2
@@ -47,7 +47,7 @@ fun IntroUi() {
             {
                 SimpleButton(text = "Skip",
                     textColor = AppColor,
-                    fontFamily = TileTextFont,
+                    fontFamily = TitleTextFont,
                     height = 45.sdp,
                     backGroundColor = LightestAppColor
                 ) {}
@@ -59,7 +59,7 @@ fun IntroUi() {
                 SimpleButton(
                     text = "Continue",
                     textColor = Color.White,
-                    fontFamily = TileTextFont,
+                    fontFamily = TitleTextFont,
                     height = 45.sdp,
                 ) {}
             }

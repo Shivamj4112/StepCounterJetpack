@@ -27,7 +27,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.stepcounterjetpack.R
 import com.example.stepcounterjetpack.activities.ui.theme.AppColor
 import com.example.stepcounterjetpack.activities.ui.theme.StepCounterJetpackTheme
-import com.example.stepcounterjetpack.activities.ui.theme.TileTextFont
+import com.example.stepcounterjetpack.activities.ui.theme.TitleTextFont
 import com.example.stepcounterjetpack.composableUI.LottieAnimations
 import com.example.stepcounterjetpack.composableUI.SetSystemBarsAppearance
 import com.example.stepcounterjetpack.composableUI.SimpleTextComponent
