@@ -3,4 +3,5 @@
     <string name="title_activity_intro">IntroActivity</string>
     <string name="title_activity_splash">SplashActivity</string>
     <string name="title_activity_selection_login">SelectionLoginActivity</string>
+    <string name="title_activity_sign_up">SignUpActivity</string>
 </resources>

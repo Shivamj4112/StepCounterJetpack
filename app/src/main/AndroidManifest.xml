@@ -15,6 +15,11 @@
         android:theme="@style/Theme.StepCounterJetpack"
         tools:targetApi="31" >
         <activity
+            android:name=".activities.SignUpActivity"
+            android:exported="false"
+            android:label="@string/title_activity_sign_up"
+            android:theme="@style/Theme.StepCounterJetpack" />
+        <activity
             android:name=".activities.SelectionLoginActivity"
             android:exported="false"
             android:label="@string/title_activity_selection_login"

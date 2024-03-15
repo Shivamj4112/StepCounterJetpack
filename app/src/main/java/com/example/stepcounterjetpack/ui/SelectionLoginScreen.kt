@@ -101,12 +101,13 @@ fun SelectionLoginScreen() {
         Row (
             Modifier
                 .fillMaxWidth()
-                .padding(horizontal = 15.sdp),
+                .padding(horizontal = 15.sdp)
+                .padding(bottom = 10.sdp),
             horizontalArrangement = Arrangement.Center,
             verticalAlignment = Alignment.CenterVertically){
 
             SimpleTextComponent(text = "Privacy Policy ", textSize = 10.ssp)
-            SimpleTextComponent(text = "  |  ", textSize = 10.ssp)
+            SimpleTextComponent(text = "   |   ", textSize = 10.ssp)
             SimpleTextComponent(text = "Terms and Service", textSize = 10.ssp)
         }
     }
