@@ -1,4 +1,4 @@
-package com.example.stepcounterjetpack.ui
+package com.example.stepcounterjetpack.view.Screen
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ElevatedCard
@@ -19,18 +20,18 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.TextUnit
+import androidx.compose.ui.unit.sp
 import com.example.stepcounterjetpack.R
-import com.example.stepcounterjetpack.activities.ui.theme.AppColor
-import com.example.stepcounterjetpack.activities.ui.theme.BodyTextFont
-import com.example.stepcounterjetpack.activities.ui.theme.DefaultTextColor
-import com.example.stepcounterjetpack.activities.ui.theme.LightestAppColor
-import com.example.stepcounterjetpack.activities.ui.theme.StepCounterJetpackTheme
-import com.example.stepcounterjetpack.activities.ui.theme.TitleTextFont
-import com.example.stepcounterjetpack.composableUI.SimpleButton
-import com.example.stepcounterjetpack.composableUI.SimpleTextComponent
+import com.example.stepcounterjetpack.view.activities.ui.theme.AppColor
+import com.example.stepcounterjetpack.view.activities.ui.theme.BodyTextFont
+import com.example.stepcounterjetpack.view.activities.ui.theme.DefaultTextColor
+import com.example.stepcounterjetpack.view.activities.ui.theme.LightestAppColor
+import com.example.stepcounterjetpack.view.activities.ui.theme.StepCounterJetpackTheme
+import com.example.stepcounterjetpack.view.activities.ui.theme.TitleTextFont
 import ir.kaaveh.sdpcompose.sdp
 import ir.kaaveh.sdpcompose.ssp
 
@@ -61,7 +62,7 @@ fun SelectionLoginScreen() {
                 textColor = Color.Black,
                 textSize = 25.ssp,
                 fontFamily = TitleTextFont,
-                paddingTop = 30.sdp
+                paddingTop = 20.sdp
             )
 
             SimpleTextComponent(
@@ -72,11 +73,7 @@ fun SelectionLoginScreen() {
             )
 
 
-            SignCard(text = "Continue with Google", paddingTop = 40.sdp, src = R.drawable.ic_google)
-            SignCard(text = "Continue with Apple", src = R.drawable.ic_apple)
-            SignCard(text = "Continue with Facebook", src = R.drawable.ic_facebook)
-            SignCard(text = "Continue with Twitter", src = R.drawable.ic_twitter)
-
+            SignCardsList()
 
             SimpleButton(
                 text = "Sign Up",
@@ -113,6 +110,24 @@ fun SelectionLoginScreen() {
     }
 
 }
+@Composable
+fun SignCardsList() {
+    LazyColumn {
+        item {
+            SignCard(text = "Continue with Google", paddingTop = 30.sdp, src = R.drawable.ic_google, textSize = 10.ssp)
+        }
+        item {
+            SignCard(text = "Continue with Apple", src = R.drawable.ic_apple, textSize = 10.ssp)
+        }
+        item {
+            SignCard(text = "Continue with Facebook", src = R.drawable.ic_facebook, textSize = 10.ssp)
+        }
+        item {
+            SignCard(text = "Continue with Twitter", src = R.drawable.ic_twitter, textSize = 10.ssp)
+        }
+    }
+}
+
 
 @Composable
 fun SignCard(
@@ -157,17 +172,14 @@ fun SignCard(
                     contentDescription = null,
                     modifier = Modifier.size(20.sdp),
                 )
-
+                
                 Box(
-                    Modifier.fillMaxWidth(),
-                    contentAlignment = Alignment.Center
+                    Modifier.fillMaxSize(),
+                    contentAlignment = Alignment.Center,
                 ) {
-                    SimpleTextComponent(text = text, textSize = textSize, fontFamily = fontFamily)
+                    SimpleTextComponent(text = text, textSize = textSize, fontFamily = fontFamily, paddingVertical = 10.sdp)
                 }
-
             }
-
-
         }
     }
 }

@@ -1,4 +1,4 @@
-package com.example.stepcounterjetpack.fragments
+package com.example.stepcounterjetpack.view.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater

@@ -1,4 +1,4 @@
-package com.example.stepcounterjetpack.composableUI
+package com.example.stepcounterjetpack.view.Screen
 
 import android.app.Activity
 import android.os.Build
@@ -22,11 +22,10 @@ import com.airbnb.lottie.compose.LottieAnimation
 import com.airbnb.lottie.compose.LottieCompositionSpec
 import com.airbnb.lottie.compose.LottieConstants
 import com.airbnb.lottie.compose.rememberLottieComposition
-import com.example.stepcounterjetpack.activities.ui.theme.AppBackground
-import com.example.stepcounterjetpack.activities.ui.theme.AppColor
-import com.example.stepcounterjetpack.activities.ui.theme.DefaultTextColor
-import com.example.stepcounterjetpack.activities.ui.theme.LightGrey
-import com.example.stepcounterjetpack.activities.ui.theme.LightestAppColor
+import com.example.stepcounterjetpack.view.activities.ui.theme.AppBackground
+import com.example.stepcounterjetpack.view.activities.ui.theme.AppColor
+import com.example.stepcounterjetpack.view.activities.ui.theme.DefaultTextColor
+import com.example.stepcounterjetpack.view.activities.ui.theme.LightGrey
 import ir.kaaveh.sdpcompose.sdp
 import ir.kaaveh.sdpcompose.ssp
 
@@ -121,7 +120,7 @@ fun SimpleButton(
         )
         {
             
-            SimpleTextComponent(text = text, textColor = textColor, fontFamily = fontFamily , textSize = textSize)
+            SimpleTextComponent(text = text, textColor = textColor, fontFamily = fontFamily , textSize = textSize, textAlign = TextAlign.Center)
 
         }
 }

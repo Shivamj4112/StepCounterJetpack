@@ -1,4 +1,4 @@
-package com.example.stepcounterjetpack.ui
+package com.example.stepcounterjetpack.view.Screen
 
 import android.widget.Toast
 import androidx.compose.foundation.ExperimentalFoundationApi
@@ -16,13 +16,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
-import com.example.stepcounterjetpack.activities.ui.theme.AppColor
-import com.example.stepcounterjetpack.activities.ui.theme.LightestAppColor
-import com.example.stepcounterjetpack.activities.ui.theme.TitleTextFont
-import com.example.stepcounterjetpack.composableUI.SimpleButton
-import com.example.stepcounterjetpack.fragments.IntroFragment1
-import com.example.stepcounterjetpack.fragments.IntroFragment2
-import com.example.stepcounterjetpack.fragments.IntroFragment3
+import com.example.stepcounterjetpack.view.activities.ui.theme.AppColor
+import com.example.stepcounterjetpack.view.activities.ui.theme.LightestAppColor
+import com.example.stepcounterjetpack.view.activities.ui.theme.TitleTextFont
+import com.example.stepcounterjetpack.view.fragments.IntroFragment1
+import com.example.stepcounterjetpack.view.fragments.IntroFragment2
+import com.example.stepcounterjetpack.view.fragments.IntroFragment3
 import ir.kaaveh.sdpcompose.sdp
 
 @Composable
