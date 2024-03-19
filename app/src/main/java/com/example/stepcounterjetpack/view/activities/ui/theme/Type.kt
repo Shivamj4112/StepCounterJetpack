@@ -1,6 +1,7 @@
 package com.example.stepcounterjetpack.view.activities.ui.theme
 
 import androidx.compose.material3.Typography
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
@@ -36,5 +37,11 @@ val Typography = Typography(
     */
 )
 
-val TitleTextFont = FontFamily(Font(R.font.apompadour_bold_sample))
+val TitleTextFont = TextStyle(
+
+    fontFamily = FontFamily(Font(R.font.apompadour_bold_sample)),
+    color = Color.Black
+)
+//    FontFamily(Font(R.font.apompadour_bold_sample))
+
 val BodyTextFont = FontFamily(Font(R.font.apompadour_text_sample))

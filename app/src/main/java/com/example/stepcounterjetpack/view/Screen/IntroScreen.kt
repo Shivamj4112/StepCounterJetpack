@@ -46,7 +46,7 @@ fun IntroUi() {
             {
                 SimpleButton(text = "Skip",
                     textColor = AppColor,
-                    fontFamily = TitleTextFont,
+                    fontFamily = TitleTextFont.fontFamily,
                     height = 45.sdp,
                     backGroundColor = LightestAppColor
                 ) {}
@@ -58,7 +58,7 @@ fun IntroUi() {
                 SimpleButton(
                     text = "Continue",
                     textColor = Color.White,
-                    fontFamily = TitleTextFont,
+                    fontFamily = TitleTextFont.fontFamily,
                     height = 45.sdp,
                 ) {}
             }
