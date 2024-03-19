@@ -181,7 +181,7 @@ fun SignCard(
         colors = CardDefaults.elevatedCardColors(
             containerColor = cardBackgroundColor,
         ),
-        elevation = CardDefaults.cardElevation(4.sdp)
+        elevation = CardDefaults.cardElevation(2.sdp)
     ) {
         Row(
             modifier = Modifier
