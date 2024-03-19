@@ -3,13 +3,12 @@ package com.example.stepcounterjetpack.view.activities
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
+import com.example.stepcounterjetpack.view.Screen.IntroScreen
 import com.example.stepcounterjetpack.view.activities.ui.theme.StepCounterJetpackTheme
-import com.example.stepcounterjetpack.view.Screen.IntroPager
 
 class IntroActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -20,18 +19,14 @@ class IntroActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    Column(Modifier.fillMaxSize()) {
-                        Column(
-                            Modifier
-                                .fillMaxSize()
-                        ) {
-                            IntroPager()
-                        }
-                        // Rest of your UI code
+
+                            IntroScreen()
+
+
                     }
                 }
 
             }
         }
     }
-}
+

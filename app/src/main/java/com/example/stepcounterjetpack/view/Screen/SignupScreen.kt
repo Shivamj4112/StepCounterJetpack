@@ -81,11 +81,10 @@ fun SignupScreen(context: Activity, signViewModel: SignupViewModel) {
                     textSize = 24.ssp
                 )
                 SimpleTextComponent(
-                    modifier = Modifier,
+                    modifier = Modifier.padding(top = 10.sdp),
                     text = "Create your account and start tracking your steps.",
                     textAlign = TextAlign.Start,
                     textSize = 14.ssp,
-                    paddingTop = 10.sdp
                 )
 
                 LayoutEditText()
@@ -97,11 +96,10 @@ fun SignupScreen(context: Activity, signViewModel: SignupViewModel) {
 
                     SimpleCheckBox()
                     SimpleTextComponent(
-                        modifier = Modifier,
+                        modifier = Modifier.padding(top = 5.sdp),
                         text = "Terms & Conditions.",
                         textColor = AppColor,
                         fontFamily = BodyTextFont,
-                        paddingStart = 5.sdp,
                         textSize = 12.ssp
                     )
                 }
@@ -141,14 +139,31 @@ fun SignupScreen(context: Activity, signViewModel: SignupViewModel) {
                 ) {
 
                     Divider(Modifier.weight(1f))
-                    SimpleTextComponent(modifier = Modifier.padding(horizontal = 10.sdp), text = "or", fontFamily = BodyTextFont)
+                    SimpleTextComponent(
+                        modifier = Modifier.padding(horizontal = 10.sdp),
+                        text = "or",
+                        fontFamily = BodyTextFont
+                    )
                     Divider(Modifier.weight(1f))
                 }
 
-                SignCard(text = "Continue with Google", src = R.drawable.ic_google ,  textSize = 12.ssp)
-                SignCard(text = "Continue with Apple", src = R.drawable.ic_apple,textSize = 12.ssp)
-                SignCard(text = "Continue with Facebook", src = R.drawable.ic_facebook,textSize = 12.ssp)
-                SignCard(text = "Continue with Twitter", src = R.drawable.ic_twitter,textSize = 12.ssp, paddingBottom = 15.sdp)
+                SignCard(
+                    text = "Continue with Google",
+                    src = R.drawable.ic_google,
+                    textSize = 12.ssp
+                )
+                SignCard(text = "Continue with Apple", src = R.drawable.ic_apple, textSize = 12.ssp)
+                SignCard(
+                    text = "Continue with Facebook",
+                    src = R.drawable.ic_facebook,
+                    textSize = 12.ssp
+                )
+                SignCard(
+                    text = "Continue with Twitter",
+                    src = R.drawable.ic_twitter,
+                    textSize = 12.ssp,
+                    paddingBottom = 15.sdp
+                )
             }
 
             Box(
@@ -171,42 +186,48 @@ fun SignupScreen(context: Activity, signViewModel: SignupViewModel) {
 private fun LayoutEditText() {
     // TODO        TextField  Name
     SimpleTextComponent(
-        modifier = Modifier,
+        modifier = Modifier.padding(top = 20.sdp),
         text = "Name",
         fontFamily = TitleTextFont.fontFamily,
-        paddingTop = 20.sdp,
         textSize = 15.ssp
     )
     var name by remember { mutableStateOf("") }
-    SimpleEditText(hint = "Enter Name", paddingTop = 5.sdp, onTextChange = { tfName ->
-        name = tfName
-    })
+
+    SimpleEditText(
+        modifier = Modifier.padding(top = 5.sdp),
+        hint = "Enter Name",
+        onTextChange = { tfName ->
+            name = tfName
+        })
 
 
     //TODO       TextField Email
     SimpleTextComponent(
-        modifier = Modifier,
+        modifier = Modifier.padding(top = 10.sdp),
         text = "Email",
         fontFamily = TitleTextFont.fontFamily,
-        paddingTop = 10.sdp,
         textSize = 15.ssp
     )
+
     var email by remember { mutableStateOf("") }
-    SimpleEditText(hint = "Enter Email", paddingTop = 5.sdp, onTextChange = { tfEmail ->
-        email = tfEmail
-    })
+
+    SimpleEditText(
+        modifier = Modifier.padding(top = 5.sdp),
+        hint = "Enter Email",
+        onTextChange = { tfEmail ->
+            email = tfEmail
+        })
 
 
     //TODO       TextField Password
     SimpleTextComponent(
-        modifier = Modifier,
+        modifier = Modifier.padding(top = 10.sdp),
         text = "Password",
         fontFamily = TitleTextFont.fontFamily,
-        paddingTop = 10.sdp,
         textSize = 15.ssp
     )
     var password by remember { mutableStateOf("") }
-    SimpleEditText(hint = "Enter Password", paddingTop = 5.sdp, onTextChange = { tfPassword ->
+    SimpleEditText(modifier = Modifier.padding(top = 5.sdp),hint = "Enter Password", onTextChange = { tfPassword ->
         password = tfPassword
     })
 }
@@ -226,7 +247,8 @@ fun AppToolBar(
         title = {
 
             Box(
-                modifier = Modifier.fillMaxWidth()
+                modifier = Modifier
+                    .fillMaxWidth()
                     .padding(bottom = 12.sdp),
                 contentAlignment = Alignment.Center
             ) {

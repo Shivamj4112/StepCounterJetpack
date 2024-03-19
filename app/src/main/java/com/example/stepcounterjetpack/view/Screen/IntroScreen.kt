@@ -1,59 +1,119 @@
 package com.example.stepcounterjetpack.view.Screen
 
-import android.widget.Toast
 import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.wrapContentHeight
+import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.Dp
+import com.example.stepcounterjetpack.R
+import com.example.stepcounterjetpack.view.activities.ui.theme.AppBackground
 import com.example.stepcounterjetpack.view.activities.ui.theme.AppColor
+import com.example.stepcounterjetpack.view.activities.ui.theme.BodyTextFont
 import com.example.stepcounterjetpack.view.activities.ui.theme.LightestAppColor
 import com.example.stepcounterjetpack.view.activities.ui.theme.TitleTextFont
-import com.example.stepcounterjetpack.view.fragments.IntroFragment1
-import com.example.stepcounterjetpack.view.fragments.IntroFragment2
-import com.example.stepcounterjetpack.view.fragments.IntroFragment3
+import com.google.android.material.card.MaterialCardView
 import ir.kaaveh.sdpcompose.sdp
+import ir.kaaveh.sdpcompose.ssp
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun IntroUi() {
+fun IntroScreen() {
     Column(Modifier.fillMaxSize()) {
 
-        Column(Modifier
+        Column(
+            Modifier
                 .fillMaxSize()
-                .weight(1f))
-        {
-//            IntroPager()
+                .weight(1f)
+        ) {
+
+            Scaffold(
+                topBar = {
+                    IntroToolBar(
+                        size = 20.sdp, onClick = {
+
+                        })
+                }
+            ) {
+                Column(modifier = Modifier.padding(it)) {
+
+                    val pagersState = rememberPagerState(pageCount = {3})
+
+                    HorizontalPager(state = pagersState , modifier = Modifier.fillMaxSize()) {page : Int ->
+
+                        when(page){
+
+                            0 -> IntroScreen2()
+                        }
+                    }
+                }
+            }
         }
 
-        Row(Modifier.fillMaxWidth()
+        Row(
+            Modifier
+                .fillMaxWidth()
                 .padding(horizontal = 10.sdp)
-                .padding(bottom = 10.sdp))
+                .padding(bottom = 10.sdp)
+        )
         {
 
-            Box(Modifier
+            Box(
+                Modifier
                     .fillMaxWidth()
-                    .weight(1f))
+                    .weight(1f)
+            )
             {
-                SimpleButton(text = "Skip",
+                SimpleButton(
+                    text = "Skip",
                     textColor = AppColor,
                     fontFamily = TitleTextFont.fontFamily,
                     height = 45.sdp,
                     backGroundColor = LightestAppColor
                 ) {}
             }
-            Box(Modifier
+            Box(
+                Modifier
                     .fillMaxWidth()
-                    .weight(1f))
+                    .weight(1f)
+            )
             {
                 SimpleButton(
                     text = "Continue",
@@ -62,53 +122,223 @@ fun IntroUi() {
                     height = 45.sdp,
                 ) {}
             }
-
-
         }
+    }
+}
+
+@Composable
+fun IntroScreen1() {
+
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(horizontal = 15.sdp),
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+
+        Row(modifier = Modifier
+        ) {
+
+            SimpleTextComponent(
+                modifier = Modifier,
+                text = "Select Your",
+                textSize = 24.ssp,
+                fontFamily = TitleTextFont.fontFamily,
+                textColor = Color.Black,
+            )
+
+            SimpleTextComponent(
+                modifier = Modifier.padding(start = 8.sdp),
+                text = "Gender",
+                textSize = 24.ssp,
+                fontFamily = TitleTextFont.fontFamily,
+                textColor = AppColor
+            )
+        }
+
+        SimpleTextComponent(modifier = Modifier
+            .padding(top = 8.sdp),
+            text = "Let's start by understanding you.",
+            textSize = 12.ssp)
+
+
+        FilledCardView()
 
 
     }
 }
 
-@OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun IntroPager() {
+fun IntroScreen2() {
 
-    val pagerState = rememberPagerState(pageCount = { 3 })
-    val context = LocalContext.current
+    Column(modifier = Modifier.fillMaxSize().padding(horizontal = 15.sdp), horizontalAlignment = Alignment.CenterHorizontally) {
 
-    HorizontalPager(state = pagerState, modifier = Modifier.fillMaxSize()) { page: Int ->
+        Row(modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.Center,
+            ) {
 
-        Box (modifier = Modifier.fillMaxSize() , contentAlignment = Alignment.Center){
+            SimpleTextComponent(modifier = Modifier,
+                text = "Do you live a ",
+                textSize = 24.ssp,
+                fontFamily = TitleTextFont.fontFamily,
+                textColor = Color.Black)
 
-            when (page) {
-                0 -> {
-                    Toast.makeText(context, "Intro 1", Toast.LENGTH_SHORT).show()
-                    IntroFragment1()
-                }
-                1 -> {
-                    Toast.makeText(context, "Intro 2", Toast.LENGTH_SHORT).show()
-                    IntroFragment2()
-                }
+            SimpleTextComponent(modifier = Modifier,
+                text = "Sedentary",
+                textSize = 24.ssp,
+                fontFamily = TitleTextFont.fontFamily,
+                textColor = AppColor)
 
-                2 -> {
-                    Toast.makeText(context, "Intro 3", Toast.LENGTH_SHORT).show()
-                    IntroFragment3()
-                }
+        }
+        SimpleTextComponent(modifier = Modifier.padding(top = 5.sdp),
+            text = "LifeStyle?",
+            textSize = 24.ssp,
+            fontFamily = TitleTextFont.fontFamily,
+            textColor = Color.Black,)
 
-                else -> error("Invalid page: $page")
+
+        SimpleTextComponent(modifier = Modifier.padding(top = 8.sdp),
+            text = "Tell us about your daily routine.",
+            textSize = 12.ssp,
+            fontFamily = BodyTextFont,)
+
+    }
+}
+
+@Composable
+fun FilledCardView(){
+
+    Row (modifier = Modifier
+        .fillMaxWidth()
+        .padding(top = 20.sdp), horizontalArrangement = Arrangement.SpaceBetween)
+    {
+        var selectedGender by remember { mutableStateOf("") }
+
+        Card(
+            colors = CardDefaults.cardColors(containerColor = AppBackground),
+
+            modifier = Modifier
+                .padding(top = 10.sdp)
+                .border(
+                    width = if (selectedGender == "male") 2.sdp else 0.sdp,
+                    color = if (selectedGender == "male") Color.Black else AppBackground
+                )
+                .clip(RoundedCornerShape(10.sdp))
+                .clickable { selectedGender = "male" },) {
+
+            Column (modifier = Modifier.padding(all = 2.sdp)){
+                Image(
+                    modifier = Modifier.height(300.sdp),
+                    contentScale = ContentScale.Crop,
+                    painter = painterResource(id = R.drawable.img_male),
+                    contentDescription = "Image Male ")
+
+                SimpleTextComponent(modifier = Modifier
+                    .align(Alignment.CenterHorizontally)
+                    .padding(top = 10.sdp),
+                    text = "Male",
+                    textSize = 14.ssp,
+                    fontFamily = TitleTextFont.fontFamily,
+                    textColor = Color.Black)
+            }
+
+        }
+
+        Spacer(modifier = Modifier
+            .fillMaxHeight()
+            .width(10.sdp))
+
+        Card(
+            colors = CardDefaults.cardColors(containerColor = AppBackground),
+            modifier = Modifier
+                .padding(top = 10.sdp)
+                .border(
+                    width = if (selectedGender == "female") 2.sdp else 0.sdp,
+                    color = if (selectedGender == "female") Color.Black else AppBackground
+                )
+                .clip(RoundedCornerShape(10.sdp))
+                .clickable { selectedGender = "female" }) {
+
+            Column (modifier = Modifier.padding(all = 2.sdp)){
+                Image(
+                    modifier = Modifier.height(300.sdp),
+                    contentScale = ContentScale.Crop,
+                    painter = painterResource(id = R.drawable.img_female),
+                    contentDescription = "Image Female ")
+
+                SimpleTextComponent(modifier = Modifier
+                    .align(Alignment.CenterHorizontally)
+                    .padding(top = 10.sdp),
+                    text = "Female",
+                    textSize = 14.ssp,
+                    fontFamily = TitleTextFont.fontFamily,
+                    textColor = Color.Black)
             }
         }
 
 
     }
-
-
+    
 }
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun IntroToolBar(
+    toolbarTitle: String = "",
+    size: Dp = 25.sdp,
+    backgroundColor: Color = AppBackground,
+    onClick: () -> Unit,
+
+    ) {
+
+    TopAppBar(
+        modifier = Modifier.wrapContentHeight(),
+        title = {
+
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(bottom = 12.sdp),
+                contentAlignment = Alignment.Center
+            ) {
+
+                SimpleTextComponent(
+                    modifier = Modifier,
+                    text = "toolbarTitle",
+                    fontFamily = TitleTextFont.fontFamily
+                )
+            }
+        },
+        navigationIcon = {
+            Icon(
+                imageVector = Icons.Filled.ArrowBack,
+                contentDescription = "Arrow Back",
+                modifier = Modifier
+                    .padding(start = 5.sdp, bottom = 12.sdp)
+                    .size(size)
+                    .clickable(enabled = true, onClick = onClick),
+            )
+        },
+        colors = TopAppBarDefaults.smallTopAppBarColors(containerColor = backgroundColor),
+        actions = {
+
+            SimpleTextComponent(
+                modifier = Modifier
+                    .align(Alignment.CenterVertically)
+                    .padding(end = 5.sdp, bottom = 12.sdp),
+                text = "1 / 6",
+                fontFamily = TitleTextFont.fontFamily,
+                textColor = Color.Black
+            )
+
+        }
+    )
+}
+
 
 @Preview(showSystemUi = true)
 @Composable
 fun IntroPreview() {
 
-    IntroUi()
+    IntroScreen()
 }

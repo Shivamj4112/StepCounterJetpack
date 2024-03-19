@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -53,12 +54,11 @@ fun SplashUI() {
                     colorFilter = ColorFilter.tint(Color.White)
                 )
                 SimpleTextComponent(
-                    modifier = Modifier,
+                    modifier = Modifier.padding(top = 20.sdp),
                     text = "TrackFit",
                     fontFamily = TitleTextFont.fontFamily,
                     textSize = 25.ssp,
                     textColor = Color.White,
-                    paddingTop = 20.sdp
                 )
             }
 

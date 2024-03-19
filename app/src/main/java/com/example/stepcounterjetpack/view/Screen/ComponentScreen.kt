@@ -71,24 +71,13 @@ fun SimpleTextComponent(
     modifier: Modifier,
     text: String,
     textSize: TextUnit = 14.ssp,
-    padding: Dp = 0.sdp,
-    paddingVertical: Dp = 0.sdp,
-    paddingHorizontal: Dp = 0.sdp,
-    paddingStart: Dp = 0.sdp,
-    paddingTop: Dp = 0.sdp,
-    paddingEnd: Dp = 0.sdp,
-    paddingBottom: Dp = 0.sdp,
     fontFamily: FontFamily? = null,
     textColor: Color = DefaultTextColor,
     textAlign: TextAlign = TextAlign.Center,
 ) {
 
     Text(
-        modifier = modifier
-            .padding(padding)
-            .padding(paddingVertical, paddingHorizontal)
-            .padding(paddingStart, paddingTop, paddingEnd, paddingBottom),
-
+        modifier = modifier,
         text = text,
         fontSize = textSize,
         fontFamily = fontFamily,
@@ -103,13 +92,6 @@ fun ClickableTextComponent(
     modifier: Modifier,
     text: String,
     textSize: TextUnit = 14.ssp,
-    padding: Dp = 0.sdp,
-    paddingVertical: Dp = 0.sdp,
-    paddingHorizontal: Dp = 0.sdp,
-    paddingStart: Dp = 0.sdp,
-    paddingTop: Dp = 0.sdp,
-    paddingEnd: Dp = 0.sdp,
-    paddingBottom: Dp = 0.sdp,
     fontFamily: FontFamily? = null,
     textColor: Color = DefaultTextColor,
     textAlign: TextAlign = TextAlign.Center,
@@ -117,11 +99,7 @@ fun ClickableTextComponent(
 ) {
 
     Text(
-        modifier = modifier
-            .padding(padding)
-            .padding(paddingVertical, paddingHorizontal)
-            .padding(paddingStart, paddingTop, paddingEnd, paddingBottom),
-
+        modifier = modifier,
         text = text,
         fontSize = textSize,
         fontFamily = fontFamily,
@@ -152,13 +130,7 @@ fun SimpleCheckBox() {
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SimpleEditText(
-    paddingStart: Dp = 0.sdp,
-    paddingTop: Dp = 0.sdp,
-    paddingEnd: Dp = 0.sdp,
-    paddingBottom: Dp = 0.sdp,
-    paddingHorizontal: Dp = 0.sdp,
-    paddingVertical: Dp = 0.sdp,
-    padding: Dp = 0.sdp,
+    modifier: Modifier,
     hint: String = "",
     onTextChange: (String) -> Unit,
     keyboardType: KeyboardType = KeyboardType.Text
@@ -168,16 +140,7 @@ fun SimpleEditText(
 
 
     TextField(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(all = padding)
-            .padding(
-                start = paddingStart,
-                top = paddingTop,
-                end = paddingEnd,
-                bottom = paddingBottom
-            )
-            .padding(horizontal = paddingHorizontal, vertical = paddingVertical),
+        modifier = modifier,
         value = textState.value,
         onValueChange = {
             textState.value = it

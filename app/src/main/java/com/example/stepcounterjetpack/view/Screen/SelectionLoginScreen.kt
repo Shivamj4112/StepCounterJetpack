@@ -62,18 +62,17 @@ fun SelectionLoginScreen(context: Activity, selectionViewModel: SelectionViewMod
             )
 
             SimpleTextComponent(
-                modifier = Modifier,
+                modifier = Modifier.padding(top = 20.sdp),
                 text = "Let's Get Started!",
                 textColor = Color.Black,
                 textSize = 25.ssp,
                 fontFamily = TitleTextFont.fontFamily,
-                paddingTop = 20.sdp
+
             )
 
             SimpleTextComponent(
-                modifier = Modifier,
+                modifier = Modifier.padding(top = 15.sdp),
                 text = "Let's dive in into yoru account",
-                paddingTop = 15.sdp,
                 fontFamily = BodyTextFont,
                 textSize = 12.ssp
             )
@@ -200,11 +199,10 @@ fun SignCard(
                         .align(Alignment.CenterStart),
                 )
                 SimpleTextComponent(
-                    modifier = Modifier.align(Alignment.Center),
+                    modifier = Modifier.padding(vertical = 10.sdp).align(Alignment.Center),
                     text = text,
                     textSize = textSize,
                     fontFamily = fontFamily,
-                    paddingVertical = 10.sdp
                 )
 
             }
