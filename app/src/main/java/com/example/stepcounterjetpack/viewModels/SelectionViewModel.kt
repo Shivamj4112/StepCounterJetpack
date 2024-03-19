@@ -1,5 +1,6 @@
 package com.example.stepcounterjetpack.viewModels
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import androidx.lifecycle.ViewModel
@@ -9,7 +10,7 @@ class SelectionViewModel : ViewModel() {
 
 
 
-    fun selectionSignup(context : Context, navigateToSignup : () -> Unit){
+    fun selectionSignup(context : Activity, navigateToSignup : () -> Unit){
 
 
         val intent = Intent(context, SignUpActivity::class.java)

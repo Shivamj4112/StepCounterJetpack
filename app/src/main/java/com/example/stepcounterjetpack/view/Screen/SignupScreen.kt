@@ -1,5 +1,8 @@
 package com.example.stepcounterjetpack.view.Screen
 
+import android.app.Activity
+import android.content.Context
+import android.content.Intent
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -35,15 +38,18 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.example.stepcounterjetpack.R
+import com.example.stepcounterjetpack.view.activities.LoginActivity
 import com.example.stepcounterjetpack.view.activities.ui.theme.AppBackground
 import com.example.stepcounterjetpack.view.activities.ui.theme.AppColor
 import com.example.stepcounterjetpack.view.activities.ui.theme.BodyTextFont
 import com.example.stepcounterjetpack.view.activities.ui.theme.TitleTextFont
+import com.example.stepcounterjetpack.viewModels.SelectionViewModel
+import com.example.stepcounterjetpack.viewModels.SignupViewModel
 import ir.kaaveh.sdpcompose.sdp
 import ir.kaaveh.sdpcompose.ssp
 
 @Composable
-fun SignupScreen() {
+fun SignupScreen(context: Activity, signViewModel: SignupViewModel) {
 
     Scaffold(
         topBar = {
@@ -121,7 +127,8 @@ fun SignupScreen() {
                         fontFamily = BodyTextFont,
                         textSize = 12.ssp,
                         onClick = {
-
+                            signViewModel.navigateToLogin(context) {
+                            }
                         }
                     )
                 }
@@ -270,5 +277,5 @@ fun AppToolBar(
 @Composable
 fun SignupScreenPreview() {
 
-    SignupScreen()
+//    SignupScreen()
 }

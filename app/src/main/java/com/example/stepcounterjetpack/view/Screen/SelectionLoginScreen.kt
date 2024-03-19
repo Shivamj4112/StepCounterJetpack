@@ -1,5 +1,6 @@
 package com.example.stepcounterjetpack.view.Screen
 
+import android.app.Activity
 import android.content.Context
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
@@ -36,7 +37,7 @@ import ir.kaaveh.sdpcompose.sdp
 import ir.kaaveh.sdpcompose.ssp
 
 @Composable
-fun SelectionLoginScreen(context: Context, selectionViewModel: SelectionViewModel) {
+fun SelectionLoginScreen(context: Activity, selectionViewModel: SelectionViewModel) {
 
     Column(
         modifier = Modifier
