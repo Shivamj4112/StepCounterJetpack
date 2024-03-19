@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "559347084711",
+    "project_id": "step-counter-jetpack",
+    "storage_bucket": "step-counter-jetpack.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:559347084711:android:4b66430491cd50b9691a82",
+        "android_client_info": {
+          "package_name": "com.example.stepcounterjetpack"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC3hMfiy71Qa4GoGcExBdt8aSv49Cs5FHk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
