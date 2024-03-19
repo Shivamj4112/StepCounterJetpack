@@ -1,5 +1,6 @@
 package com.example.stepcounterjetpack.view.Screen
 
+import android.content.Context
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -30,11 +31,12 @@ import com.example.stepcounterjetpack.view.activities.ui.theme.DefaultTextColor
 import com.example.stepcounterjetpack.view.activities.ui.theme.LightestAppColor
 import com.example.stepcounterjetpack.view.activities.ui.theme.StepCounterJetpackTheme
 import com.example.stepcounterjetpack.view.activities.ui.theme.TitleTextFont
+import com.example.stepcounterjetpack.viewModels.SelectionLoginModel
 import ir.kaaveh.sdpcompose.sdp
 import ir.kaaveh.sdpcompose.ssp
 
 @Composable
-fun SelectionLoginScreen() {
+fun SelectionLoginScreen(context : Context, selectionLoginModel: SelectionLoginModel) {
 
     Column(
         modifier = Modifier
@@ -83,8 +85,13 @@ fun SelectionLoginScreen() {
                 paddingTop = 20.sdp,
                 textColor = Color.White,
                 textSize = 13.ssp,
-                fontFamily = TitleTextFont.fontFamily
-            ) {}
+                fontFamily = TitleTextFont.fontFamily,
+                onClick = {
+                    selectionLoginModel.selectionSignup(context = context) {
+
+                    }
+                }
+            )
 
             SimpleButton(
                 text = "Login",
@@ -209,6 +216,6 @@ fun SignCard(
 @Composable
 fun SelectionLoginScreenPreview() {
     StepCounterJetpackTheme {
-        SelectionLoginScreen()
+//        SelectionLoginScreen()
     }
 }
