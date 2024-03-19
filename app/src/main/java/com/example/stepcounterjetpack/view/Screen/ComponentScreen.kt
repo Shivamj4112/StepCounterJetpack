@@ -97,6 +97,39 @@ fun SimpleTextComponent(
     )
 }
 
+// TODO  Clickable Text View
+@Composable
+fun ClickableTextComponent(
+    modifier: Modifier,
+    text: String,
+    textSize: TextUnit = 14.ssp,
+    padding: Dp = 0.sdp,
+    paddingVertical: Dp = 0.sdp,
+    paddingHorizontal: Dp = 0.sdp,
+    paddingStart: Dp = 0.sdp,
+    paddingTop: Dp = 0.sdp,
+    paddingEnd: Dp = 0.sdp,
+    paddingBottom: Dp = 0.sdp,
+    fontFamily: FontFamily? = null,
+    textColor: Color = DefaultTextColor,
+    textAlign: TextAlign = TextAlign.Center,
+    onClick: () -> Unit
+) {
+
+    Text(
+        modifier = modifier
+            .padding(padding)
+            .padding(paddingVertical, paddingHorizontal)
+            .padding(paddingStart, paddingTop, paddingEnd, paddingBottom),
+
+        text = text,
+        fontSize = textSize,
+        fontFamily = fontFamily,
+        color = textColor,
+        textAlign = textAlign
+    )
+}
+
 @Composable
 fun SimpleCheckBox() {
 

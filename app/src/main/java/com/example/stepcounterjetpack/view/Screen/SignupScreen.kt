@@ -7,12 +7,15 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
@@ -25,11 +28,14 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.dp
 import com.example.stepcounterjetpack.R
+import com.example.stepcounterjetpack.view.activities.ui.theme.AppBackground
 import com.example.stepcounterjetpack.view.activities.ui.theme.AppColor
 import com.example.stepcounterjetpack.view.activities.ui.theme.BodyTextFont
 import com.example.stepcounterjetpack.view.activities.ui.theme.TitleTextFont
@@ -42,62 +48,107 @@ fun SignupScreen() {
     Scaffold(
         topBar = {
             AppToolBar(
-                size = 22.sdp, onClick = {
+                size = 20.sdp, onClick = {
 
                 })
         }
-    ){
-        Column(modifier = Modifier
-            .padding(it)
-            .padding(horizontal = 15.sdp)) {
-
+    ) {
+        Column(
+            modifier = Modifier
+                .padding(it)
+                .padding(horizontal = 15.sdp)
+        ) {
             val scrollsState = rememberScrollState()
-            Column(modifier = Modifier
-                .verticalScroll(scrollsState)
-                .fillMaxHeight()
-                .weight(1f)) 
+            Column(
+                modifier = Modifier
+                    .verticalScroll(scrollsState)
+                    .fillMaxHeight()
+                    .weight(1f)
+            )
             {
 
-                SimpleTextComponent(modifier = Modifier,text = "Join TrackFit Today" , fontFamily = TitleTextFont.fontFamily , textColor = TitleTextFont.color,textSize = 24.ssp)
-                SimpleTextComponent(modifier = Modifier,text = "Create your account and start tracking your steps.", textAlign = TextAlign.Start, textSize = 14.ssp, paddingTop = 10.sdp)
+                SimpleTextComponent(
+                    modifier = Modifier,
+                    text = "Join TrackFit Today",
+                    fontFamily = TitleTextFont.fontFamily,
+                    textColor = TitleTextFont.color,
+                    textSize = 24.ssp
+                )
+                SimpleTextComponent(
+                    modifier = Modifier,
+                    text = "Create your account and start tracking your steps.",
+                    textAlign = TextAlign.Start,
+                    textSize = 14.ssp,
+                    paddingTop = 10.sdp
+                )
 
                 LayoutEditText()
 
-                Row (Modifier.padding(top = 5.sdp),verticalAlignment = Alignment.CenterVertically,){
+                Row(
+                    Modifier.padding(top = 5.sdp),
+                    verticalAlignment = Alignment.CenterVertically,
+                ) {
 
                     SimpleCheckBox()
-                    SimpleTextComponent(modifier = Modifier,text = "Terms & Conditions.", textColor = AppColor , fontFamily = BodyTextFont, paddingStart = 5.sdp, textSize = 12.ssp)
+                    SimpleTextComponent(
+                        modifier = Modifier,
+                        text = "Terms & Conditions.",
+                        textColor = AppColor,
+                        fontFamily = BodyTextFont,
+                        paddingStart = 5.sdp,
+                        textSize = 12.ssp
+                    )
                 }
 
-                Row (modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(top = 10.sdp),
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(top = 10.sdp),
                     verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.Center){
+                    horizontalArrangement = Arrangement.Center
+                ) {
 
-                    SimpleTextComponent(modifier = Modifier,text = "Already have an account? ", textSize = 12.ssp, fontFamily = BodyTextFont)
-                    SimpleTextComponent(modifier = Modifier,text = "Sign in", textColor = AppColor, fontFamily = BodyTextFont, textSize = 12.ssp)
+                    SimpleTextComponent(
+                        modifier = Modifier,
+                        text = "Already have an account? ",
+                        textSize = 12.ssp,
+                        fontFamily = BodyTextFont
+                    )
+                    ClickableTextComponent(
+                        modifier = Modifier,
+                        text = "Sign in",
+                        textColor = AppColor,
+                        fontFamily = BodyTextFont,
+                        textSize = 12.ssp,
+                        onClick = {
+
+                        }
+                    )
                 }
 
-                Box (
+                Row(
                     Modifier
                         .fillMaxWidth()
-                        .padding(top = 30.sdp),
-                    contentAlignment = Alignment.Center
-                ){
+                        .padding(top = 30.sdp, bottom = 20.sdp),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
 
-                    SimpleTextComponent(modifier = Modifier,text = "or", fontFamily = BodyTextFont)
+                    Divider(Modifier.weight(1f))
+                    SimpleTextComponent(modifier = Modifier.padding(horizontal = 10.sdp), text = "or", fontFamily = BodyTextFont)
+                    Divider(Modifier.weight(1f))
                 }
 
-                SignCard(text = "Continue with Google", src = R.drawable.ic_google)
-                SignCard(text = "Continue with Apple", src = R.drawable.ic_apple)
-                SignCard(text = "Continue with Facebook", src = R.drawable.ic_facebook)
-                SignCard(text = "Continue with Twitter", src = R.drawable.ic_twitter)
+                SignCard(text = "Continue with Google", src = R.drawable.ic_google ,  textSize = 12.ssp)
+                SignCard(text = "Continue with Apple", src = R.drawable.ic_apple,textSize = 12.ssp)
+                SignCard(text = "Continue with Facebook", src = R.drawable.ic_facebook,textSize = 12.ssp)
+                SignCard(text = "Continue with Twitter", src = R.drawable.ic_twitter,textSize = 12.ssp, paddingBottom = 15.sdp)
             }
 
-            Box(modifier = Modifier
-                .fillMaxWidth()
-                .padding(bottom = 10.sdp)) {
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(bottom = 10.sdp)
+            ) {
 
                 SimpleButton(text = "Sign up", textColor = Color.White) {
 
@@ -112,7 +163,13 @@ fun SignupScreen() {
 @Composable
 private fun LayoutEditText() {
     // TODO        TextField  Name
-    SimpleTextComponent(modifier = Modifier,text = "Name", fontFamily = TitleTextFont.fontFamily, paddingTop = 20.sdp,textSize = 15.ssp)
+    SimpleTextComponent(
+        modifier = Modifier,
+        text = "Name",
+        fontFamily = TitleTextFont.fontFamily,
+        paddingTop = 20.sdp,
+        textSize = 15.ssp
+    )
     var name by remember { mutableStateOf("") }
     SimpleEditText(hint = "Enter Name", paddingTop = 5.sdp, onTextChange = { tfName ->
         name = tfName
@@ -120,7 +177,13 @@ private fun LayoutEditText() {
 
 
     //TODO       TextField Email
-    SimpleTextComponent(modifier = Modifier,text = "Email", fontFamily = TitleTextFont.fontFamily, paddingTop = 10.sdp, textSize = 15.ssp)
+    SimpleTextComponent(
+        modifier = Modifier,
+        text = "Email",
+        fontFamily = TitleTextFont.fontFamily,
+        paddingTop = 10.sdp,
+        textSize = 15.ssp
+    )
     var email by remember { mutableStateOf("") }
     SimpleEditText(hint = "Enter Email", paddingTop = 5.sdp, onTextChange = { tfEmail ->
         email = tfEmail
@@ -128,7 +191,13 @@ private fun LayoutEditText() {
 
 
     //TODO       TextField Password
-    SimpleTextComponent(modifier = Modifier,text = "Password", fontFamily = TitleTextFont.fontFamily, paddingTop = 10.sdp, textSize = 15.ssp)
+    SimpleTextComponent(
+        modifier = Modifier,
+        text = "Password",
+        fontFamily = TitleTextFont.fontFamily,
+        paddingTop = 10.sdp,
+        textSize = 15.ssp
+    )
     var password by remember { mutableStateOf("") }
     SimpleEditText(hint = "Enter Password", paddingTop = 5.sdp, onTextChange = { tfPassword ->
         password = tfPassword
@@ -140,45 +209,66 @@ private fun LayoutEditText() {
 fun AppToolBar(
     toolbarTitle: String = "",
     size: Dp = 25.sdp,
-    backgroundColor : Color = Color.White,
+    backgroundColor: Color = AppBackground,
     onClick: () -> Unit,
 
     ) {
 
     TopAppBar(
+        modifier = Modifier.wrapContentHeight(),
         title = {
-            SimpleTextComponent(modifier = Modifier,text = toolbarTitle)
+
+            Box(
+                modifier = Modifier.fillMaxWidth()
+                    .padding(bottom = 12.sdp),
+                contentAlignment = Alignment.Center
+            ) {
+
+                SimpleTextComponent(
+                    modifier = Modifier,
+                    text = "toolbarTitle",
+                    fontFamily = TitleTextFont.fontFamily
+                )
+            }
+
         },
         navigationIcon = {
             Icon(
                 imageVector = Icons.Filled.ArrowBack,
                 contentDescription = "Arrow Back",
                 modifier = Modifier
-                    .padding(start = 5.sdp)
+                    .padding(start = 5.sdp, bottom = 12.sdp)
                     .size(size)
                     .clickable(enabled = true, onClick = onClick),
             )
         },
-        modifier = Modifier,
         colors = TopAppBarDefaults.smallTopAppBarColors(containerColor = backgroundColor),
         actions = {
-            Box(
+
+//            SimpleTextComponent(
+//                modifier = Modifier.align(Alignment.CenterVertically).fillMaxWidth(),
+//                text = "toolbarTitle",
+//                fontFamily = TitleTextFont.fontFamily
+//            )
+
+            Icon(
+                imageVector = Icons.Filled.ArrowBack,
+                contentDescription = "Arrow Back",
                 modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(top = 6.sdp),
-                contentAlignment = Alignment.Center
-            ) {
-                SimpleTextComponent(modifier = Modifier,text = toolbarTitle, fontFamily = TitleTextFont.fontFamily)
-            }
+                    .padding(end = 5.sdp, bottom = 12.sdp)
+                    .size(size)
+                    .alpha(0f)
+                    .clickable(enabled = true, onClick = onClick),
+            )
+
         }
     )
 }
 
 
-
 @Preview
 @Composable
-fun SignupScreenPreview(){
+fun SignupScreenPreview() {
 
     SignupScreen()
 }

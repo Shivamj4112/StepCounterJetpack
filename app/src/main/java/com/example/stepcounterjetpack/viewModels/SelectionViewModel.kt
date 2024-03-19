@@ -5,7 +5,7 @@ import android.content.Intent
 import androidx.lifecycle.ViewModel
 import com.example.stepcounterjetpack.view.activities.SignUpActivity
 
-class SelectionLoginModel : ViewModel() {
+class SelectionViewModel : ViewModel() {
 
 
 

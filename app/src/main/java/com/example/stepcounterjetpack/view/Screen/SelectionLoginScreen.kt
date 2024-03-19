@@ -31,12 +31,12 @@ import com.example.stepcounterjetpack.view.activities.ui.theme.DefaultTextColor
 import com.example.stepcounterjetpack.view.activities.ui.theme.LightestAppColor
 import com.example.stepcounterjetpack.view.activities.ui.theme.StepCounterJetpackTheme
 import com.example.stepcounterjetpack.view.activities.ui.theme.TitleTextFont
-import com.example.stepcounterjetpack.viewModels.SelectionLoginModel
+import com.example.stepcounterjetpack.viewModels.SelectionViewModel
 import ir.kaaveh.sdpcompose.sdp
 import ir.kaaveh.sdpcompose.ssp
 
 @Composable
-fun SelectionLoginScreen(context : Context, selectionLoginModel: SelectionLoginModel) {
+fun SelectionLoginScreen(context: Context, selectionViewModel: SelectionViewModel) {
 
     Column(
         modifier = Modifier
@@ -87,7 +87,7 @@ fun SelectionLoginScreen(context : Context, selectionLoginModel: SelectionLoginM
                 textSize = 13.ssp,
                 fontFamily = TitleTextFont.fontFamily,
                 onClick = {
-                    selectionLoginModel.selectionSignup(context = context) {
+                    selectionViewModel.selectionSignup(context = context) {
 
                     }
                 }
@@ -112,9 +112,9 @@ fun SelectionLoginScreen(context : Context, selectionLoginModel: SelectionLoginM
             verticalAlignment = Alignment.CenterVertically
         ) {
 
-            SimpleTextComponent(modifier = Modifier,text = "Privacy Policy ", textSize = 10.ssp)
-            SimpleTextComponent(modifier = Modifier,text = "   |   ", textSize = 10.ssp)
-            SimpleTextComponent(modifier = Modifier,text = "Terms and Service", textSize = 10.ssp)
+            SimpleTextComponent(modifier = Modifier, text = "Privacy Policy ", textSize = 10.ssp)
+            SimpleTextComponent(modifier = Modifier, text = "   |   ", textSize = 10.ssp)
+            SimpleTextComponent(modifier = Modifier, text = "Terms and Service", textSize = 10.ssp)
         }
     }
 }
@@ -127,24 +127,24 @@ fun SignCardsList() {
                 text = "Continue with Google",
                 paddingTop = 30.sdp,
                 src = R.drawable.ic_google,
-                textSize = 10.ssp
+                textSize = 12.ssp
             )
         }
         item {
-            SignCard(text = "Continue with Apple", src = R.drawable.ic_apple, textSize = 10.ssp)
+            SignCard(text = "Continue with Apple", src = R.drawable.ic_apple, textSize = 12.ssp)
         }
         item {
             SignCard(
                 text = "Continue with Facebook",
                 src = R.drawable.ic_facebook,
-                textSize = 10.ssp
+                textSize = 12.ssp
             )
         }
         item {
             SignCard(
                 text = "Continue with Twitter",
                 src = R.drawable.ic_twitter,
-                textSize = 10.ssp,
+                textSize = 12.ssp,
                 paddingBottom = 10.sdp
             )
         }
