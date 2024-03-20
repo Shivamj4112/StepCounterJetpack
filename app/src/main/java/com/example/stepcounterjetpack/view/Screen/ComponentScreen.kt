@@ -3,6 +3,7 @@ package com.example.stepcounterjetpack.view.Screen
 import android.app.Activity
 import android.os.Build
 import android.view.WindowInsetsController
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -99,12 +100,13 @@ fun ClickableTextComponent(
 ) {
 
     Text(
-        modifier = modifier,
+        modifier = modifier.clickable(true , onClick = onClick),
         text = text,
         fontSize = textSize,
         fontFamily = fontFamily,
         color = textColor,
-        textAlign = textAlign
+        textAlign = textAlign,
+
     )
 }
 

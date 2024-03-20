@@ -1,28 +1,17 @@
 package com.example.stepcounterjetpack.view.Screen
 
 import android.app.Activity
-import androidx.activity.viewModels
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.Divider
-import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.TopAppBar
-import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -30,22 +19,20 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.Dp
 import com.example.stepcounterjetpack.R
-import com.example.stepcounterjetpack.view.activities.ui.theme.AppBackground
 import com.example.stepcounterjetpack.view.activities.ui.theme.AppColor
 import com.example.stepcounterjetpack.view.activities.ui.theme.BodyTextFont
 import com.example.stepcounterjetpack.view.activities.ui.theme.TitleTextFont
+import com.example.stepcounterjetpack.viewModels.LoginViewModel
 import com.example.stepcounterjetpack.viewModels.SignupViewModel
 import ir.kaaveh.sdpcompose.sdp
 import ir.kaaveh.sdpcompose.ssp
 
 @Composable
-fun SignupScreen(context: Activity, signViewModel: SignupViewModel) {
+fun LoginScreen(context: Activity, loginViewModel: LoginViewModel) {
 
     Scaffold(
         topBar = {
@@ -71,59 +58,43 @@ fun SignupScreen(context: Activity, signViewModel: SignupViewModel) {
 
                 SimpleTextComponent(
                     modifier = Modifier,
-                    text = "Join TrackFit Today",
+                    text = "Welcome Back",
                     fontFamily = TitleTextFont.fontFamily,
                     textColor = TitleTextFont.color,
                     textSize = 24.ssp
                 )
                 SimpleTextComponent(
                     modifier = Modifier.padding(top = 10.sdp),
-                    text = "Create your account and start tracking your steps.",
+                    text = "Login your account and start tracking your steps.",
                     textAlign = TextAlign.Start,
                     textSize = 14.ssp,
                 )
 
                 LayoutEditText()
 
-                Row(
-                    Modifier.padding(top = 5.sdp),
-                    verticalAlignment = Alignment.CenterVertically,
-                ) {
-
-                    SimpleCheckBox()
-                    SimpleTextComponent(
-                        modifier = Modifier.padding(start = 5.sdp),
-                        text = "Terms & Conditions.",
-                        textColor = AppColor,
-                        fontFamily = BodyTextFont,
-                        textSize = 12.ssp
-                    )
-                }
 
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(top = 10.sdp),
+                        .padding(top = 20.sdp),
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.Center
                 ) {
 
                     SimpleTextComponent(
                         modifier = Modifier,
-                        text = "Already have an account? ",
+                        text = "Create your account? ",
                         textSize = 12.ssp,
                         fontFamily = BodyTextFont
                     )
                     ClickableTextComponent(
                         modifier = Modifier,
-                        text = "Login",
+                        text = "Sign up",
                         textColor = AppColor,
                         fontFamily = BodyTextFont,
                         textSize = 12.ssp,
                         onClick = {
-                            signViewModel.navigateToLogin(context = context) {
-
-                            }
+                            loginViewModel.navigateToSignup(context = context) {}
                         }
                     )
                 }
@@ -171,7 +142,7 @@ fun SignupScreen(context: Activity, signViewModel: SignupViewModel) {
                     .padding(bottom = 10.sdp)
             ) {
 
-                SimpleButton(text = "Sign up", textColor = Color.White) {
+                SimpleButton(text = "Login", textColor = Color.White) {
 
                 }
             }
@@ -183,26 +154,10 @@ fun SignupScreen(context: Activity, signViewModel: SignupViewModel) {
 
 @Composable
 private fun LayoutEditText() {
-    // TODO        TextField  Name
-    SimpleTextComponent(
-        modifier = Modifier.padding(top = 20.sdp),
-        text = "Name",
-        fontFamily = TitleTextFont.fontFamily,
-        textSize = 15.ssp
-    )
-    var name by remember { mutableStateOf("") }
-
-    SimpleEditText(
-        modifier = Modifier.fillMaxWidth().padding(top = 5.sdp),
-        hint = "Enter Name",
-        onTextChange = { tfName ->
-            name = tfName
-        })
-
 
     //TODO       TextField Email
     SimpleTextComponent(
-        modifier = Modifier.padding(top = 10.sdp),
+        modifier = Modifier.padding(top = 20.sdp),
         text = "Email",
         fontFamily = TitleTextFont.fontFamily,
         textSize = 15.ssp
@@ -230,67 +185,8 @@ private fun LayoutEditText() {
         password = tfPassword
     })
 }
-
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-fun AppToolBar(
-    toolbarTitle: String = "",
-    size: Dp = 25.sdp,
-    backgroundColor: Color = AppBackground,
-    onClick: () -> Unit,
-
-    ) {
-
-    TopAppBar(
-        modifier = Modifier.wrapContentHeight(),
-        title = {
-
-            Box(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(bottom = 12.sdp),
-                contentAlignment = Alignment.Center
-            ) {
-
-                SimpleTextComponent(
-                    modifier = Modifier,
-                    text = "toolbarTitle",
-                    fontFamily = TitleTextFont.fontFamily
-                )
-            }
-
-        },
-        navigationIcon = {
-            Icon(
-                imageVector = Icons.Filled.ArrowBack,
-                contentDescription = "Arrow Back",
-                modifier = Modifier
-                    .padding(start = 5.sdp, bottom = 12.sdp)
-                    .size(size)
-                    .clickable(enabled = true, onClick = onClick),
-            )
-        },
-        colors = TopAppBarDefaults.smallTopAppBarColors(containerColor = backgroundColor),
-        actions = {
-
-
-            Icon(
-                imageVector = Icons.Filled.ArrowBack,
-                contentDescription = "Arrow Back",
-                modifier = Modifier
-                    .padding(end = 5.sdp, bottom = 12.sdp)
-                    .size(size)
-                    .alpha(0f)
-                    .clickable(enabled = true, onClick = onClick),
-            )
-
-        }
-    )
-}
-
-
 @Preview
 @Composable
-fun SignupScreenPreview() {
-//    SignupScreen()
+fun LoginScreenPreview() {
+//    LoginScreen()
 }
