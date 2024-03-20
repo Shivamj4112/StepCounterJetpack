@@ -82,5 +82,8 @@ dependencies {
     implementation(libs.sdp.compose)
 
     implementation(libs.androidx.fragment.ktx)
+
+    // Number Picker
+    implementation(libs.number.picker)
  
 }

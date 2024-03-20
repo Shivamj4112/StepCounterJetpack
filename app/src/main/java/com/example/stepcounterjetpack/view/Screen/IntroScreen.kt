@@ -23,6 +23,8 @@ import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -39,6 +41,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -74,14 +77,23 @@ fun IntroScreen() {
             ) {
                 Column(modifier = Modifier.padding(it)) {
 
-                    val pagersState = rememberPagerState(pageCount = {3})
+                    val pagersState = rememberPagerState(pageCount = { 3 })
 
-                    HorizontalPager(state = pagersState , modifier = Modifier.fillMaxSize()) {page : Int ->
+                    HorizontalPager(
+                        state = pagersState,
+                        modifier = Modifier.fillMaxSize()
+                    ) { page: Int ->
 
-                        when(page){
+//                        when (page) {
 
-                            0 -> IntroScreen2()
-                        }
+//                            0 -> IntroScreen1()
+//                            1 -> IntroScreen2()
+//                            2 -> IntroScreen3()
+
+//                        }
+
+                        IntroScreen3()
+
                     }
                 }
             }
@@ -136,7 +148,8 @@ fun IntroScreen1() {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
 
-        Row(modifier = Modifier
+        Row(
+            modifier = Modifier
         ) {
 
             SimpleTextComponent(
@@ -156,10 +169,12 @@ fun IntroScreen1() {
             )
         }
 
-        SimpleTextComponent(modifier = Modifier
-            .padding(top = 8.sdp),
+        SimpleTextComponent(
+            modifier = Modifier
+                .padding(top = 8.sdp),
             text = "Let's start by understanding you.",
-            textSize = 12.ssp)
+            textSize = 12.ssp
+        )
 
 
         FilledCardView()
@@ -171,46 +186,140 @@ fun IntroScreen1() {
 @Composable
 fun IntroScreen2() {
 
-    Column(modifier = Modifier.fillMaxSize().padding(horizontal = 15.sdp), horizontalAlignment = Alignment.CenterHorizontally) {
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(horizontal = 15.sdp), horizontalAlignment = Alignment.CenterHorizontally
+    ) {
 
-        Row(modifier = Modifier.fillMaxWidth(),
+        Row(
+            modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.Center,
-            ) {
+        ) {
 
-            SimpleTextComponent(modifier = Modifier,
+            SimpleTextComponent(
+                modifier = Modifier,
                 text = "Do you live a ",
                 textSize = 24.ssp,
                 fontFamily = TitleTextFont.fontFamily,
-                textColor = Color.Black)
+                textColor = Color.Black
+            )
 
-            SimpleTextComponent(modifier = Modifier,
+            SimpleTextComponent(
+                modifier = Modifier,
                 text = "Sedentary",
                 textSize = 24.ssp,
                 fontFamily = TitleTextFont.fontFamily,
-                textColor = AppColor)
+                textColor = AppColor
+            )
 
         }
-        SimpleTextComponent(modifier = Modifier.padding(top = 5.sdp),
+        SimpleTextComponent(
+            modifier = Modifier.padding(top = 5.sdp),
             text = "LifeStyle?",
             textSize = 24.ssp,
             fontFamily = TitleTextFont.fontFamily,
-            textColor = Color.Black,)
+            textColor = Color.Black,
+        )
 
 
-        SimpleTextComponent(modifier = Modifier.padding(top = 8.sdp),
+        SimpleTextComponent(
+            modifier = Modifier.padding(top = 8.sdp),
             text = "Tell us about your daily routine.",
             textSize = 12.ssp,
-            fontFamily = BodyTextFont,)
+            fontFamily = BodyTextFont
+        )
+
+
+        Image(
+            modifier = Modifier
+                .padding(top = 30.sdp)
+                .size(230.sdp),
+            contentScale = ContentScale.Crop,
+            painter = painterResource(id = R.drawable.img_seden),
+            contentDescription = null)
+
+
+        Row (modifier = Modifier.padding(top = 10.sdp)){
+
+            var sedenState by remember { mutableStateOf("No") }
+
+            Button(
+                modifier = Modifier
+                    .size(55.sdp)
+                    .clip(RoundedCornerShape(10.sdp)),
+                colors = if (sedenState == "No") ButtonDefaults.buttonColors(containerColor = AppColor) else ButtonDefaults.buttonColors(containerColor = LightestAppColor),
+                onClick = { sedenState = "No" }) {
+
+                SimpleTextComponent(modifier = Modifier, text = "No", textColor = if (sedenState == "No") Color.White else AppColor, textSize = 12.ssp, fontFamily = BodyTextFont)
+            }
+
+            Spacer(modifier = Modifier.width(20.sdp))
+
+            Button(
+                modifier = Modifier
+                    .size(55.sdp)
+                    .clip(RoundedCornerShape(10.sdp)),
+                colors = if (sedenState == "Yes") ButtonDefaults.buttonColors(containerColor = AppColor) else ButtonDefaults.buttonColors(containerColor = LightestAppColor),
+                onClick = { sedenState = "Yes" }) {
+
+                SimpleTextComponent(modifier = Modifier, text = "Yes", textColor = if (sedenState == "Yes") Color.White else AppColor, textSize = 12.ssp, fontFamily = BodyTextFont)
+            }
+        }
 
     }
 }
 
 @Composable
-fun FilledCardView(){
+fun IntroScreen3(){
 
-    Row (modifier = Modifier
-        .fillMaxWidth()
-        .padding(top = 20.sdp), horizontalArrangement = Arrangement.SpaceBetween)
+    Column(modifier = Modifier.fillMaxSize(), horizontalAlignment = Alignment.CenterHorizontally){
+
+        Row {
+            SimpleTextComponent(
+                modifier = Modifier.padding(top = 10.sdp),
+                text = "How",
+                textSize = 24.ssp,
+                fontFamily = TitleTextFont.fontFamily,
+                textColor = Color.Black)
+
+            SimpleTextComponent(
+                modifier = Modifier.padding(top = 10.sdp),
+                text = " Old ",
+                textSize = 24.ssp,
+                fontFamily = TitleTextFont.fontFamily,
+                textColor = AppColor)
+
+            SimpleTextComponent(
+                modifier = Modifier.padding(top = 10.sdp),
+                text = "Are You?",
+                textSize = 24.ssp,
+                fontFamily = TitleTextFont.fontFamily,
+                textColor = Color.Black)
+
+        }
+
+        SimpleTextComponent(
+            modifier = Modifier.padding(top = 10.sdp),
+            text = "Share your age with us.",
+            textSize = 12.ssp,
+            fontFamily = BodyTextFont)
+
+
+
+
+
+    }
+}
+
+@Composable
+fun FilledCardView() {
+
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(top = 20.sdp), horizontalArrangement = Arrangement.SpaceBetween
+    )
     {
         var selectedGender by remember { mutableStateOf("") }
 
@@ -224,29 +333,35 @@ fun FilledCardView(){
                     color = if (selectedGender == "male") Color.Black else AppBackground
                 )
                 .clip(RoundedCornerShape(10.sdp))
-                .clickable { selectedGender = "male" },) {
+                .clickable { selectedGender = "male" },
+        ) {
 
-            Column (modifier = Modifier.padding(all = 2.sdp)){
+            Column(modifier = Modifier.padding(all = 2.sdp)) {
                 Image(
                     modifier = Modifier.height(300.sdp),
                     contentScale = ContentScale.Crop,
                     painter = painterResource(id = R.drawable.img_male),
-                    contentDescription = "Image Male ")
+                    contentDescription = "Image Male "
+                )
 
-                SimpleTextComponent(modifier = Modifier
-                    .align(Alignment.CenterHorizontally)
-                    .padding(top = 10.sdp),
+                SimpleTextComponent(
+                    modifier = Modifier
+                        .align(Alignment.CenterHorizontally)
+                        .padding(top = 10.sdp),
                     text = "Male",
                     textSize = 14.ssp,
                     fontFamily = TitleTextFont.fontFamily,
-                    textColor = Color.Black)
+                    textColor = Color.Black
+                )
             }
 
         }
 
-        Spacer(modifier = Modifier
-            .fillMaxHeight()
-            .width(10.sdp))
+        Spacer(
+            modifier = Modifier
+                .fillMaxHeight()
+                .width(10.sdp)
+        )
 
         Card(
             colors = CardDefaults.cardColors(containerColor = AppBackground),
@@ -259,26 +374,29 @@ fun FilledCardView(){
                 .clip(RoundedCornerShape(10.sdp))
                 .clickable { selectedGender = "female" }) {
 
-            Column (modifier = Modifier.padding(all = 2.sdp)){
+            Column(modifier = Modifier.padding(all = 2.sdp)) {
                 Image(
                     modifier = Modifier.height(300.sdp),
                     contentScale = ContentScale.Crop,
                     painter = painterResource(id = R.drawable.img_female),
-                    contentDescription = "Image Female ")
+                    contentDescription = "Image Female "
+                )
 
-                SimpleTextComponent(modifier = Modifier
-                    .align(Alignment.CenterHorizontally)
-                    .padding(top = 10.sdp),
+                SimpleTextComponent(
+                    modifier = Modifier
+                        .align(Alignment.CenterHorizontally)
+                        .padding(top = 10.sdp),
                     text = "Female",
                     textSize = 14.ssp,
                     fontFamily = TitleTextFont.fontFamily,
-                    textColor = Color.Black)
+                    textColor = Color.Black
+                )
             }
         }
 
 
     }
-    
+
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
