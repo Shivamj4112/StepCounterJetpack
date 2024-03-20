@@ -84,6 +84,6 @@ dependencies {
     implementation(libs.androidx.fragment.ktx)
 
     // Number Picker
-    implementation(libs.number.picker)
+    implementation(libs.numberpicker)
  
 }

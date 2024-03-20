@@ -12,12 +12,12 @@ lifecycleRuntimeKtx = "2.7.0"
 activityCompose = "1.8.2"
 composeBom = "2024.02.02"
 lottie = "6.4.0"
-numberPicker = "2.4.13"
+numberpickerVersion = "1.0.5"
 sdpCompose = "1.1.0"
 viewpager2 = "1.0.0"
 appcompat = "1.6.1"
 material = "1.11.0"
-activity = "1.8.0"
+activity = "1.8.2"
 constraintlayout = "2.1.4"
 
 [libraries]
@@ -39,7 +39,7 @@ androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit
 androidx-material3 = { group = "androidx.compose.material3", name = "material3" }
 kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlinxCoroutinesCore" }
 lottie = { module = "com.airbnb.android:lottie-compose", version.ref = "lottie" }
-number-picker = { module = "io.github.ShawnLin013:number-picker", version.ref = "numberPicker" }
+numberpicker = { module = "com.chargemap.compose:numberpicker", version.ref = "numberpickerVersion" }
 sdp-compose = { module = "com.github.Kaaveh:sdp-compose", version.ref = "sdpCompose" }
 androidx-viewpager2 = { group = "androidx.viewpager2", name = "viewpager2", version.ref = "viewpager2" }
 androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
