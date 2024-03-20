@@ -51,6 +51,7 @@ import com.example.stepcounterjetpack.view.activities.ui.theme.AppColor
 import com.example.stepcounterjetpack.view.activities.ui.theme.BodyTextFont
 import com.example.stepcounterjetpack.view.activities.ui.theme.LightestAppColor
 import com.example.stepcounterjetpack.view.activities.ui.theme.TitleTextFont
+import com.example.stepcounterjetpack.view.util.DigitPicker
 import ir.kaaveh.sdpcompose.sdp
 import ir.kaaveh.sdpcompose.ssp
 
@@ -235,10 +236,11 @@ fun IntroScreen2() {
                 .size(230.sdp),
             contentScale = ContentScale.Crop,
             painter = painterResource(id = R.drawable.img_seden),
-            contentDescription = null)
+            contentDescription = null
+        )
 
 
-        Row (modifier = Modifier.padding(top = 10.sdp)){
+        Row(modifier = Modifier.padding(top = 10.sdp)) {
 
             var sedenState by remember { mutableStateOf("No") }
 
@@ -246,10 +248,18 @@ fun IntroScreen2() {
                 modifier = Modifier
                     .size(55.sdp)
                     .clip(RoundedCornerShape(10.sdp)),
-                colors = if (sedenState == "No") ButtonDefaults.buttonColors(containerColor = AppColor) else ButtonDefaults.buttonColors(containerColor = LightestAppColor),
+                colors = if (sedenState == "No") ButtonDefaults.buttonColors(containerColor = AppColor) else ButtonDefaults.buttonColors(
+                    containerColor = LightestAppColor
+                ),
                 onClick = { sedenState = "No" }) {
 
-                SimpleTextComponent(modifier = Modifier, text = "No", textColor = if (sedenState == "No") Color.White else AppColor, textSize = 12.ssp, fontFamily = BodyTextFont)
+                SimpleTextComponent(
+                    modifier = Modifier,
+                    text = "No",
+                    textColor = if (sedenState == "No") Color.White else AppColor,
+                    textSize = 12.ssp,
+                    fontFamily = BodyTextFont
+                )
             }
 
             Spacer(modifier = Modifier.width(20.sdp))
@@ -258,10 +268,18 @@ fun IntroScreen2() {
                 modifier = Modifier
                     .size(55.sdp)
                     .clip(RoundedCornerShape(10.sdp)),
-                colors = if (sedenState == "Yes") ButtonDefaults.buttonColors(containerColor = AppColor) else ButtonDefaults.buttonColors(containerColor = LightestAppColor),
+                colors = if (sedenState == "Yes") ButtonDefaults.buttonColors(containerColor = AppColor) else ButtonDefaults.buttonColors(
+                    containerColor = LightestAppColor
+                ),
                 onClick = { sedenState = "Yes" }) {
 
-                SimpleTextComponent(modifier = Modifier, text = "Yes", textColor = if (sedenState == "Yes") Color.White else AppColor, textSize = 12.ssp, fontFamily = BodyTextFont)
+                SimpleTextComponent(
+                    modifier = Modifier,
+                    text = "Yes",
+                    textColor = if (sedenState == "Yes") Color.White else AppColor,
+                    textSize = 12.ssp,
+                    fontFamily = BodyTextFont
+                )
             }
         }
 
@@ -269,9 +287,9 @@ fun IntroScreen2() {
 }
 
 @Composable
-fun IntroScreen3(){
+fun IntroScreen3() {
 
-    Column(modifier = Modifier.fillMaxSize(), horizontalAlignment = Alignment.CenterHorizontally){
+    Column(modifier = Modifier.fillMaxSize(), horizontalAlignment = Alignment.CenterHorizontally) {
 
         Row {
             SimpleTextComponent(
@@ -279,21 +297,24 @@ fun IntroScreen3(){
                 text = "How",
                 textSize = 24.ssp,
                 fontFamily = TitleTextFont.fontFamily,
-                textColor = Color.Black)
+                textColor = Color.Black
+            )
 
             SimpleTextComponent(
                 modifier = Modifier.padding(top = 10.sdp),
                 text = " Old ",
                 textSize = 24.ssp,
                 fontFamily = TitleTextFont.fontFamily,
-                textColor = AppColor)
+                textColor = AppColor
+            )
 
             SimpleTextComponent(
                 modifier = Modifier.padding(top = 10.sdp),
                 text = "Are You?",
                 textSize = 24.ssp,
                 fontFamily = TitleTextFont.fontFamily,
-                textColor = Color.Black)
+                textColor = Color.Black
+            )
 
         }
 
@@ -301,12 +322,19 @@ fun IntroScreen3(){
             modifier = Modifier.padding(top = 10.sdp),
             text = "Share your age with us.",
             textSize = 12.ssp,
-            fontFamily = BodyTextFont)
+            fontFamily = BodyTextFont
+        )
 
 
-            var pickerValue by remember { mutableIntStateOf(18) }
+        var pickerValue by remember { mutableIntStateOf(18) }
 
-
+        DigitPicker(
+            value = pickerValue,
+            range = 10..100,
+            onValueChange = {
+                pickerValue = it
+            },
+        )
 
 
     }
