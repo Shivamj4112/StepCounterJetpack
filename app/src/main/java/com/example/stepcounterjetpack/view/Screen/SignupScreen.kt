@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentHeight
@@ -91,7 +92,7 @@ fun SignupScreen(context: Activity, signViewModel: SignupViewModel) {
 
                     SimpleCheckBox()
                     SimpleTextComponent(
-                        modifier = Modifier.padding(top = 5.sdp),
+                        modifier = Modifier.padding(start = 5.sdp),
                         text = "Terms & Conditions.",
                         textColor = AppColor,
                         fontFamily = BodyTextFont,
@@ -143,21 +144,23 @@ fun SignupScreen(context: Activity, signViewModel: SignupViewModel) {
                 }
 
                 SignCard(
+                    modifier = Modifier.padding(bottom = 10.sdp),
                     text = "Continue with Google",
                     src = R.drawable.ic_google,
                     textSize = 12.ssp
                 )
-                SignCard(text = "Continue with Apple", src = R.drawable.ic_apple, textSize = 12.ssp)
+                SignCard(modifier = Modifier.padding(bottom = 10.sdp),text = "Continue with Apple", src = R.drawable.ic_apple, textSize = 12.ssp)
                 SignCard(
+                    modifier = Modifier.padding(bottom = 10.sdp),
                     text = "Continue with Facebook",
                     src = R.drawable.ic_facebook,
                     textSize = 12.ssp
                 )
                 SignCard(
+                    modifier = Modifier.padding(bottom =  15.sdp),
                     text = "Continue with Twitter",
                     src = R.drawable.ic_twitter,
                     textSize = 12.ssp,
-                    paddingBottom = 15.sdp
                 )
             }
 
@@ -189,7 +192,7 @@ private fun LayoutEditText() {
     var name by remember { mutableStateOf("") }
 
     SimpleEditText(
-        modifier = Modifier.padding(top = 5.sdp),
+        modifier = Modifier.fillMaxWidth().padding(top = 5.sdp),
         hint = "Enter Name",
         onTextChange = { tfName ->
             name = tfName
@@ -207,7 +210,7 @@ private fun LayoutEditText() {
     var email by remember { mutableStateOf("") }
 
     SimpleEditText(
-        modifier = Modifier.padding(top = 5.sdp),
+        modifier = Modifier.fillMaxWidth().padding(top = 5.sdp),
         hint = "Enter Email",
         onTextChange = { tfEmail ->
             email = tfEmail
@@ -222,7 +225,7 @@ private fun LayoutEditText() {
         textSize = 15.ssp
     )
     var password by remember { mutableStateOf("") }
-    SimpleEditText(modifier = Modifier.padding(top = 5.sdp),hint = "Enter Password", onTextChange = { tfPassword ->
+    SimpleEditText(modifier = Modifier.fillMaxWidth().padding(top = 5.sdp),hint = "Enter Password", onTextChange = { tfPassword ->
         password = tfPassword
     })
 }
@@ -269,11 +272,6 @@ fun AppToolBar(
         colors = TopAppBarDefaults.smallTopAppBarColors(containerColor = backgroundColor),
         actions = {
 
-//            SimpleTextComponent(
-//                modifier = Modifier.align(Alignment.CenterVertically).fillMaxWidth(),
-//                text = "toolbarTitle",
-//                fontFamily = TitleTextFont.fontFamily
-//            )
 
             Icon(
                 imageVector = Icons.Filled.ArrowBack,

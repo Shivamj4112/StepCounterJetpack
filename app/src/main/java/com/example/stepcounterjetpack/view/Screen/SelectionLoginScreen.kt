@@ -124,17 +124,18 @@ fun SignCardsList() {
     LazyColumn() {
         item {
             SignCard(
+                modifier = Modifier.padding(top =  30.sdp,bottom = 10.sdp),
                 text = "Continue with Google",
-                paddingTop = 30.sdp,
                 src = R.drawable.ic_google,
                 textSize = 12.ssp
             )
         }
         item {
-            SignCard(text = "Continue with Apple", src = R.drawable.ic_apple, textSize = 12.ssp)
+            SignCard(modifier = Modifier.padding(bottom = 10.sdp),text = "Continue with Apple", src = R.drawable.ic_apple, textSize = 12.ssp)
         }
         item {
             SignCard(
+                modifier = Modifier.padding(bottom = 10.sdp),
                 text = "Continue with Facebook",
                 src = R.drawable.ic_facebook,
                 textSize = 12.ssp
@@ -142,10 +143,10 @@ fun SignCardsList() {
         }
         item {
             SignCard(
+                modifier = Modifier.padding(bottom = 15.sdp),
                 text = "Continue with Twitter",
                 src = R.drawable.ic_twitter,
                 textSize = 12.ssp,
-                paddingBottom = 10.sdp
             )
         }
     }
@@ -154,28 +155,18 @@ fun SignCardsList() {
 
 @Composable
 fun SignCard(
+    modifier: Modifier,
+    src: Int,
     text: String,
     textSize: TextUnit = 13.ssp,
-    padding: Dp = 0.sdp,
-    paddingVertical: Dp = 0.sdp,
-    paddingHorizontal: Dp = 0.sdp,
-    paddingStart: Dp = 0.sdp,
-    paddingTop: Dp = 10.sdp,
-    paddingEnd: Dp = 0.sdp,
-    paddingBottom: Dp = 0.sdp,
     fontFamily: FontFamily? = TitleTextFont.fontFamily,
     cardCornerShape: Dp = 20.sdp,
     textColor: Color = DefaultTextColor,
-    src: Int,
     cardBackgroundColor: Color = Color.White
 ) {
 
     ElevatedCard(
-        modifier = Modifier
-            .wrapContentHeight()
-            .padding(padding)
-            .padding(paddingHorizontal, paddingVertical)
-            .padding(paddingStart, paddingTop, paddingEnd, paddingBottom),
+        modifier = modifier,
         shape = RoundedCornerShape(cardCornerShape),
         colors = CardDefaults.elevatedCardColors(
             containerColor = cardBackgroundColor,
@@ -184,7 +175,7 @@ fun SignCard(
     ) {
         Row(
             modifier = Modifier
-                .padding(horizontal = 13.sdp, vertical = 10.sdp)
+                .padding(horizontal = 13.sdp, vertical = 2.sdp)
                 .fillMaxWidth()
                 .wrapContentHeight()
         ) {
