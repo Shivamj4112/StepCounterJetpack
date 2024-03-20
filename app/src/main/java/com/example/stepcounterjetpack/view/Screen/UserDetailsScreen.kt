@@ -18,8 +18,6 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.layout.wrapContentWidth
-import androidx.compose.foundation.pager.HorizontalPager
-import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
@@ -58,7 +56,9 @@ import ir.kaaveh.sdpcompose.ssp
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun IntroScreen() {
+fun UserDetailsScreen() {
+    var currentScreen by remember { mutableStateOf(0) }
+
     Column(Modifier.fillMaxSize()) {
 
         Column(
@@ -77,14 +77,8 @@ fun IntroScreen() {
             ) {
                 Column(modifier = Modifier.padding(it)) {
 
-                    val pagersState = rememberPagerState(pageCount = { 6 })
 
-                    HorizontalPager(
-                        state = pagersState,
-                        modifier = Modifier.fillMaxSize()
-                    ) { page: Int ->
-
-                        when (page) {
+                        when (currentScreen) {
 
                             0 -> IntroScreen1()
                             1 -> IntroScreen2()
@@ -92,11 +86,13 @@ fun IntroScreen() {
                             3 -> IntroScreen4()
                             4 -> IntroScreen5()
                             5 -> IntroScreen6()
+
+                            else -> IntroScreen1()
                         }
 
                         IntroScreen6()
 
-                    }
+
                 }
             }
         }
@@ -121,7 +117,9 @@ fun IntroScreen() {
                     fontFamily = TitleTextFont.fontFamily,
                     height = 45.sdp,
                     backGroundColor = LightestAppColor
-                ) {}
+                ) {
+                    if (currentScreen > 0) currentScreen--
+                }
             }
             Box(
                 Modifier
@@ -134,7 +132,9 @@ fun IntroScreen() {
                     textColor = Color.White,
                     fontFamily = TitleTextFont.fontFamily,
                     height = 45.sdp,
-                ) {}
+                ) {
+                    if (currentScreen < 5) currentScreen++
+                }
             }
         }
     }
@@ -804,5 +804,5 @@ fun IntroToolBar(
 @Composable
 fun IntroPreview() {
 
-    IntroScreen()
+    UserDetailsScreen()
 }

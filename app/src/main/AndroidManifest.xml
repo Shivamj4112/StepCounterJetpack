@@ -41,7 +41,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".view.activities.IntroActivity"
+            android:name=".view.activities.UserDetailsActivity"
             android:exported="false"
             android:label="@string/title_activity_intro"
             android:theme="@style/Theme.StepCounterJetpack" />

@@ -8,10 +8,10 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
-import com.example.stepcounterjetpack.view.Screen.IntroScreen
+import com.example.stepcounterjetpack.view.Screen.UserDetailsScreen
 import com.example.stepcounterjetpack.view.activities.ui.theme.StepCounterJetpackTheme
 
-class IntroActivity : ComponentActivity() {
+class UserDetailsActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         enableEdgeToEdge()
         super.onCreate(savedInstanceState)
@@ -21,10 +21,7 @@ class IntroActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-
-                            IntroScreen()
-
-
+                    UserDetailsScreen()
                     }
                 }
 

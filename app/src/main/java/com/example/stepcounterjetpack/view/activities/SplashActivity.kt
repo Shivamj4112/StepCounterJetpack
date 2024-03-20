@@ -28,7 +28,7 @@ class SplashActivity : ComponentActivity() {
             viewModel = ViewModelProvider(this)[SplashViewModel::class.java]
             // Call ViewModel method to handle navigation logic
             viewModel.navigateToIntroScreen {
-                startActivity(Intent(this@SplashActivity, IntroActivity::class.java))
+                startActivity(Intent(this@SplashActivity, UserDetailsActivity::class.java))
                 finish()
             }
 
