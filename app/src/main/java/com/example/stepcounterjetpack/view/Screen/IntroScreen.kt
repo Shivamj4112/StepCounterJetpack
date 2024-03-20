@@ -17,6 +17,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentHeight
+import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -76,22 +77,24 @@ fun IntroScreen() {
             ) {
                 Column(modifier = Modifier.padding(it)) {
 
-                    val pagersState = rememberPagerState(pageCount = { 3 })
+                    val pagersState = rememberPagerState(pageCount = { 6 })
 
                     HorizontalPager(
                         state = pagersState,
                         modifier = Modifier.fillMaxSize()
                     ) { page: Int ->
 
-//                        when (page) {
+                        when (page) {
 
-//                            0 -> IntroScreen1()
-//                            1 -> IntroScreen2()
-//                            2 -> IntroScreen3()
+                            0 -> IntroScreen1()
+                            1 -> IntroScreen2()
+                            2 -> IntroScreen3()
+                            3 -> IntroScreen4()
+                            4 -> IntroScreen5()
+                            5 -> IntroScreen6()
+                        }
 
-//                        }
-
-                        IntroScreen3()
+                        IntroScreen6()
 
                     }
                 }
@@ -113,7 +116,7 @@ fun IntroScreen() {
             )
             {
                 SimpleButton(
-                    text = "Skip",
+                    text = "Previous",
                     textColor = AppColor,
                     fontFamily = TitleTextFont.fontFamily,
                     height = 45.sdp,
@@ -136,6 +139,7 @@ fun IntroScreen() {
         }
     }
 }
+
 
 @Composable
 fun IntroScreen1() {
@@ -326,20 +330,333 @@ fun IntroScreen3() {
         )
 
 
-        var pickerValue by remember { mutableIntStateOf(18) }
+        Box(
+            modifier = Modifier
+                .fillMaxHeight()
+                .wrapContentWidth()
+                .align(Alignment.CenterHorizontally)
+                .padding(bottom = 120.sdp),
+            contentAlignment = Alignment.Center
+        ) {
 
-        DigitPicker(
-            modifier = Modifier,
-            value = pickerValue,
-            range = 10..100,
-            onValueChange = {
-                pickerValue = it
-            },
-        )
+            var pickerValue by remember { mutableIntStateOf(18) }
+
+            DigitPicker(
+                modifier = Modifier.width(100.sdp),
+                value = pickerValue,
+                range = 10..100,
+                onValueChange = {
+                    pickerValue = it
+                },
+            )
+            SimpleTextComponent(
+                modifier = Modifier.align(Alignment.CenterEnd),
+                text = "Years",
+                fontFamily = TitleTextFont.fontFamily,
+                textSize = 12.ssp
+            )
+
+        }
 
 
     }
 }
+
+@Composable
+fun IntroScreen4() {
+
+    Column(modifier = Modifier.fillMaxSize(), horizontalAlignment = Alignment.CenterHorizontally) {
+
+        Row {
+            SimpleTextComponent(
+                modifier = Modifier.padding(top = 10.sdp),
+                text = "What's Your ",
+                textSize = 24.ssp,
+                fontFamily = TitleTextFont.fontFamily,
+                textColor = Color.Black
+            )
+
+            SimpleTextComponent(
+                modifier = Modifier.padding(top = 10.sdp),
+                text = "Height",
+                textSize = 24.ssp,
+                fontFamily = TitleTextFont.fontFamily,
+                textColor = AppColor
+            )
+
+            SimpleTextComponent(
+                modifier = Modifier.padding(top = 10.sdp),
+                text = "?",
+                textSize = 24.ssp,
+                fontFamily = TitleTextFont.fontFamily,
+                textColor = Color.Black
+            )
+
+        }
+
+        SimpleTextComponent(
+            modifier = Modifier.padding(top = 10.sdp),
+            text = "How tall are you?",
+            textSize = 12.ssp,
+            fontFamily = BodyTextFont
+        )
+
+        HeightPicker()
+
+
+    }
+}
+
+@Composable
+fun IntroScreen5() {
+
+    Column(modifier = Modifier.fillMaxSize(), horizontalAlignment = Alignment.CenterHorizontally) {
+
+        Row {
+            SimpleTextComponent(
+                modifier = Modifier.padding(top = 10.sdp),
+                text = "What's Your ",
+                textSize = 24.ssp,
+                fontFamily = TitleTextFont.fontFamily,
+                textColor = Color.Black
+            )
+
+            SimpleTextComponent(
+                modifier = Modifier.padding(top = 10.sdp),
+                text = "Weight",
+                textSize = 24.ssp,
+                fontFamily = TitleTextFont.fontFamily,
+                textColor = AppColor
+            )
+
+            SimpleTextComponent(
+                modifier = Modifier.padding(top = 10.sdp),
+                text = "?",
+                textSize = 24.ssp,
+                fontFamily = TitleTextFont.fontFamily,
+                textColor = Color.Black
+            )
+        }
+
+        SimpleTextComponent(
+            modifier = Modifier.padding(top = 10.sdp),
+            text = "Share your weight with us.",
+            textSize = 12.ssp,
+            fontFamily = BodyTextFont
+        )
+
+        WeightPicker()
+
+
+    }
+}
+
+@Composable
+fun IntroScreen6() {
+
+    Column(modifier = Modifier.fillMaxSize(), horizontalAlignment = Alignment.CenterHorizontally) {
+
+        Row {
+            SimpleTextComponent(
+                modifier = Modifier.padding(top = 10.sdp),
+                text = "Set Your",
+                textSize = 24.ssp,
+                fontFamily = TitleTextFont.fontFamily,
+                textColor = Color.Black
+            )
+
+            SimpleTextComponent(
+                modifier = Modifier.padding(top = 10.sdp),
+                text = " Step Goal",
+                textSize = 24.ssp,
+                fontFamily = TitleTextFont.fontFamily,
+                textColor = AppColor
+            )
+        }
+
+        SimpleTextComponent(
+            modifier = Modifier.padding(top = 10.sdp),
+            text = "Choose your daily step goal to stay motivated!",
+            textSize = 12.ssp,
+            fontFamily = BodyTextFont
+        )
+
+        Box(
+            modifier = Modifier
+                .fillMaxHeight()
+                .wrapContentWidth()
+                .align(Alignment.CenterHorizontally)
+                .padding(bottom = 120.sdp),
+            contentAlignment = Alignment.Center
+        ) {
+
+            var pickerValue by remember { mutableIntStateOf(6000) }
+
+            DigitPicker(
+                modifier = Modifier.width(150.sdp),
+                value = pickerValue,
+                range = 1000..10000 step 500,
+                onValueChange = {
+                    pickerValue = it
+                },
+            )
+            SimpleTextComponent(
+                modifier = Modifier.align(Alignment.CenterEnd).padding(end = 10.sdp),
+                text = "Steps",
+                fontFamily = TitleTextFont.fontFamily,
+                textSize = 12.ssp
+            )
+
+        }
+
+
+    }
+}
+
+@Composable
+fun HeightPicker() {
+    var heightType by remember { mutableStateOf("cm") }
+    val range = if (heightType == "cm") 50..300 else 2..12
+    val text = if (heightType == "cm") "cm" else "ft"
+    var pickerValue = if (heightType == "ft") 5 else 185
+
+    Column {
+        Row(modifier = Modifier.padding(top = 20.sdp)) {
+            // Button for "cm"
+            Button(
+                modifier = Modifier,
+                colors = if (heightType == "cm") ButtonDefaults.buttonColors(containerColor = AppColor) else ButtonDefaults.buttonColors(
+                    containerColor = LightestAppColor
+                ),
+                onClick = { heightType = "cm" }
+            ) {
+                SimpleTextComponent(
+                    modifier = Modifier,
+                    text = "cm",
+                    textColor = if (heightType == "cm") Color.White else AppColor,
+                    textSize = 12.ssp,
+                    fontFamily = TitleTextFont.fontFamily
+                )
+            }
+
+            Spacer(modifier = Modifier.width(20.sdp))
+
+            // Button for "ft"
+            Button(
+                modifier = Modifier,
+                colors = if (heightType == "ft") ButtonDefaults.buttonColors(containerColor = AppColor) else ButtonDefaults.buttonColors(
+                    containerColor = LightestAppColor
+                ),
+                onClick = { heightType = "ft" }
+            ) {
+                SimpleTextComponent(
+                    modifier = Modifier,
+                    text = "ft",
+                    textColor = if (heightType == "ft") Color.White else AppColor,
+                    textSize = 12.ssp,
+                    fontFamily = TitleTextFont.fontFamily
+                )
+            }
+        }
+
+        Box(
+            modifier = Modifier
+                .fillMaxHeight()
+                .wrapContentWidth()
+                .align(Alignment.CenterHorizontally)
+                .padding(bottom = 120.sdp),
+            contentAlignment = Alignment.Center
+        ) {
+
+
+            DigitPicker(
+                modifier = Modifier.width(100.sdp),
+                value = pickerValue,
+                range = range,
+                onValueChange = { pickerValue = it },
+            )
+            SimpleTextComponent(
+                modifier = Modifier.align(Alignment.CenterEnd),
+                text = text,
+                fontFamily = TitleTextFont.fontFamily,
+                textSize = 12.ssp
+            )
+        }
+    }
+}
+@Composable
+fun WeightPicker() {
+    var weightType by remember { mutableStateOf("kg") }
+    val range = if (weightType == "kg") 10..300 else 1..1500
+    val text = if (weightType == "kg") "kg" else "lbs"
+    var pickerValue = if (weightType == "lbs") 40 else 88
+
+    Column {
+        Row(modifier = Modifier.padding(top = 20.sdp)) {
+            // Button for "kg"
+            Button(
+                modifier = Modifier,
+                colors = if (weightType == "kg") ButtonDefaults.buttonColors(containerColor = AppColor) else ButtonDefaults.buttonColors(
+                    containerColor = LightestAppColor
+                ),
+                onClick = { weightType = "kg" }
+            ) {
+                SimpleTextComponent(
+                    modifier = Modifier,
+                    text = "kg",
+                    textColor = if (weightType == "kg") Color.White else AppColor,
+                    textSize = 12.ssp,
+                    fontFamily = TitleTextFont.fontFamily
+                )
+            }
+
+            Spacer(modifier = Modifier.width(20.sdp))
+
+            // Button for "lbs"
+            Button(
+                modifier = Modifier,
+                colors = if (weightType == "lbs") ButtonDefaults.buttonColors(containerColor = AppColor) else ButtonDefaults.buttonColors(
+                    containerColor = LightestAppColor
+                ),
+                onClick = { weightType = "lbs" }
+            ) {
+                SimpleTextComponent(
+                    modifier = Modifier,
+                    text = "lbs",
+                    textColor = if (weightType == "ft") Color.White else AppColor,
+                    textSize = 12.ssp,
+                    fontFamily = TitleTextFont.fontFamily
+                )
+            }
+        }
+
+        Box(
+            modifier = Modifier
+                .fillMaxHeight()
+                .wrapContentWidth()
+                .align(Alignment.CenterHorizontally)
+                .padding(bottom = 120.sdp),
+            contentAlignment = Alignment.Center
+        ) {
+
+
+            DigitPicker(
+                modifier = Modifier.width(100.sdp),
+                value = pickerValue,
+                range = range,
+                onValueChange = { pickerValue = it },
+            )
+            SimpleTextComponent(
+                modifier = Modifier.align(Alignment.CenterEnd),
+                text = text,
+                fontFamily = TitleTextFont.fontFamily,
+                textSize = 12.ssp
+            )
+        }
+
+    }
+}
+
 
 @Composable
 fun FilledCardView() {

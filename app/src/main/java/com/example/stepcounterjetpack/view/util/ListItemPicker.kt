@@ -1,18 +1,29 @@
 package com.example.stepcounterjetpack.view.util
 
-
-import androidx.compose.animation.core.*
+import androidx.compose.animation.core.Animatable
+import androidx.compose.animation.core.AnimationResult
+import androidx.compose.animation.core.AnimationVector1D
+import androidx.compose.animation.core.DecayAnimationSpec
+import androidx.compose.animation.core.calculateTargetValue
+import androidx.compose.animation.core.exponentialDecay
 import androidx.compose.foundation.background
 import androidx.compose.foundation.gestures.Orientation
 import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.gestures.draggable
 import androidx.compose.foundation.gestures.rememberDraggableState
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.offset
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.LocalTextStyle
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ProvideTextStyle
 import androidx.compose.material3.Text
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
@@ -22,9 +33,12 @@ import androidx.compose.ui.layout.Layout
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import com.example.stepcounterjetpack.view.activities.ui.theme.AppColor
+import com.example.stepcounterjetpack.view.activities.ui.theme.TitleTextFont
+import ir.kaaveh.sdpcompose.ssp
 import kotlinx.coroutines.launch
 import kotlin.math.abs
 import kotlin.math.roundToInt
@@ -48,10 +62,11 @@ fun <T> ListItemPicker(
     dividersColor: Color = AppColor,
     list: List<T>,
     textStyle: TextStyle = LocalTextStyle.current,
+    dividerHeight: Dp = 2.dp
 ) {
     val minimumAlpha = 0.3f
-    val verticalMargin = 8.dp
-    val numbersColumnHeight = 80.dp
+    val verticalMargin = 15.dp
+    val numbersColumnHeight = 150.dp
     val halfNumbersColumnHeight = numbersColumnHeight / 2
     val halfNumbersColumnHeightPx = with(LocalDensity.current) { halfNumbersColumnHeight.toPx() }
 
@@ -69,7 +84,8 @@ fun <T> ListItemPicker(
 
     val coercedAnimatedOffset = animatedOffset.value % halfNumbersColumnHeightPx
 
-    val indexOfElement = getItemIndexForOffset(list, value, animatedOffset.value, halfNumbersColumnHeightPx)
+    val indexOfElement =
+        getItemIndexForOffset(list, value, animatedOffset.value, halfNumbersColumnHeightPx)
 
     var dividersWidth by remember { mutableStateOf(0.dp) }
 
@@ -86,13 +102,19 @@ fun <T> ListItemPicker(
                     coroutineScope.launch {
                         val endValue = animatedOffset.fling(
                             initialVelocity = velocity,
-                            animationSpec = exponentialDecay(frictionMultiplier = 20f),
+                            animationSpec = exponentialDecay(frictionMultiplier = 4f), // Adjust frictionMultiplier
                             adjustTarget = { target ->
                                 val coercedTarget = target % halfNumbersColumnHeightPx
                                 val coercedAnchors =
-                                    listOf(-halfNumbersColumnHeightPx, 0f, halfNumbersColumnHeightPx)
-                                val coercedPoint = coercedAnchors.minByOrNull { abs(it - coercedTarget) }!!
-                                val base = halfNumbersColumnHeightPx * (target / halfNumbersColumnHeightPx).toInt()
+                                    listOf(
+                                        -halfNumbersColumnHeightPx,
+                                        0f,
+                                        halfNumbersColumnHeightPx
+                                    )
+                                val coercedPoint =
+                                    coercedAnchors.minByOrNull { abs(it - coercedTarget) }!!
+                                val base =
+                                    halfNumbersColumnHeightPx * (target / halfNumbersColumnHeightPx).toInt()
                                 coercedPoint + base
                             }
                         ).endState.value
@@ -109,8 +131,7 @@ fun <T> ListItemPicker(
         content = {
             Box(
                 modifier
-                    .width(dividersWidth)
-                    .height(2.dp)
+                    .height(dividerHeight)
                     .background(color = dividersColor)
             )
             Box(
@@ -125,7 +146,12 @@ fun <T> ListItemPicker(
                             text = label(list.elementAt(indexOfElement - 1)),
                             modifier = baseLabelModifier
                                 .offset(y = -halfNumbersColumnHeight)
-                                .alpha(maxOf(minimumAlpha, coercedAnimatedOffset / halfNumbersColumnHeightPx))
+                                .alpha(
+                                    maxOf(
+                                        minimumAlpha,
+                                        coercedAnimatedOffset / halfNumbersColumnHeightPx
+                                    )
+                                )
                         )
                     Label(
                         text = label(list.elementAt(indexOfElement)),
@@ -142,14 +168,18 @@ fun <T> ListItemPicker(
                             text = label(list.elementAt(indexOfElement + 1)),
                             modifier = baseLabelModifier
                                 .offset(y = halfNumbersColumnHeight)
-                                .alpha(maxOf(minimumAlpha, -coercedAnimatedOffset / halfNumbersColumnHeightPx))
+                                .alpha(
+                                    maxOf(
+                                        minimumAlpha,
+                                        -coercedAnimatedOffset / halfNumbersColumnHeightPx
+                                    )
+                                )
                         )
                 }
             }
             Box(
                 modifier
-                    .width(dividersWidth)
-                    .height(2.dp)
+                    .height(dividerHeight)
                     .background(color = dividersColor)
             )
         }
@@ -177,17 +207,17 @@ fun <T> ListItemPicker(
             var yPosition = 0
 
             // Place children in the parent layout
-            placeables.forEach { placeable ->
-
+            placeables.forEach {
                 // Position item on the screen
-                placeable.placeRelative(x = 0, y = yPosition)
+                it.placeRelative(x = 0, y = yPosition)
 
                 // Record the y co-ord placed up to
-                yPosition += placeable.height
+                yPosition += it.height
             }
         }
     }
 }
+
 
 @Composable
 private fun Label(text: String, modifier: Modifier) {
@@ -199,6 +229,9 @@ private fun Label(text: String, modifier: Modifier) {
         },
         text = text,
         textAlign = TextAlign.Center,
+        fontSize = 24.ssp,
+        fontFamily = TitleTextFont.fontFamily,
+        color = AppColor
     )
 }
 
