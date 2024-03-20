@@ -329,6 +329,7 @@ fun IntroScreen3() {
         var pickerValue by remember { mutableIntStateOf(18) }
 
         DigitPicker(
+            modifier = Modifier,
             value = pickerValue,
             range = 10..100,
             onValueChange = {
