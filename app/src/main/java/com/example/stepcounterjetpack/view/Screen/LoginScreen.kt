@@ -33,6 +33,7 @@ import ir.kaaveh.sdpcompose.ssp
 
 @Composable
 fun LoginScreen(context: Activity, loginViewModel: LoginViewModel) {
+//fun LoginScreen() {
 
     Scaffold(
         topBar = {
@@ -170,7 +171,7 @@ private fun LayoutEditText() {
         hint = "Enter Email",
         onTextChange = { tfEmail ->
             email = tfEmail
-        })
+        },)
 
 
     //TODO       TextField Password

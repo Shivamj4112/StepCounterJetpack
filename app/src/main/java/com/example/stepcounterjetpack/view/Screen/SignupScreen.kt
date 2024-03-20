@@ -171,12 +171,11 @@ fun SignupScreen(context: Activity, signViewModel: SignupViewModel) {
                     .padding(bottom = 10.sdp)
             ) {
 
-                SimpleButton(text = "Sign up", textColor = Color.White) {
-
-                }
+                SimpleButton(text = "Sign up", textColor = Color.White,
+                    onClick = {
+                        signViewModel.navigateToUserDetails(context = context) {}
+                })
             }
-
-
         }
     }
 }
@@ -215,7 +214,7 @@ private fun LayoutEditText() {
         hint = "Enter Email",
         onTextChange = { tfEmail ->
             email = tfEmail
-        })
+        },)
 
 
     //TODO       TextField Password
@@ -228,7 +227,7 @@ private fun LayoutEditText() {
     var password by remember { mutableStateOf("") }
     SimpleEditText(modifier = Modifier.fillMaxWidth().padding(top = 5.sdp),hint = "Enter Password", onTextChange = { tfPassword ->
         password = tfPassword
-    })
+    }, )
 }
 
 @OptIn(ExperimentalMaterial3Api::class)

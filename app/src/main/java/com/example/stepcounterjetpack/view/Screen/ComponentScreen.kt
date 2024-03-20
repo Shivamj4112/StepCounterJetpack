@@ -3,6 +3,7 @@ package com.example.stepcounterjetpack.view.Screen
 import android.app.Activity
 import android.os.Build
 import android.view.WindowInsetsController
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
@@ -26,6 +27,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
@@ -36,6 +38,7 @@ import com.airbnb.lottie.compose.LottieAnimation
 import com.airbnb.lottie.compose.LottieCompositionSpec
 import com.airbnb.lottie.compose.LottieConstants
 import com.airbnb.lottie.compose.rememberLottieComposition
+import com.example.stepcounterjetpack.R
 import com.example.stepcounterjetpack.view.activities.ui.theme.AppBackground
 import com.example.stepcounterjetpack.view.activities.ui.theme.AppColor
 import com.example.stepcounterjetpack.view.activities.ui.theme.BodyTextFont
@@ -159,7 +162,10 @@ fun SimpleEditText(
         keyboardOptions = KeyboardOptions.Default.copy(keyboardType = keyboardType),
         placeholder = {
             SimpleTextComponent(modifier = Modifier,text = hint, textSize = 10.ssp)
-        }
+        },
+//        leadingIcon = {
+//            Image(painter = painterResource(id = src), contentDescription = null)
+//        }
     )
 }
 
