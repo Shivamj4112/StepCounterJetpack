@@ -77,7 +77,6 @@ fun SelectionLoginScreen(context: Activity, selectionViewModel: SelectionViewMod
                 textSize = 12.ssp
             )
 
-
             SignCardsList()
 
             SimpleButton(
@@ -87,9 +86,7 @@ fun SelectionLoginScreen(context: Activity, selectionViewModel: SelectionViewMod
                 textSize = 13.ssp,
                 fontFamily = TitleTextFont.fontFamily,
                 onClick = {
-                    selectionViewModel.selectionSignup(context = context) {
-
-                    }
+                    selectionViewModel.selectionSignup(context = context) {}
                 }
             )
 
@@ -99,8 +96,11 @@ fun SelectionLoginScreen(context: Activity, selectionViewModel: SelectionViewMod
                 textColor = AppColor,
                 textSize = 13.ssp,
                 backGroundColor = LightestAppColor,
-                fontFamily = TitleTextFont.fontFamily
-            ) {}
+                fontFamily = TitleTextFont.fontFamily,
+                onClick = {
+                    selectionViewModel.selectionLogin(context = context) {}
+                }
+            )
         }
 
         Row(
@@ -116,6 +116,7 @@ fun SelectionLoginScreen(context: Activity, selectionViewModel: SelectionViewMod
             SimpleTextComponent(modifier = Modifier, text = "   |   ", textSize = 10.ssp)
             SimpleTextComponent(modifier = Modifier, text = "Terms and Service", textSize = 10.ssp)
         }
+
     }
 }
 
