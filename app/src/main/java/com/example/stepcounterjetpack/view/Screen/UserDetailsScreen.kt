@@ -55,7 +55,6 @@ import com.example.stepcounterjetpack.view.activities.ui.theme.LightestAppColor
 import com.example.stepcounterjetpack.view.activities.ui.theme.TitleTextFont
 import com.example.stepcounterjetpack.view.util.DigitPicker
 import com.example.stepcounterjetpack.view.util.toast
-import com.example.stepcounterjetpack.viewModels.SignupViewModel
 import com.example.stepcounterjetpack.viewModels.UserDetailsViewModel
 import ir.kaaveh.sdpcompose.sdp
 import ir.kaaveh.sdpcompose.ssp
