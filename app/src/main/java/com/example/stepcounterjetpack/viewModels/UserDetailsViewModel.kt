@@ -6,7 +6,6 @@ import android.widget.Toast
 import androidx.lifecycle.ViewModel
 import com.example.stepcounterjetpack.view.activities.UserDetailsActivity
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.FirebaseDatabase
 
 class UserDetailsViewModel : ViewModel() {
