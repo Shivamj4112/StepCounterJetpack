@@ -19,7 +19,7 @@ class SignupViewModel : ViewModel(){
     private lateinit var sharedPref : SharedPreferences
     private lateinit var editor : SharedPreferences.Editor
 
-    fun createAccount(context : Activity ,name: String, email: String, password: String, navigationCallback: () -> Unit) {
+    fun createAccount(context : Activity ,name: String, email: String, password: String) {
 
         context.apply {
             sharedPref = getSharedPreferences("Signup",MODE_PRIVATE)
@@ -55,6 +55,7 @@ class SignupViewModel : ViewModel(){
         email: String,
         password: String
     ){
+
         val userId = user?.uid
 
         val userData = hashMapOf(

@@ -184,7 +184,7 @@ fun SignupScreen(context: Activity, signViewModel: SignupViewModel) {
                 SimpleButton(text = "Sign up", textColor = Color.White,
                     onClick = {
                         if (areFieldsValid()){
-                            signViewModel.createAccount(context,name,email,password){}
+                            signViewModel.createAccount(context,name,email,password)
                         }
                         else{
                             Toast.makeText(context, "Please fill all field", Toast.LENGTH_SHORT).show()

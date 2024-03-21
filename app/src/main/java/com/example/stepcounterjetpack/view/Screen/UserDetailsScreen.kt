@@ -1,6 +1,6 @@
 package com.example.stepcounterjetpack.view.Screen
 
-import android.content.SharedPreferences
+import android.app.Activity
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
@@ -47,20 +47,29 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import com.example.stepcounterjetpack.R
+import com.example.stepcounterjetpack.models.UserModel
 import com.example.stepcounterjetpack.view.activities.ui.theme.AppBackground
 import com.example.stepcounterjetpack.view.activities.ui.theme.AppColor
 import com.example.stepcounterjetpack.view.activities.ui.theme.BodyTextFont
 import com.example.stepcounterjetpack.view.activities.ui.theme.LightestAppColor
 import com.example.stepcounterjetpack.view.activities.ui.theme.TitleTextFont
 import com.example.stepcounterjetpack.view.util.DigitPicker
+import com.example.stepcounterjetpack.view.util.toast
+import com.example.stepcounterjetpack.viewModels.SignupViewModel
+import com.example.stepcounterjetpack.viewModels.UserDetailsViewModel
 import ir.kaaveh.sdpcompose.sdp
 import ir.kaaveh.sdpcompose.ssp
 
 
+var model = UserModel()
+
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun UserDetailsScreen() {
+fun UserDetailsScreen(context: Activity, userDetailsViewModel: UserDetailsViewModel) {
+
     var currentScreen by remember { mutableStateOf(0) }
+
+
 
     Column(Modifier.fillMaxSize()) {
 
@@ -81,7 +90,6 @@ fun UserDetailsScreen() {
             ) {
                 Column(modifier = Modifier.padding(it)) {
 
-
                         when (currentScreen) {
 
                             0 -> IntroScreen1()
@@ -91,11 +99,7 @@ fun UserDetailsScreen() {
                             4 -> IntroScreen5()
                             5 -> IntroScreen6()
 
-                            else -> IntroScreen1()
                         }
-
-                        IntroScreen6()
-
 
                 }
             }
@@ -137,7 +141,21 @@ fun UserDetailsScreen() {
                     fontFamily = TitleTextFont.fontFamily,
                     height = 45.sdp,
                 ) {
-                    if (currentScreen < 5) currentScreen++
+//                    if (currentScreen < 5) currentScreen++
+                    when (currentScreen) {
+                        0 -> if (model.gender.isNotEmpty()) currentScreen++ else context.toast("Gender")
+                        1 -> if (model.sedentary.isNotEmpty()) currentScreen++ else context.toast("Sedentary")
+                        2 -> if (model.age.isNotEmpty()) currentScreen++ else context.toast("Age")
+                        3 -> if (model.height.isNotEmpty()) currentScreen++ else context.toast("Height")
+                        4 -> if (model.weight.isNotEmpty()) currentScreen++ else context.toast("Weight")
+                        5 -> if (model.step > 0) {
+                            // All data is available, proceed to firebase
+                            // Add your code to save data to Firebase Realtime Database
+                            // after confirming all data is available
+                            userDetailsViewModel.addDataToDatabase(context,model.gender, model.sedentary ,model.age, model.height ,model.weight, model.step)
+                        }
+
+                    }
                 }
             }
         }
@@ -259,7 +277,10 @@ fun IntroScreen2() {
                 colors = if (sedenState == "No") ButtonDefaults.buttonColors(containerColor = AppColor) else ButtonDefaults.buttonColors(
                     containerColor = LightestAppColor
                 ),
-                onClick = { sedenState = "No" }) {
+                onClick = {
+                    sedenState = "No"
+                    model.sedentary = sedenState
+                }) {
 
                 SimpleTextComponent(
                     modifier = Modifier,
@@ -279,7 +300,9 @@ fun IntroScreen2() {
                 colors = if (sedenState == "Yes") ButtonDefaults.buttonColors(containerColor = AppColor) else ButtonDefaults.buttonColors(
                     containerColor = LightestAppColor
                 ),
-                onClick = { sedenState = "Yes" }) {
+                onClick = {
+                    sedenState = "Yes"
+                    model.sedentary = sedenState}) {
 
                 SimpleTextComponent(
                     modifier = Modifier,
@@ -299,6 +322,7 @@ fun IntroScreen3() {
 
     Column(modifier = Modifier.fillMaxSize(), horizontalAlignment = Alignment.CenterHorizontally) {
 
+        var ageValue by remember { mutableIntStateOf(18) }
         Row {
             SimpleTextComponent(
                 modifier = Modifier.padding(top = 10.sdp),
@@ -343,14 +367,15 @@ fun IntroScreen3() {
             contentAlignment = Alignment.Center
         ) {
 
-            var pickerValue by remember { mutableIntStateOf(18) }
 
             DigitPicker(
                 modifier = Modifier.width(100.sdp),
-                value = pickerValue,
+                value = ageValue,
                 range = 10..100,
                 onValueChange = {
-                    pickerValue = it
+                    ageValue = it
+                    model.age = ageValue.toString()
+
                 },
             )
             SimpleTextComponent(
@@ -501,7 +526,7 @@ fun IntroScreen6() {
                 value = pickerValue,
                 range = 1000..10000 step 500,
                 onValueChange = {
-                    pickerValue = it
+                    model.step = it
                 },
             )
             SimpleTextComponent(
@@ -522,7 +547,7 @@ fun HeightPicker() {
     var heightType by remember { mutableStateOf("cm") }
     val range = if (heightType == "cm") 50..300 else 2..12
     val text = if (heightType == "cm") "cm" else "ft"
-    var pickerValue = if (heightType == "ft") 5 else 185
+    var pickerValue = if (heightType == "cm") 185 else 5
 
     Column {
         Row(modifier = Modifier.padding(top = 20.sdp)) {
@@ -577,7 +602,8 @@ fun HeightPicker() {
                 modifier = Modifier.width(100.sdp),
                 value = pickerValue,
                 range = range,
-                onValueChange = { pickerValue = it },
+                onValueChange = {
+                    model.weight = it.toString() + text },
             )
             SimpleTextComponent(
                 modifier = Modifier.align(Alignment.CenterEnd),
@@ -593,7 +619,7 @@ fun WeightPicker() {
     var weightType by remember { mutableStateOf("kg") }
     val range = if (weightType == "kg") 10..300 else 1..1500
     val text = if (weightType == "kg") "kg" else "lbs"
-    var pickerValue = if (weightType == "lbs") 40 else 88
+    val pickerValue = if (weightType == "lbs") 40 else 88
 
     Column {
         Row(modifier = Modifier.padding(top = 20.sdp)) {
@@ -627,7 +653,7 @@ fun WeightPicker() {
                 SimpleTextComponent(
                     modifier = Modifier,
                     text = "lbs",
-                    textColor = if (weightType == "ft") Color.White else AppColor,
+                    textColor = if (weightType == "lbs") Color.White else AppColor,
                     textSize = 12.ssp,
                     fontFamily = TitleTextFont.fontFamily
                 )
@@ -648,7 +674,9 @@ fun WeightPicker() {
                 modifier = Modifier.width(100.sdp),
                 value = pickerValue,
                 range = range,
-                onValueChange = { pickerValue = it },
+                onValueChange = {
+                    model.weight = it.toString() + text
+                                },
             )
             SimpleTextComponent(
                 modifier = Modifier.align(Alignment.CenterEnd),
@@ -671,7 +699,7 @@ fun FilledCardView() {
             .padding(top = 20.sdp), horizontalArrangement = Arrangement.SpaceBetween
     )
     {
-        var selectedGender by remember { mutableStateOf("") }
+        var selectedGender by remember { mutableStateOf(model.gender) }
 
         Card(
             colors = CardDefaults.cardColors(containerColor = AppBackground),
@@ -684,7 +712,10 @@ fun FilledCardView() {
                     shape = RoundedCornerShape(10.sdp)
                 )
                 .clip(RoundedCornerShape(10.sdp))
-                .clickable { selectedGender = "male" },
+                .clickable {
+                    model.gender = "male"
+                    selectedGender = "male"
+                           },
         ) {
 
             Column(modifier = Modifier.padding(vertical = 10.sdp, horizontal = 5.sdp)) {
@@ -716,6 +747,7 @@ fun FilledCardView() {
 
         Card(
             colors = CardDefaults.cardColors(containerColor = AppBackground),
+
             modifier = Modifier
                 .padding(top = 10.sdp)
                 .border(
@@ -724,7 +756,11 @@ fun FilledCardView() {
                     shape = RoundedCornerShape(10.sdp)
                 )
                 .clip(RoundedCornerShape(10.sdp))
-                .clickable { selectedGender = "female" }) {
+                .clickable {
+                    model.gender = "female"
+                    selectedGender = "female"
+                },
+        ) {
 
             Column(modifier = Modifier.padding(vertical = 10.sdp, horizontal = 5.sdp)) {
                 Image(
@@ -744,6 +780,7 @@ fun FilledCardView() {
                     textColor = Color.Black
                 )
             }
+
         }
 
 
@@ -813,5 +850,5 @@ fun IntroToolBar(
 @Composable
 fun IntroPreview() {
 
-    UserDetailsScreen()
+//    UserDetailsScreen()
 }
