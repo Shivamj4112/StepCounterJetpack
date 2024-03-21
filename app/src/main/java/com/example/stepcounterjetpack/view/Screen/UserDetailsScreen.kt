@@ -268,7 +268,7 @@ fun IntroScreen2() {
 
         Row(modifier = Modifier.padding(top = 10.sdp)) {
 
-            var sedenState by remember { mutableStateOf("No") }
+            var sedenState by remember { mutableStateOf(model.sedentary) }
 
             Button(
                 modifier = Modifier
