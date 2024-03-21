@@ -68,8 +68,6 @@ fun UserDetailsScreen(context: Activity, userDetailsViewModel: UserDetailsViewMo
 
     var currentScreen by remember { mutableStateOf(0) }
 
-
-
     Column(Modifier.fillMaxSize()) {
 
         Column(
@@ -144,9 +142,9 @@ fun UserDetailsScreen(context: Activity, userDetailsViewModel: UserDetailsViewMo
                     when (currentScreen) {
                         0 -> if (model.gender.isNotEmpty()) currentScreen++ else context.toast("Gender")
                         1 -> if (model.sedentary.isNotEmpty()) currentScreen++ else context.toast("Sedentary")
-                        2 -> if (model.age.isNotEmpty()) currentScreen++ else context.toast("Age")
-                        3 -> if (model.height.isNotEmpty()) currentScreen++ else context.toast("Height")
-                        4 -> if (model.weight.isNotEmpty()) currentScreen++ else context.toast("Weight")
+                        2 -> if (model.age > 0) currentScreen++ else context.toast("Age")
+                        3 -> if (model.height > 0) currentScreen++ else context.toast("Height")
+                        4 -> if (model.weight > 0) currentScreen++ else context.toast("Weight")
                         5 -> if (model.step > 0) {
                             // All data is available, proceed to firebase
                             // Add your code to save data to Firebase Realtime Database
@@ -373,7 +371,7 @@ fun IntroScreen3() {
                 range = 10..100,
                 onValueChange = {
                     ageValue = it
-                    model.age = ageValue.toString()
+                    model.age = ageValue
 
                 },
             )
@@ -430,7 +428,6 @@ fun IntroScreen4() {
         )
 
         HeightPicker()
-
 
     }
 }
@@ -575,7 +572,10 @@ fun HeightPicker() {
                 colors = if (heightType == "ft") ButtonDefaults.buttonColors(containerColor = AppColor) else ButtonDefaults.buttonColors(
                     containerColor = LightestAppColor
                 ),
-                onClick = { heightType = "ft" }
+                onClick = {
+                    heightType = "ft"
+
+                }
             ) {
                 SimpleTextComponent(
                     modifier = Modifier,
@@ -596,13 +596,14 @@ fun HeightPicker() {
             contentAlignment = Alignment.Center
         ) {
 
-
             DigitPicker(
                 modifier = Modifier.width(100.sdp),
                 value = pickerValue,
                 range = range,
                 onValueChange = {
-                    model.weight = it.toString() + text },
+                    pickerValue = it
+                    model.height = it
+                    model.heightType = text},
             )
             SimpleTextComponent(
                 modifier = Modifier.align(Alignment.CenterEnd),
@@ -618,7 +619,7 @@ fun WeightPicker() {
     var weightType by remember { mutableStateOf("kg") }
     val range = if (weightType == "kg") 10..300 else 1..1500
     val text = if (weightType == "kg") "kg" else "lbs"
-    val pickerValue = if (weightType == "lbs") 40 else 88
+    var pickerValue by remember { mutableStateOf(if (model.weightType.isNotEmpty()) 76 else 167) }
 
     Column {
         Row(modifier = Modifier.padding(top = 20.sdp)) {
@@ -674,7 +675,9 @@ fun WeightPicker() {
                 value = pickerValue,
                 range = range,
                 onValueChange = {
-                    model.weight = it.toString() + text
+                    pickerValue = it
+                    model.weight = it
+                    model.weightType = text
                                 },
             )
             SimpleTextComponent(

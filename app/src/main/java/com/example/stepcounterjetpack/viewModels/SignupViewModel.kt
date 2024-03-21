@@ -64,7 +64,7 @@ class SignupViewModel : ViewModel(){
             "password" to password,
         )
 
-        userRef.child(userId!!).child("profile").setValue(userData).addOnCompleteListener { task ->
+        userRef.child(userId!!).child("auth").setValue(userData).addOnCompleteListener { task ->
 
             if (task.isSuccessful){
 
