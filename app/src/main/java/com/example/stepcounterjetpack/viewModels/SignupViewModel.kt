@@ -19,10 +19,10 @@ class SignupViewModel : ViewModel(){
     private lateinit var sharedPref : SharedPreferences
     private lateinit var editor : SharedPreferences.Editor
 
-    fun createAccount(context : Activity ,name: String, email: String, password: String) {
+    fun createAccount(context : Activity ,name: String, email: String, password: String, navigationCallback: () -> Unit) {
 
         context.apply {
-            sharedPref = getSharedPreferences("Singup",MODE_PRIVATE)
+            sharedPref = getSharedPreferences("Signup",MODE_PRIVATE)
             editor = sharedPref.edit()
         }
 
@@ -38,6 +38,8 @@ class SignupViewModel : ViewModel(){
 
                     editor.putBoolean("isAccountCreated",true)
                     editor.apply()
+
+                    navigateToUserDetails(context)
 
                 } else{
                     Toast.makeText(context, task.exception?.message ?: "Authentication failed.", Toast.LENGTH_SHORT).show()
@@ -63,6 +65,8 @@ class SignupViewModel : ViewModel(){
         userRef.child(userId!!).child("profile").setValue(userData).addOnCompleteListener { task ->
 
             if (task.isSuccessful){
+
+
                 Toast.makeText(context, "Successful to add user data.", Toast.LENGTH_SHORT).show()
             }
             else{
@@ -79,12 +83,10 @@ class SignupViewModel : ViewModel(){
 
         navigationCallback.invoke()
     }
-    fun navigateToUserDetails(context : Activity, navigationCallback: () -> Unit) {
+    fun navigateToUserDetails(context : Activity) {
 
         val intent = Intent(context, UserDetailsActivity::class.java)
         context.startActivity(intent)
-
-        navigationCallback.invoke()
     }
 
 

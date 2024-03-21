@@ -1,6 +1,7 @@
 package com.example.stepcounterjetpack.view.activities
 
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -14,6 +15,7 @@ import com.example.stepcounterjetpack.viewModels.SplashViewModel
 class SplashActivity : ComponentActivity() {
 
     private lateinit var viewModel: SplashViewModel
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         enableEdgeToEdge()
@@ -31,6 +33,7 @@ class SplashActivity : ComponentActivity() {
                 startActivity(Intent(this@SplashActivity, SelectionLoginActivity::class.java))
                 finish()
             }
+
 
         }
     }
