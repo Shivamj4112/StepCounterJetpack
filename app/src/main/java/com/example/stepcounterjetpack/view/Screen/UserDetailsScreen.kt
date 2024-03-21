@@ -1,5 +1,6 @@
 package com.example.stepcounterjetpack.view.Screen
 
+import android.content.SharedPreferences
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
@@ -38,6 +39,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
@@ -53,6 +55,7 @@ import com.example.stepcounterjetpack.view.activities.ui.theme.TitleTextFont
 import com.example.stepcounterjetpack.view.util.DigitPicker
 import ir.kaaveh.sdpcompose.sdp
 import ir.kaaveh.sdpcompose.ssp
+
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
@@ -70,7 +73,8 @@ fun UserDetailsScreen() {
             Scaffold(
                 topBar = {
                     IntroToolBar(
-                        size = 20.sdp, onClick = {
+                        size = 20.sdp,
+                        currentScreen = currentScreen,onClick = {
 
                         })
                 }
@@ -676,13 +680,14 @@ fun FilledCardView() {
                 .padding(top = 10.sdp)
                 .border(
                     width = if (selectedGender == "male") 2.sdp else 0.sdp,
-                    color = if (selectedGender == "male") Color.Black else AppBackground
+                    color = if (selectedGender == "male") AppColor else AppBackground,
+                    shape = RoundedCornerShape(10.sdp)
                 )
                 .clip(RoundedCornerShape(10.sdp))
                 .clickable { selectedGender = "male" },
         ) {
 
-            Column(modifier = Modifier.padding(all = 2.sdp)) {
+            Column(modifier = Modifier.padding(vertical = 10.sdp, horizontal = 5.sdp)) {
                 Image(
                     modifier = Modifier.height(300.sdp),
                     contentScale = ContentScale.Crop,
@@ -715,12 +720,13 @@ fun FilledCardView() {
                 .padding(top = 10.sdp)
                 .border(
                     width = if (selectedGender == "female") 2.sdp else 0.sdp,
-                    color = if (selectedGender == "female") Color.Black else AppBackground
+                    color = if (selectedGender == "female") AppColor else AppBackground,
+                    shape = RoundedCornerShape(10.sdp)
                 )
                 .clip(RoundedCornerShape(10.sdp))
                 .clickable { selectedGender = "female" }) {
 
-            Column(modifier = Modifier.padding(all = 2.sdp)) {
+            Column(modifier = Modifier.padding(vertical = 10.sdp, horizontal = 5.sdp)) {
                 Image(
                     modifier = Modifier.height(300.sdp),
                     contentScale = ContentScale.Crop,
@@ -750,6 +756,7 @@ fun FilledCardView() {
 fun IntroToolBar(
     toolbarTitle: String = "",
     size: Dp = 25.sdp,
+    currentScreen: Int,
     backgroundColor: Color = AppBackground,
     onClick: () -> Unit,
 
@@ -773,16 +780,18 @@ fun IntroToolBar(
                 )
             }
         },
-        navigationIcon = {
-            Icon(
-                imageVector = Icons.Filled.ArrowBack,
-                contentDescription = "Arrow Back",
-                modifier = Modifier
-                    .padding(start = 5.sdp, bottom = 12.sdp)
-                    .size(size)
-                    .clickable(enabled = true, onClick = onClick),
-            )
-        },
+        navigationIcon =  {
+
+                Icon(
+                    imageVector = Icons.Filled.ArrowBack,
+                    contentDescription = "Arrow Back",
+                    modifier = Modifier
+                        .alpha(0f)
+                        .padding(start = 5.sdp, bottom = 12.sdp)
+                        .size(size)
+                        .clickable(enabled = true, onClick = onClick),
+                )
+            },
         colors = TopAppBarDefaults.smallTopAppBarColors(containerColor = backgroundColor),
         actions = {
 
@@ -790,7 +799,7 @@ fun IntroToolBar(
                 modifier = Modifier
                     .align(Alignment.CenterVertically)
                     .padding(end = 5.sdp, bottom = 12.sdp),
-                text = "1 / 6",
+                text = "${currentScreen + 1} / 6",
                 fontFamily = TitleTextFont.fontFamily,
                 textColor = Color.Black
             )

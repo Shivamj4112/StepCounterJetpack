@@ -3,6 +3,7 @@ package com.example.stepcounterjetpack.view.activities
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
@@ -14,7 +15,6 @@ class SelectionLoginActivity : ComponentActivity() {
 
     private val selectionModel : SelectionViewModel by viewModels()
     private lateinit var sharPref : SharedPreferences
-    private lateinit var editor : SharedPreferences.Editor
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -22,9 +22,9 @@ class SelectionLoginActivity : ComponentActivity() {
 
 
             sharPref = getSharedPreferences("Signup", MODE_PRIVATE)
-            editor = sharPref.edit()
 
             if (sharPref.contains("isAccountCreated")){
+                Toast.makeText(this, "Hello! ${sharPref.getString("userName","")}", Toast.LENGTH_SHORT).show()
                 startActivity(Intent(this, UserDetailsActivity::class.java))
                 finish()
             }else{

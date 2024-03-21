@@ -1,5 +1,6 @@
 package com.example.stepcounterjetpack.view.activities
 
+import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -12,6 +13,7 @@ import com.example.stepcounterjetpack.view.Screen.UserDetailsScreen
 import com.example.stepcounterjetpack.view.activities.ui.theme.StepCounterJetpackTheme
 
 class UserDetailsActivity : ComponentActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         enableEdgeToEdge()
         super.onCreate(savedInstanceState)
@@ -21,6 +23,7 @@ class UserDetailsActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
+
                     UserDetailsScreen()
                     }
                 }

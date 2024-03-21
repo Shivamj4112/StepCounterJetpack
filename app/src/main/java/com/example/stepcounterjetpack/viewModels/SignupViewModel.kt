@@ -37,6 +37,7 @@ class SignupViewModel : ViewModel(){
                     addDataToDatabase(context,user,name, email, password)
 
                     editor.putBoolean("isAccountCreated",true)
+                    editor.putString("userName",name)
                     editor.apply()
 
                     navigateToUserDetails(context)
