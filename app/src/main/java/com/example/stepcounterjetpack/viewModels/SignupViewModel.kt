@@ -1,7 +1,9 @@
 package com.example.stepcounterjetpack.viewModels
 
 import android.app.Activity
+import android.content.Context.MODE_PRIVATE
 import android.content.Intent
+import android.content.SharedPreferences
 import android.widget.Toast
 import androidx.lifecycle.ViewModel
 import com.example.stepcounterjetpack.view.activities.LoginActivity
@@ -14,9 +16,16 @@ class SignupViewModel : ViewModel(){
 
     private var auth :FirebaseAuth = FirebaseAuth.getInstance()
     private val userRef = FirebaseDatabase.getInstance().getReference("Users")
-
+    private lateinit var sharedPref : SharedPreferences
+    private lateinit var editor : SharedPreferences.Editor
 
     fun createAccount(context : Activity ,name: String, email: String, password: String) {
+
+        context.apply {
+            sharedPref = getSharedPreferences("Singup",MODE_PRIVATE)
+            editor = sharedPref.edit()
+        }
+
 
         auth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener { task ->
@@ -26,6 +35,9 @@ class SignupViewModel : ViewModel(){
                     val user = auth.currentUser
 
                     addDataToDatabase(context,user,name, email, password)
+
+                    editor.putBoolean("isAccountCreated",true)
+                    editor.apply()
 
                 } else{
                     Toast.makeText(context, task.exception?.message ?: "Authentication failed.", Toast.LENGTH_SHORT).show()

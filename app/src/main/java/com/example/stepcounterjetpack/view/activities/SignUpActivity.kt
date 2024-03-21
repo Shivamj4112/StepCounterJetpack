@@ -16,6 +16,7 @@ import com.example.stepcounterjetpack.viewModels.SignupViewModel
 class SignUpActivity : ComponentActivity() {
 
     private val signupViewModel: SignupViewModel by viewModels()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         enableEdgeToEdge()
         super.onCreate(savedInstanceState)
