@@ -8,7 +8,6 @@ import android.widget.Toast
 import androidx.lifecycle.ViewModel
 import com.example.stepcounterjetpack.models.UserModel
 import com.example.stepcounterjetpack.view.activities.LoginActivity
-import com.example.stepcounterjetpack.view.activities.UserDetailsActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 
@@ -23,8 +22,8 @@ class UserDetailsViewModel : ViewModel() {
         gender: String,
         sedentary: String,
         age: Int,
-        height: Int,
-        weight: Int,
+        height: String,
+        weight: String,
         steps: Int,
     ){
         context.apply {
@@ -40,7 +39,7 @@ class UserDetailsViewModel : ViewModel() {
         val userData = hashMapOf<String, Any>(
             "age" to age,
             "gender" to gender,
-            "height" to height.toString() + model.heightType,
+            "height" to height,
             "steps" to steps,
             "sedentary" to sedentary,
             "weight" to weight.toString() + model.weightType,

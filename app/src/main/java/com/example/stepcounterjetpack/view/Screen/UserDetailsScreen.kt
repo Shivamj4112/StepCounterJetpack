@@ -146,7 +146,7 @@ fun UserDetailsScreen(context: Activity, userDetailsViewModel: UserDetailsViewMo
                         3 -> if (model.height > 0) currentScreen++ else context.toast("Height")
                         4 -> if (model.weight > 0) currentScreen++ else context.toast("Weight")
                         5 -> if (model.step > 0) {
-                            userDetailsViewModel.updateDataInDatabase(context,model.gender, model.sedentary ,model.age, model.height ,model.weight, model.step)
+                            userDetailsViewModel.updateDataInDatabase(context,model.gender, model.sedentary ,model.age, model.heightType ,model.weightType, model.step)
                         }
 
                     }
@@ -476,6 +476,8 @@ fun IntroScreen5() {
 @Composable
 fun IntroScreen6() {
 
+    var pickerValue by remember { mutableIntStateOf(6000) }
+
     Column(modifier = Modifier.fillMaxSize(), horizontalAlignment = Alignment.CenterHorizontally) {
 
         Row {
@@ -512,14 +514,15 @@ fun IntroScreen6() {
             contentAlignment = Alignment.Center
         ) {
 
-            var pickerValue by remember { mutableIntStateOf(6000) }
+
 
             DigitPicker(
                 modifier = Modifier.width(150.sdp),
                 value = pickerValue,
                 range = 1000..10000 step 500,
                 onValueChange = {
-                    model.step = it
+                    pickerValue = it
+                    model.step = pickerValue
                 },
             )
             SimpleTextComponent(
@@ -596,7 +599,7 @@ fun HeightPicker() {
             if (heightType){
 
                 model.height = cmPickerValue
-                model.heightType = text
+                model.heightType = cmPickerValue.toString() + " cm"
 
                 DigitPicker(
                     modifier = Modifier.width(100.sdp),
@@ -605,13 +608,13 @@ fun HeightPicker() {
                     onValueChange = {
                         cmPickerValue = it
                         model.height = cmPickerValue
-                        model.heightType = text},
+                        model.heightType = cmPickerValue.toString() + " cm"},
                 )
             }
             else{
 
                 model.height = ftPickerValue
-                model.heightType = text
+                model.heightType = ftPickerValue.toString() + " ft"
 
                 DigitPicker(
                     modifier = Modifier.width(100.sdp),
@@ -620,7 +623,7 @@ fun HeightPicker() {
                     onValueChange = {
                         ftPickerValue = it
                         model.height = ftPickerValue
-                        model.heightType = text},
+                        model.heightType = ftPickerValue.toString() + " ft"},
                 )
             }
 
@@ -637,8 +640,10 @@ fun HeightPicker() {
 fun WeightPicker() {
     var weightType by remember { mutableStateOf(true) }
     val range = if (weightType) 10..300 else 1..1500
-    val text = if (weightType) "kg" else "lbs"
-    var pickerValue by remember { mutableStateOf(if (model.weightType.isNotEmpty()) 76 else 167) }
+    var text by remember { mutableStateOf("kg") }
+    var kgPickerValue by remember { mutableStateOf(76) }
+    var lbsPickerValue by remember { mutableStateOf(167) }
+
 
     Column {
         Row(modifier = Modifier.padding(top = 20.sdp)) {
@@ -658,7 +663,6 @@ fun WeightPicker() {
                     fontFamily = TitleTextFont.fontFamily
                 )
             }
-
             Spacer(modifier = Modifier.width(20.sdp))
 
             // Button for "lbs"
@@ -688,17 +692,37 @@ fun WeightPicker() {
             contentAlignment = Alignment.Center
         ) {
 
+            if (weightType){
 
-            DigitPicker(
-                modifier = Modifier.width(100.sdp),
-                value = pickerValue,
-                range = range,
-                onValueChange = {
-                    pickerValue = it
-                    model.weight = it
-                    model.weightType = text
-                                },
-            )
+                model.weight = kgPickerValue
+                model.weightType = kgPickerValue.toString() + " kg"
+
+                DigitPicker(
+                    modifier = Modifier.width(100.sdp),
+                    value = kgPickerValue,
+                    range = range,
+                    onValueChange = {
+                        kgPickerValue = it
+                        model.weight = kgPickerValue
+                        model.weightType = kgPickerValue.toString() + " kg"
+                    },
+                )
+            }
+            else{
+                model.weight = lbsPickerValue
+                model.weightType = lbsPickerValue.toString() + " lbs"
+
+                DigitPicker(
+                    modifier = Modifier.width(100.sdp),
+                    value = lbsPickerValue,
+                    range = range,
+                    onValueChange = {
+                        lbsPickerValue = it
+                        model.weight = lbsPickerValue
+                        model.weightType = lbsPickerValue.toString() + " lbs"
+                    },
+                )
+            }
             SimpleTextComponent(
                 modifier = Modifier.align(Alignment.CenterEnd),
                 text = text,
