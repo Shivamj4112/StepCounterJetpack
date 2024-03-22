@@ -1,4 +1,4 @@
-package com.example.stepcounterjetpack.view.util
+package com.example.stepcounterjetpack.util
 
 import android.content.Context
 import android.widget.Toast

@@ -1,6 +1,5 @@
 package com.example.stepcounterjetpack.view.activities
 
-import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -9,10 +8,9 @@ import androidx.activity.viewModels
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import com.example.stepcounterjetpack.view.Screen.UserDetailsScreen
-import com.example.stepcounterjetpack.view.activities.ui.theme.StepCounterJetpackTheme
+import com.example.stepcounterjetpack.theme.ui.StepCounterJetpackTheme
 import com.example.stepcounterjetpack.viewModels.UserDetailsViewModel
 
 class UserDetailsActivity : ComponentActivity() {

@@ -24,11 +24,10 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.stepcounterjetpack.R
-import com.example.stepcounterjetpack.view.activities.ui.theme.AppColor
-import com.example.stepcounterjetpack.view.activities.ui.theme.BodyTextFont
-import com.example.stepcounterjetpack.view.activities.ui.theme.TitleTextFont
+import com.example.stepcounterjetpack.theme.ui.AppColor
+import com.example.stepcounterjetpack.theme.ui.BodyTextFont
+import com.example.stepcounterjetpack.theme.ui.TitleTextFont
 import com.example.stepcounterjetpack.viewModels.LoginViewModel
-import com.example.stepcounterjetpack.viewModels.SignupViewModel
 import ir.kaaveh.sdpcompose.sdp
 import ir.kaaveh.sdpcompose.ssp
 

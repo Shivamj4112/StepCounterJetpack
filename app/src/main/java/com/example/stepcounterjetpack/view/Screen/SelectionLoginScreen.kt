@@ -1,7 +1,6 @@
 package com.example.stepcounterjetpack.view.Screen
 
 import android.app.Activity
-import android.content.Context
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -26,12 +25,12 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.TextUnit
 import com.example.stepcounterjetpack.R
-import com.example.stepcounterjetpack.view.activities.ui.theme.AppColor
-import com.example.stepcounterjetpack.view.activities.ui.theme.BodyTextFont
-import com.example.stepcounterjetpack.view.activities.ui.theme.DefaultTextColor
-import com.example.stepcounterjetpack.view.activities.ui.theme.LightestAppColor
-import com.example.stepcounterjetpack.view.activities.ui.theme.StepCounterJetpackTheme
-import com.example.stepcounterjetpack.view.activities.ui.theme.TitleTextFont
+import com.example.stepcounterjetpack.theme.ui.AppColor
+import com.example.stepcounterjetpack.theme.ui.BodyTextFont
+import com.example.stepcounterjetpack.theme.ui.DefaultTextColor
+import com.example.stepcounterjetpack.theme.ui.LightestAppColor
+import com.example.stepcounterjetpack.theme.ui.StepCounterJetpackTheme
+import com.example.stepcounterjetpack.theme.ui.TitleTextFont
 import com.example.stepcounterjetpack.viewModels.SelectionViewModel
 import ir.kaaveh.sdpcompose.sdp
 import ir.kaaveh.sdpcompose.ssp

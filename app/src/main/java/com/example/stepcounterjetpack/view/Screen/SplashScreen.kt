@@ -18,9 +18,9 @@ import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.stepcounterjetpack.R
-import com.example.stepcounterjetpack.view.activities.ui.theme.AppColor
-import com.example.stepcounterjetpack.view.activities.ui.theme.StepCounterJetpackTheme
-import com.example.stepcounterjetpack.view.activities.ui.theme.TitleTextFont
+import com.example.stepcounterjetpack.theme.ui.AppColor
+import com.example.stepcounterjetpack.theme.ui.StepCounterJetpackTheme
+import com.example.stepcounterjetpack.theme.ui.TitleTextFont
 import ir.kaaveh.sdpcompose.sdp
 import ir.kaaveh.sdpcompose.ssp
 

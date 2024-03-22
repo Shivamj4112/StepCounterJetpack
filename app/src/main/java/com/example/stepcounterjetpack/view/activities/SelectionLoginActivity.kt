@@ -3,12 +3,11 @@ package com.example.stepcounterjetpack.view.activities
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
-import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
-import com.example.stepcounterjetpack.view.Screen.StatusBarColorWhite
 import com.example.stepcounterjetpack.view.Screen.SelectionLoginScreen
+import com.example.stepcounterjetpack.view.Screen.StatusBarColorWhite
 import com.example.stepcounterjetpack.viewModels.SelectionViewModel
 
 class SelectionLoginActivity : ComponentActivity() {

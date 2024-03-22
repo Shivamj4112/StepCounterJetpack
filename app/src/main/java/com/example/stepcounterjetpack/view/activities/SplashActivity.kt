@@ -1,13 +1,12 @@
 package com.example.stepcounterjetpack.view.activities
 
 import android.content.Intent
-import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.lifecycle.ViewModelProvider
-import com.example.stepcounterjetpack.view.activities.ui.theme.StepCounterJetpackTheme
+import com.example.stepcounterjetpack.theme.ui.StepCounterJetpackTheme
 import com.example.stepcounterjetpack.view.Screen.SetSystemBarsAppearance
 import com.example.stepcounterjetpack.view.Screen.SplashUI
 import com.example.stepcounterjetpack.viewModels.SplashViewModel
