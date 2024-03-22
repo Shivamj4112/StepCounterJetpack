@@ -13,7 +13,6 @@ import com.example.stepcounterjetpack.viewModels.SelectionViewModel
 class SelectionLoginActivity : ComponentActivity() {
 
     private val selectionModel : SelectionViewModel by viewModels()
-    private lateinit var sharPref : SharedPreferences
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -39,7 +38,7 @@ class SelectionLoginActivity : ComponentActivity() {
                 startActivity(Intent(this, MainActivity::class.java))
                 finish()
             }
-            else if (sharedPreferencesDetail.contains("idDetailFilled")){
+            else if (sharedPreferencesDetail.contains("isDetailFilled")){
                 startActivity(Intent(this, LoginActivity::class.java))
                 finish()
             }

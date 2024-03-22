@@ -42,16 +42,18 @@ class UserDetailsViewModel : ViewModel() {
             "height" to height,
             "steps" to steps,
             "sedentary" to sedentary,
-            "weight" to weight.toString() + model.weightType,
+            "weight" to weight,
         )
 
         userRef.child(userId!!).child("profile").updateChildren(userData).addOnCompleteListener { task ->
 
             if (task.isSuccessful){
 
-                navigateToLogin(context)
                 editor.putBoolean("isDetailFilled",true)
                 editor.apply()
+
+                navigateToLogin(context)
+
             }
             else{
                 Toast.makeText(context, task.exception?.message ?: "Failed to add user data.", Toast.LENGTH_SHORT).show()

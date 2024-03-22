@@ -285,6 +285,7 @@ fun AppToolBar(
                 modifier = Modifier
                     .padding(start = 5.sdp, bottom = 12.sdp)
                     .size(size)
+                    .alpha(0f)
                     .clickable(enabled = true, onClick = onClick),
             )
         },
