@@ -91,7 +91,7 @@ class SignupViewModel : ViewModel(){
 
         navigationCallback.invoke()
     }
-    fun navigateToUserDetails(context : Activity) {
+    private fun navigateToUserDetails(context : Activity) {
 
         val intent = Intent(context, UserDetailsActivity::class.java)
         context.startActivity(intent)
