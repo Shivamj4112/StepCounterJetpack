@@ -6,8 +6,8 @@ data class UserModel(
     var sedentary : String = "",
     var age : Int = 18,
     var height : Int = 185,
-    var heightType : String = "cm",
+    var heightType : String = "",
     var weight : Int = 76,
-    var weightType : String = "kg",
+    var weightType : String = "",
     var step : Int = 6000,
 )

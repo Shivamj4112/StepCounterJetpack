@@ -2,6 +2,7 @@ package com.example.stepcounterjetpack.viewModels
 
 import android.app.Activity
 import android.content.Intent
+import android.content.SharedPreferences
 import android.widget.Toast
 import androidx.lifecycle.ViewModel
 import com.example.stepcounterjetpack.models.UserModel
@@ -10,12 +11,12 @@ import com.example.stepcounterjetpack.view.activities.UserDetailsActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 
-
-var model = UserModel()
-
 class UserDetailsViewModel : ViewModel() {
 
+    var model = UserModel()
     private var auth : FirebaseAuth = FirebaseAuth.getInstance()
+    private lateinit var sharedPref : SharedPreferences
+    private lateinit var editor : SharedPreferences.Editor
     fun updateDataInDatabase(
         context: Activity,
         gender: String,
