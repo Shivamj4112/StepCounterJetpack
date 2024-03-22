@@ -62,6 +62,12 @@ class SignupViewModel : ViewModel(){
             "name" to name,
             "email" to email,
             "password" to password,
+            "age" to "",
+            "gender" to "",
+            "height" to "",
+            "steps" to 0,
+            "sedentary" to "",
+            "weight" to "",
         )
 
         userRef.child(userId!!).child("auth").setValue(userData).addOnCompleteListener { task ->
