@@ -149,7 +149,7 @@ fun UserDetailsScreen(context: Activity, userDetailsViewModel: UserDetailsViewMo
                             // All data is available, proceed to firebase
                             // Add your code to save data to Firebase Realtime Database
                             // after confirming all data is available
-                            userDetailsViewModel.addDataToDatabase(context,model.gender, model.sedentary ,model.age, model.height ,model.weight, model.step)
+                            userDetailsViewModel.updateDataInDatabase(context,model.gender, model.sedentary ,model.age, model.height ,model.weight, model.step)
                         }
 
                     }

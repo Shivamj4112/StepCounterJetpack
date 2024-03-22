@@ -70,7 +70,7 @@ class SignupViewModel : ViewModel(){
             "weight" to "",
         )
 
-        userRef.child(userId!!).child("auth").setValue(userData).addOnCompleteListener { task ->
+        userRef.child(userId!!).child("profile").setValue(userData).addOnCompleteListener { task ->
 
             if (task.isSuccessful){
 

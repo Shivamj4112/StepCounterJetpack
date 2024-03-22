@@ -16,7 +16,7 @@ var model = UserModel()
 class UserDetailsViewModel : ViewModel() {
 
     private var auth : FirebaseAuth = FirebaseAuth.getInstance()
-    fun addDataToDatabase(
+    fun updateDataInDatabase(
         context: Activity,
         gender: String,
         sedentary: String,
@@ -27,11 +27,10 @@ class UserDetailsViewModel : ViewModel() {
     ){
         val userRef = FirebaseDatabase.getInstance().getReference("Users")
         val user = auth.currentUser
-
         val userId = user?.uid
 
 
-        val userData = hashMapOf(
+        val userData = hashMapOf<String, Any>(
             "age" to age,
             "gender" to gender,
             "height" to height.toString() + model.heightType,
@@ -40,11 +39,10 @@ class UserDetailsViewModel : ViewModel() {
             "weight" to weight.toString() + model.weightType,
         )
 
-        userRef.child(userId!!).child("profile").setValue(userData).addOnCompleteListener { task ->
+        userRef.child(userId!!).child("profile").updateChildren(userData).addOnCompleteListener { task ->
 
             if (task.isSuccessful){
 
-                Toast.makeText(context, "Successful to add user data.", Toast.LENGTH_SHORT).show()
                 navigateToLogin(context)
             }
             else{
