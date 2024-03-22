@@ -56,6 +56,6 @@ class UserDetailsViewModel : ViewModel() {
 
         val intent = Intent(context, LoginActivity::class.java)
         context.startActivity(intent)
-        context.finish()
+        context.finishAffinity()
     }
 }

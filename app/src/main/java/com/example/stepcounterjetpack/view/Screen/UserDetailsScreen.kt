@@ -540,25 +540,25 @@ fun IntroScreen6() {
 
 @Composable
 fun HeightPicker() {
-    var heightType by remember { mutableStateOf("cm") }
-    val range = if (heightType == "cm") 50..300 else 2..12
-    val text = if (heightType == "cm") "cm" else "ft"
-    var pickerValue = if (heightType == "cm") 185 else 5
+    var heightType by remember { mutableStateOf(true) }
+    val range = if (heightType) 50..300 else 2..12
+    val text = if (heightType) "cm" else "ft"
+    var pickerValue by remember { mutableStateOf(if (heightType) 185 else 5) }
 
     Column {
         Row(modifier = Modifier.padding(top = 20.sdp)) {
             // Button for "cm"
             Button(
                 modifier = Modifier,
-                colors = if (heightType == "cm") ButtonDefaults.buttonColors(containerColor = AppColor) else ButtonDefaults.buttonColors(
+                colors = if (heightType) ButtonDefaults.buttonColors(containerColor = AppColor) else ButtonDefaults.buttonColors(
                     containerColor = LightestAppColor
                 ),
-                onClick = { heightType = "cm" }
+                onClick = { heightType = true }
             ) {
                 SimpleTextComponent(
                     modifier = Modifier,
                     text = "cm",
-                    textColor = if (heightType == "cm") Color.White else AppColor,
+                    textColor = if (heightType) Color.White else AppColor,
                     textSize = 12.ssp,
                     fontFamily = TitleTextFont.fontFamily
                 )
@@ -569,18 +569,18 @@ fun HeightPicker() {
             // Button for "ft"
             Button(
                 modifier = Modifier,
-                colors = if (heightType == "ft") ButtonDefaults.buttonColors(containerColor = AppColor) else ButtonDefaults.buttonColors(
+                colors = if (!heightType) ButtonDefaults.buttonColors(containerColor = AppColor) else ButtonDefaults.buttonColors(
                     containerColor = LightestAppColor
                 ),
                 onClick = {
-                    heightType = "ft"
+                    heightType = false
 
                 }
             ) {
                 SimpleTextComponent(
                     modifier = Modifier,
                     text = "ft",
-                    textColor = if (heightType == "ft") Color.White else AppColor,
+                    textColor = if (!heightType) Color.White else AppColor,
                     textSize = 12.ssp,
                     fontFamily = TitleTextFont.fontFamily
                 )
@@ -616,9 +616,9 @@ fun HeightPicker() {
 }
 @Composable
 fun WeightPicker() {
-    var weightType by remember { mutableStateOf("kg") }
-    val range = if (weightType == "kg") 10..300 else 1..1500
-    val text = if (weightType == "kg") "kg" else "lbs"
+    var weightType by remember { mutableStateOf(true) }
+    val range = if (weightType) 10..300 else 1..1500
+    val text = if (weightType) "kg" else "lbs"
     var pickerValue by remember { mutableStateOf(if (model.weightType.isNotEmpty()) 76 else 167) }
 
     Column {
@@ -626,15 +626,15 @@ fun WeightPicker() {
             // Button for "kg"
             Button(
                 modifier = Modifier,
-                colors = if (weightType == "kg") ButtonDefaults.buttonColors(containerColor = AppColor) else ButtonDefaults.buttonColors(
+                colors = if (weightType) ButtonDefaults.buttonColors(containerColor = AppColor) else ButtonDefaults.buttonColors(
                     containerColor = LightestAppColor
                 ),
-                onClick = { weightType = "kg" }
+                onClick = { weightType = true }
             ) {
                 SimpleTextComponent(
                     modifier = Modifier,
                     text = "kg",
-                    textColor = if (weightType == "kg") Color.White else AppColor,
+                    textColor = if (weightType) Color.White else AppColor,
                     textSize = 12.ssp,
                     fontFamily = TitleTextFont.fontFamily
                 )
@@ -645,15 +645,15 @@ fun WeightPicker() {
             // Button for "lbs"
             Button(
                 modifier = Modifier,
-                colors = if (weightType == "lbs") ButtonDefaults.buttonColors(containerColor = AppColor) else ButtonDefaults.buttonColors(
+                colors = if (!weightType) ButtonDefaults.buttonColors(containerColor = AppColor) else ButtonDefaults.buttonColors(
                     containerColor = LightestAppColor
                 ),
-                onClick = { weightType = "lbs" }
+                onClick = { weightType = false }
             ) {
                 SimpleTextComponent(
                     modifier = Modifier,
                     text = "lbs",
-                    textColor = if (weightType == "lbs") Color.White else AppColor,
+                    textColor = if (!weightType) Color.White else AppColor,
                     textSize = 12.ssp,
                     fontFamily = TitleTextFont.fontFamily
                 )
