@@ -1,6 +1,7 @@
 package com.example.stepcounterjetpack.view.Screen
 
 import android.app.Activity
+import android.widget.Toast
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -33,7 +34,14 @@ import ir.kaaveh.sdpcompose.ssp
 
 @Composable
 fun LoginScreen(context: Activity, loginViewModel: LoginViewModel) {
-//fun LoginScreen() {
+
+
+    var email by remember { mutableStateOf("") }
+    var password by remember { mutableStateOf("") }
+
+    fun areFieldsValid() : Boolean {
+        return email.isNotEmpty() && password.isNotEmpty()
+    }
 
     Scaffold(
         topBar = {
@@ -71,7 +79,7 @@ fun LoginScreen(context: Activity, loginViewModel: LoginViewModel) {
                     textSize = 14.ssp,
                 )
 
-                LayoutEditText()
+                LayoutEditText(onEmailChange = { email = it }, onPasswordChange = { password = it })
 
 
                 Row(
@@ -143,9 +151,17 @@ fun LoginScreen(context: Activity, loginViewModel: LoginViewModel) {
                     .padding(bottom = 10.sdp)
             ) {
 
-                SimpleButton(text = "Login", textColor = Color.White) {
+                SimpleButton(text = "Login", textColor = Color.White,
 
-                }
+                    onClick = {
+                        if (areFieldsValid()){
+                            loginViewModel.loginAccount(context, email, password)
+                        }
+                        else{
+                            Toast.makeText(context, "Please fill all field", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                )
             }
 
 
@@ -154,7 +170,9 @@ fun LoginScreen(context: Activity, loginViewModel: LoginViewModel) {
 }
 
 @Composable
-private fun LayoutEditText() {
+private fun LayoutEditText(
+    onEmailChange: (String) -> Unit,
+                           onPasswordChange: (String) -> Unit) {
 
     //TODO       TextField Email
     SimpleTextComponent(
@@ -164,14 +182,11 @@ private fun LayoutEditText() {
         textSize = 15.ssp
     )
 
-    var email by remember { mutableStateOf("") }
 
     SimpleEditText(
         modifier = Modifier.fillMaxWidth().padding(top = 5.sdp),
         hint = "Enter Email",
-        onTextChange = { tfEmail ->
-            email = tfEmail
-        },)
+        onTextChange = onEmailChange)
 
 
     //TODO       TextField Password
@@ -181,10 +196,9 @@ private fun LayoutEditText() {
         fontFamily = TitleTextFont.fontFamily,
         textSize = 15.ssp
     )
-    var password by remember { mutableStateOf("") }
-    SimpleEditText(modifier = Modifier.fillMaxWidth().padding(top = 5.sdp),hint = "Enter Password", onTextChange = { tfPassword ->
-        password = tfPassword
-    })
+    SimpleEditText(modifier = Modifier.fillMaxWidth().padding(top = 5.sdp),
+        hint = "Enter Password",
+        onTextChange = onPasswordChange)
 }
 @Preview
 @Composable
