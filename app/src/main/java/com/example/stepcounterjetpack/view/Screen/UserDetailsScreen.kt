@@ -146,9 +146,6 @@ fun UserDetailsScreen(context: Activity, userDetailsViewModel: UserDetailsViewMo
                         3 -> if (model.height > 0) currentScreen++ else context.toast("Height")
                         4 -> if (model.weight > 0) currentScreen++ else context.toast("Weight")
                         5 -> if (model.step > 0) {
-                            // All data is available, proceed to firebase
-                            // Add your code to save data to Firebase Realtime Database
-                            // after confirming all data is available
                             userDetailsViewModel.updateDataInDatabase(context,model.gender, model.sedentary ,model.age, model.height ,model.weight, model.step)
                         }
 
