@@ -10,7 +10,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import com.example.stepcounterjetpack.view.Screen.UserDetailsScreen
-import com.example.stepcounterjetpack.theme.ui.StepCounterJetpackTheme
+import com.example.stepcounterjetpack.view.theme.ui.StepCounterJetpackTheme
 import com.example.stepcounterjetpack.viewModels.UserDetailsViewModel
 
 class UserDetailsActivity : ComponentActivity() {

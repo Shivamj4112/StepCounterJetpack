@@ -1,4 +1,4 @@
-package com.example.stepcounterjetpack.util
+package com.example.stepcounterjetpack.view.util
 
 import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.AnimationResult
@@ -36,8 +36,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
-import com.example.stepcounterjetpack.theme.ui.AppColor
-import com.example.stepcounterjetpack.theme.ui.TitleTextFont
+import com.example.stepcounterjetpack.view.theme.ui.AppColor
+import com.example.stepcounterjetpack.view.theme.ui.TitleTextFont
 import ir.kaaveh.sdpcompose.ssp
 import kotlinx.coroutines.launch
 import kotlin.math.abs

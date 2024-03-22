@@ -1,11 +1,11 @@
-package com.example.stepcounterjetpack.util
+package com.example.stepcounterjetpack.view.util
 
 import androidx.compose.material3.LocalTextStyle
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
-import com.example.stepcounterjetpack.theme.ui.AppColor
+import com.example.stepcounterjetpack.view.theme.ui.AppColor
 
 @Composable
 fun DigitPicker(

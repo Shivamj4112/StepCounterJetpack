@@ -35,11 +35,11 @@ import com.airbnb.lottie.compose.LottieAnimation
 import com.airbnb.lottie.compose.LottieCompositionSpec
 import com.airbnb.lottie.compose.LottieConstants
 import com.airbnb.lottie.compose.rememberLottieComposition
-import com.example.stepcounterjetpack.theme.ui.AppBackground
-import com.example.stepcounterjetpack.theme.ui.AppColor
-import com.example.stepcounterjetpack.theme.ui.BodyTextFont
-import com.example.stepcounterjetpack.theme.ui.DefaultTextColor
-import com.example.stepcounterjetpack.theme.ui.LightGrey
+import com.example.stepcounterjetpack.view.theme.ui.AppBackground
+import com.example.stepcounterjetpack.view.theme.ui.AppColor
+import com.example.stepcounterjetpack.view.theme.ui.BodyTextFont
+import com.example.stepcounterjetpack.view.theme.ui.DefaultTextColor
+import com.example.stepcounterjetpack.view.theme.ui.LightGrey
 import ir.kaaveh.sdpcompose.sdp
 import ir.kaaveh.sdpcompose.ssp
 
