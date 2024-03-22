@@ -20,18 +20,38 @@ class SelectionLoginActivity : ComponentActivity() {
         setContent {
             StatusBarColorWhite()
 
+//
+//            sharPref = getSharedPreferences("Signup", MODE_PRIVATE)
+//
+//            if (sharPref.contains("isAccountCreated")){
+//                Toast.makeText(this, "Hello! ${sharPref.getString("userName","")}", Toast.LENGTH_SHORT).show()
+//                startActivity(Intent(this, UserDetailsActivity::class.java))
+//                finish()
+//            }else{
+//
+//            }
 
-            sharPref = getSharedPreferences("Signup", MODE_PRIVATE)
+            val sharedPreferencesLogin: SharedPreferences = getSharedPreferences("Login", MODE_PRIVATE)
+            val sharedPreferencesSignUp: SharedPreferences = getSharedPreferences("Signup", MODE_PRIVATE)
+            val sharedPreferencesDetail: SharedPreferences = getSharedPreferences("UserDetail", MODE_PRIVATE)
 
-            if (sharPref.contains("isAccountCreated")){
-                Toast.makeText(this, "Hello! ${sharPref.getString("userName","")}", Toast.LENGTH_SHORT).show()
+
+            if (sharedPreferencesLogin.contains("uid")) {
+                startActivity(Intent(this, MainActivity::class.java))
+                finish()
+            }
+            else if (sharedPreferencesDetail.contains("idDetailFilled")){
+                startActivity(Intent(this, LoginActivity::class.java))
+                finish()
+            }
+            else if (sharedPreferencesSignUp.contains("isAccountCreated")) {
                 startActivity(Intent(this, UserDetailsActivity::class.java))
                 finish()
-            }else{
+
+            }
+            else{
                 SelectionLoginScreen(this,selectionModel)
             }
-
-
         }
     }
 }

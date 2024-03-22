@@ -1,6 +1,7 @@
 package com.example.stepcounterjetpack.viewModels
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.widget.Toast
@@ -26,6 +27,11 @@ class UserDetailsViewModel : ViewModel() {
         weight: Int,
         steps: Int,
     ){
+        context.apply {
+            sharedPref = getSharedPreferences("UserDetail", Context.MODE_PRIVATE)
+            editor = sharedPref.edit()
+        }
+
         val userRef = FirebaseDatabase.getInstance().getReference("Users")
         val user = auth.currentUser
         val userId = user?.uid
@@ -45,6 +51,8 @@ class UserDetailsViewModel : ViewModel() {
             if (task.isSuccessful){
 
                 navigateToLogin(context)
+                editor.putBoolean("isDetailFilled",true)
+                editor.apply()
             }
             else{
                 Toast.makeText(context, task.exception?.message ?: "Failed to add user data.", Toast.LENGTH_SHORT).show()
@@ -52,6 +60,7 @@ class UserDetailsViewModel : ViewModel() {
         }
     }
     private fun navigateToLogin(context : Activity) {
+
 
         val intent = Intent(context, LoginActivity::class.java)
         context.startActivity(intent)
