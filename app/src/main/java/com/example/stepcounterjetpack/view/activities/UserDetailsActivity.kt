@@ -26,7 +26,7 @@ class UserDetailsActivity : ComponentActivity() {
                     color = MaterialTheme.colorScheme.background
                 ) {
 
-                    UserDetailsScreen(this,userDetailsViewModel)
+//                    UserDetailsScreen(this,userDetailsViewModel)
                     }
                 }
 

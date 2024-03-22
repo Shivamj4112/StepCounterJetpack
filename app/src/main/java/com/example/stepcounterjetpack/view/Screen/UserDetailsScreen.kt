@@ -1,8 +1,14 @@
 package com.example.stepcounterjetpack.view.Screen
 
 import android.app.Activity
+import android.widget.Toast
+import androidx.compose.animation.animateContentSize
+import androidx.compose.animation.core.LinearOutSlowInEasing
+import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -17,6 +23,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -28,10 +35,13 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
+import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
@@ -43,14 +53,18 @@ import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.dp
 import com.example.stepcounterjetpack.R
 import com.example.stepcounterjetpack.models.UserModel
 import com.example.stepcounterjetpack.view.theme.ui.AppBackground
 import com.example.stepcounterjetpack.view.theme.ui.AppColor
 import com.example.stepcounterjetpack.view.theme.ui.BodyTextFont
+import com.example.stepcounterjetpack.view.theme.ui.DefaultTextColor
+import com.example.stepcounterjetpack.view.theme.ui.LightGrey
 import com.example.stepcounterjetpack.view.theme.ui.LightestAppColor
 import com.example.stepcounterjetpack.view.theme.ui.TitleTextFont
 import com.example.stepcounterjetpack.view.util.DigitPicker
@@ -64,9 +78,11 @@ var model = UserModel()
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun UserDetailsScreen(context: Activity, userDetailsViewModel: UserDetailsViewModel) {
+//fun UserDetailsScreen(context: Activity, userDetailsViewModel: UserDetailsViewModel) {
+fun UserDetailsScreen() {
 
     var currentScreen by remember { mutableStateOf(0) }
+    var progressCount: Int by remember { mutableStateOf(3) }
 
     Column(Modifier.fillMaxSize()) {
 
@@ -80,23 +96,25 @@ fun UserDetailsScreen(context: Activity, userDetailsViewModel: UserDetailsViewMo
                 topBar = {
                     IntroToolBar(
                         size = 20.sdp,
-                        currentScreen = currentScreen,onClick = {
+                        currentScreen = currentScreen,
+                        progressCount = progressCount,
+                        onClick = {
 
                         })
                 }
             ) {
                 Column(modifier = Modifier.padding(it)) {
 
-                        when (currentScreen) {
+                    when (currentScreen) {
 
-                            0 -> IntroScreen1()
-                            1 -> IntroScreen2()
-                            2 -> IntroScreen3()
-                            3 -> IntroScreen4()
-                            4 -> IntroScreen5()
-                            5 -> IntroScreen6()
+                        0 -> IntroScreen1()
+                        1 -> IntroScreen2()
+                        2 -> IntroScreen3()
+                        3 -> IntroScreen4()
+                        4 -> IntroScreen5()
+                        5 -> IntroScreen6()
 
-                        }
+                    }
 
                 }
             }
@@ -123,7 +141,10 @@ fun UserDetailsScreen(context: Activity, userDetailsViewModel: UserDetailsViewMo
                     height = 45.sdp,
                     backGroundColor = LightestAppColor
                 ) {
-                    if (currentScreen > 0) currentScreen--
+                    if (currentScreen > 0) {
+                        currentScreen--
+                        progressCount--
+                    }
                 }
             }
             Box(
@@ -140,14 +161,47 @@ fun UserDetailsScreen(context: Activity, userDetailsViewModel: UserDetailsViewMo
                 ) {
 //                    if (currentScreen < 5) currentScreen++
                     when (currentScreen) {
-                        0 -> if (model.gender.isNotEmpty()) currentScreen++ else context.toast("Gender")
-                        1 -> if (model.sedentary.isNotEmpty()) currentScreen++ else context.toast("Sedentary")
-                        2 -> if (model.age > 0) currentScreen++ else context.toast("Age")
-                        3 -> if (model.height > 0) currentScreen++ else context.toast("Height")
-                        4 -> if (model.weight > 0) currentScreen++ else context.toast("Weight")
-                        5 -> if (model.step > 0) {
-                            userDetailsViewModel.updateDataInDatabase(context,model.gender, model.sedentary ,model.age, model.heightType ,model.weightType, model.step)
+                        0 -> if (model.gender.isNotEmpty()) {
+                            currentScreen++
+                            progressCount++
                         }
+//                        else context.toast("Gender")
+
+                        1 -> if (model.sedentary.isNotEmpty()) {
+                            currentScreen++
+                            progressCount++
+                        }
+//                        else context.toast("Sedentary")
+
+                        2 -> if (model.age > 0) {
+                            currentScreen++
+                            progressCount++
+                        }
+//                        else context.toast("Age")
+
+                        3 -> if (model.height > 0) {
+                            currentScreen++
+                            progressCount++
+                        }
+//                        else context.toast("Height")
+
+                        4 -> if (model.weight > 0) {
+                            currentScreen++
+                            progressCount++
+                        }
+//                        else context.toast("Weight")
+
+//                        5 -> if (model.step > 0) {
+//                            userDetailsViewModel.updateDataInDatabase(
+//                                context,
+//                                model.gender,
+//                                model.sedentary,
+//                                model.age,
+//                                model.heightType,
+//                                model.weightType,
+//                                model.step
+//                            )
+//                        }
 
                     }
                 }
@@ -296,7 +350,8 @@ fun IntroScreen2() {
                 ),
                 onClick = {
                     sedenState = "Yes"
-                    model.sedentary = sedenState}) {
+                    model.sedentary = sedenState
+                }) {
 
                 SimpleTextComponent(
                     modifier = Modifier,
@@ -515,7 +570,6 @@ fun IntroScreen6() {
         ) {
 
 
-
             DigitPicker(
                 modifier = Modifier.width(150.sdp),
                 value = pickerValue,
@@ -526,7 +580,9 @@ fun IntroScreen6() {
                 },
             )
             SimpleTextComponent(
-                modifier = Modifier.align(Alignment.CenterEnd).padding(end = 10.sdp),
+                modifier = Modifier
+                    .align(Alignment.CenterEnd)
+                    .padding(end = 10.sdp),
                 text = "Steps",
                 fontFamily = TitleTextFont.fontFamily,
                 textSize = 12.ssp
@@ -596,7 +652,7 @@ fun HeightPicker() {
             contentAlignment = Alignment.Center
         ) {
 
-            if (heightType){
+            if (heightType) {
 
                 model.height = cmPickerValue
                 model.cmHeight = cmPickerValue
@@ -610,10 +666,10 @@ fun HeightPicker() {
                         cmPickerValue = it
                         model.height = cmPickerValue
                         model.cmHeight = cmPickerValue
-                        model.heightType = cmPickerValue.toString() + " cm"},
+                        model.heightType = cmPickerValue.toString() + " cm"
+                    },
                 )
-            }
-            else{
+            } else {
 
                 model.height = ftPickerValue
                 model.ftHeight = ftPickerValue
@@ -627,7 +683,8 @@ fun HeightPicker() {
                         ftPickerValue = it
                         model.height = ftPickerValue
                         model.ftHeight = ftPickerValue
-                        model.heightType = ftPickerValue.toString() + " ft"},
+                        model.heightType = ftPickerValue.toString() + " ft"
+                    },
                 )
             }
 
@@ -640,6 +697,7 @@ fun HeightPicker() {
         }
     }
 }
+
 @Composable
 fun WeightPicker() {
     var weightType by remember { mutableStateOf(true) }
@@ -696,7 +754,7 @@ fun WeightPicker() {
             contentAlignment = Alignment.Center
         ) {
 
-            if (weightType){
+            if (weightType) {
 
                 model.weight = kgPickerValue
                 model.kgweight = kgPickerValue
@@ -713,8 +771,7 @@ fun WeightPicker() {
                         model.weightType = kgPickerValue.toString() + " kg"
                     },
                 )
-            }
-            else{
+            } else {
                 model.weight = lbsPickerValue
                 model.lbsweight = lbsPickerValue
                 model.weightType = lbsPickerValue.toString() + " lbs"
@@ -768,7 +825,7 @@ fun FilledCardView() {
                 .clickable {
                     model.gender = "male"
                     selectedGender = "male"
-                           },
+                },
         ) {
 
             Column(modifier = Modifier.padding(vertical = 10.sdp, horizontal = 5.sdp)) {
@@ -847,6 +904,7 @@ fun IntroToolBar(
     toolbarTitle: String = "",
     size: Dp = 25.sdp,
     currentScreen: Int,
+    progressCount: Int,
     backgroundColor: Color = AppBackground,
     onClick: () -> Unit,
 
@@ -856,32 +914,36 @@ fun IntroToolBar(
         modifier = Modifier.wrapContentHeight(),
         title = {
 
-            Box(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(bottom = 12.sdp),
-                contentAlignment = Alignment.Center
-            ) {
+            CustomProgressBar(progressCount)
 
-                SimpleTextComponent(
-                    modifier = Modifier,
-                    text = "toolbarTitle",
-                    fontFamily = TitleTextFont.fontFamily
-                )
-            }
+//            Box(
+//                modifier = Modifier
+//                    .fillMaxWidth()
+//                    .padding(bottom = 12.sdp),
+//                contentAlignment = Alignment.Center
+//            ) {
+//
+//                SimpleTextComponent(
+//                    modifier = Modifier,
+//                    text = "toolbarTitle",
+//                    fontFamily = TitleTextFont.fontFamily
+//                )
+//            }
         },
-        navigationIcon =  {
+        navigationIcon = {
 
-                Icon(
-                    imageVector = Icons.Filled.ArrowBack,
-                    contentDescription = "Arrow Back",
-                    modifier = Modifier
-                        .alpha(0f)
-                        .padding(start = 5.sdp, bottom = 12.sdp)
-                        .size(size)
-                        .clickable(enabled = true, onClick = onClick),
-                )
-            },
+
+
+            Icon(
+                imageVector = Icons.Filled.ArrowBack,
+                contentDescription = "Arrow Back",
+                modifier = Modifier
+                    .alpha(0f)
+                    .padding(start = 5.sdp, bottom = 12.sdp)
+                    .size(size)
+                    .clickable(enabled = true, onClick = onClick),
+            )
+        },
         colors = TopAppBarDefaults.smallTopAppBarColors(containerColor = backgroundColor),
         actions = {
 
@@ -899,9 +961,140 @@ fun IntroToolBar(
 }
 
 
+
+    @Composable
+    fun CustomProgressBar(progressCount: Int) {
+
+
+        var progress by remember { mutableStateOf(0f) }
+
+        when (progressCount) {
+            0 -> progress = 0.2f
+            1 -> progress = 0.4f
+            2 -> progress = 0.6f
+            3 -> progress = 0.8f
+            4 -> progress = 1.0f
+        }
+
+        val size by animateFloatAsState(
+            targetValue = progress,
+            tween(
+                durationMillis = 1000,
+                delayMillis = 200,
+                easing = LinearOutSlowInEasing
+            )
+        )
+
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(top = 100.dp, start = 30.dp, end = 30.dp)
+        ) {
+
+            // Progress Bar
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(13.sdp)
+            ) {
+                // for the background of the ProgressBar
+                Box(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .clip(RoundedCornerShape(15.sdp))
+                        .background(LightestAppColor)
+                )
+                // for the progress of the ProgressBar
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth(size)
+                        .fillMaxHeight()
+                        .clip(RoundedCornerShape(15.sdp))
+                        .background(AppColor)
+                        .animateContentSize()
+                )
+            }
+
+
+
+        }
+
+//        LaunchedEffect(key1 = true) {
+//            progressCount = 7
+//        }
+
+
+}
+
+@Composable
+fun CustomProgressBar2() {
+
+
+    var progress by remember { mutableStateOf(0f) }
+    var progressCount by remember { mutableStateOf(3) }
+
+    when (progressCount) {
+        0 -> progress = 0.2f
+        1 -> progress = 0.4f
+        2 -> progress = 0.6f
+        3 -> progress = 0.8f
+        4 -> progress = 1f
+    }
+
+    val size by animateFloatAsState(
+        targetValue = progress,
+        tween(
+            durationMillis = 1000,
+            delayMillis = 200,
+            easing = LinearOutSlowInEasing
+        )
+    )
+
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(top = 100.dp, start = 30.dp, end = 30.dp)
+    ) {
+
+        // Progress Bar
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(13.sdp)
+        ) {
+            // for the background of the ProgressBar
+            Box(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .clip(RoundedCornerShape(15.sdp))
+                    .background(LightestAppColor)
+            )
+            // for the progress of the ProgressBar
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth(size)
+                    .fillMaxHeight()
+                    .clip(RoundedCornerShape(15.sdp))
+                    .background(AppColor)
+                    .animateContentSize()
+            )
+        }
+
+
+
+    }
+
+//        LaunchedEffect(key1 = true) {
+//            progressCount = 7
+//        }
+
+
+}
+
 @Preview(showSystemUi = true)
 @Composable
 fun IntroPreview() {
 
-//    UserDetailsScreen()
+    UserDetailsScreen()
+//    CustomProgressBar2()
 }
