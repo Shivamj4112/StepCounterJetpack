@@ -533,8 +533,6 @@ fun IntroScreen6() {
             )
 
         }
-
-
     }
 }
 
