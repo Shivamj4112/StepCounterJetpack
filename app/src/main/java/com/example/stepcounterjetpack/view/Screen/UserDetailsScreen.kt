@@ -538,7 +538,9 @@ fun HeightPicker() {
     var heightType by remember { mutableStateOf(true) }
     val range = if (heightType) 50..300 else 2..12
     val text = if (heightType) "cm" else "ft"
-    var pickerValue by remember { mutableStateOf(if (heightType) 185 else 5) }
+    var cmPickerValue by remember { mutableStateOf(185) }
+    var ftPickerValue by remember { mutableStateOf(5) }
+
 
     Column {
         Row(modifier = Modifier.padding(top = 20.sdp)) {
@@ -591,15 +593,37 @@ fun HeightPicker() {
             contentAlignment = Alignment.Center
         ) {
 
-            DigitPicker(
-                modifier = Modifier.width(100.sdp),
-                value = pickerValue,
-                range = range,
-                onValueChange = {
-                    pickerValue = it
-                    model.height = it
-                    model.heightType = text},
-            )
+            if (heightType){
+
+                model.height = cmPickerValue
+                model.heightType = text
+
+                DigitPicker(
+                    modifier = Modifier.width(100.sdp),
+                    value = cmPickerValue,
+                    range = range,
+                    onValueChange = {
+                        cmPickerValue = it
+                        model.height = cmPickerValue
+                        model.heightType = text},
+                )
+            }
+            else{
+
+                model.height = ftPickerValue
+                model.heightType = text
+
+                DigitPicker(
+                    modifier = Modifier.width(100.sdp),
+                    value = ftPickerValue,
+                    range = range,
+                    onValueChange = {
+                        ftPickerValue = it
+                        model.height = ftPickerValue
+                        model.heightType = text},
+                )
+            }
+
             SimpleTextComponent(
                 modifier = Modifier.align(Alignment.CenterEnd),
                 text = text,

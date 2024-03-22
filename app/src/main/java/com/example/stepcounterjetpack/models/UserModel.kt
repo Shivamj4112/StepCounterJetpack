@@ -5,7 +5,7 @@ data class UserModel(
     var gender : String = "",
     var sedentary : String = "",
     var age : Int = 18,
-    var height : Int = 185,
+    var height : Int = 0,
     var heightType : String = "",
     var weight : Int = 76,
     var weightType : String = "",
