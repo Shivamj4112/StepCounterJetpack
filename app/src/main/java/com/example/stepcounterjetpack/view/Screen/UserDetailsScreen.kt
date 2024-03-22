@@ -316,7 +316,7 @@ fun IntroScreen3() {
 
     Column(modifier = Modifier.fillMaxSize(), horizontalAlignment = Alignment.CenterHorizontally) {
 
-        var ageValue by remember { mutableIntStateOf(18) }
+        var ageValue by remember { mutableIntStateOf(model.age) }
         Row {
             SimpleTextComponent(
                 modifier = Modifier.padding(top = 10.sdp),
@@ -476,7 +476,7 @@ fun IntroScreen5() {
 @Composable
 fun IntroScreen6() {
 
-    var pickerValue by remember { mutableIntStateOf(6000) }
+    var pickerValue by remember { mutableIntStateOf(model.step) }
 
     Column(modifier = Modifier.fillMaxSize(), horizontalAlignment = Alignment.CenterHorizontally) {
 
@@ -541,8 +541,8 @@ fun HeightPicker() {
     var heightType by remember { mutableStateOf(true) }
     val range = if (heightType) 50..300 else 2..12
     val text = if (heightType) "cm" else "ft"
-    var cmPickerValue by remember { mutableStateOf(185) }
-    var ftPickerValue by remember { mutableStateOf(5) }
+    var cmPickerValue by remember { mutableStateOf(model.cmHeight) }
+    var ftPickerValue by remember { mutableStateOf(model.ftHeight) }
 
 
     Column {
@@ -599,6 +599,7 @@ fun HeightPicker() {
             if (heightType){
 
                 model.height = cmPickerValue
+                model.cmHeight = cmPickerValue
                 model.heightType = cmPickerValue.toString() + " cm"
 
                 DigitPicker(
@@ -608,12 +609,14 @@ fun HeightPicker() {
                     onValueChange = {
                         cmPickerValue = it
                         model.height = cmPickerValue
+                        model.cmHeight = cmPickerValue
                         model.heightType = cmPickerValue.toString() + " cm"},
                 )
             }
             else{
 
                 model.height = ftPickerValue
+                model.ftHeight = ftPickerValue
                 model.heightType = ftPickerValue.toString() + " ft"
 
                 DigitPicker(
@@ -623,6 +626,7 @@ fun HeightPicker() {
                     onValueChange = {
                         ftPickerValue = it
                         model.height = ftPickerValue
+                        model.ftHeight = ftPickerValue
                         model.heightType = ftPickerValue.toString() + " ft"},
                 )
             }
@@ -641,8 +645,8 @@ fun WeightPicker() {
     var weightType by remember { mutableStateOf(true) }
     val range = if (weightType) 10..300 else 1..1500
     var text by remember { mutableStateOf("kg") }
-    var kgPickerValue by remember { mutableStateOf(76) }
-    var lbsPickerValue by remember { mutableStateOf(167) }
+    var kgPickerValue by remember { mutableStateOf(model.kgweight) }
+    var lbsPickerValue by remember { mutableStateOf(model.lbsweight) }
 
 
     Column {
@@ -695,6 +699,7 @@ fun WeightPicker() {
             if (weightType){
 
                 model.weight = kgPickerValue
+                model.kgweight = kgPickerValue
                 model.weightType = kgPickerValue.toString() + " kg"
 
                 DigitPicker(
@@ -704,12 +709,14 @@ fun WeightPicker() {
                     onValueChange = {
                         kgPickerValue = it
                         model.weight = kgPickerValue
+                        model.kgweight = kgPickerValue
                         model.weightType = kgPickerValue.toString() + " kg"
                     },
                 )
             }
             else{
                 model.weight = lbsPickerValue
+                model.lbsweight = lbsPickerValue
                 model.weightType = lbsPickerValue.toString() + " lbs"
 
                 DigitPicker(
@@ -719,6 +726,7 @@ fun WeightPicker() {
                     onValueChange = {
                         lbsPickerValue = it
                         model.weight = lbsPickerValue
+                        model.lbsweight = lbsPickerValue
                         model.weightType = lbsPickerValue.toString() + " lbs"
                     },
                 )
