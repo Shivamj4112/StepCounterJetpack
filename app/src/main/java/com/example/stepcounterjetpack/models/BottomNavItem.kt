@@ -47,8 +47,8 @@ sealed class NavigationItem(
 
     object ScreenE : NavigationItem(
         title = "Account",
-        route = "screenD",
+        route = "screenE",
         icon = Icons.Outlined.AccountCircle, // Example of loading from drawable resource
-        selectedColor = Color(0xFFe76f51)
+        selectedColor = Color(0xFF2ECC71)
     )
 }

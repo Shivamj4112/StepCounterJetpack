@@ -109,6 +109,9 @@ fun MainScreen() {
                 composable(NavigationItem.ScreenD.route){
                     demo1()
                 }
+                composable(NavigationItem.ScreenE.route){
+                    demo1()
+                }
             }
         }
     }
