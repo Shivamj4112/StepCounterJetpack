@@ -1,5 +1,6 @@
 package com.example.stepcounterjetpack.view.Screen
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -8,6 +9,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentHeight
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -22,6 +24,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -34,6 +38,8 @@ import com.example.stepcounterjetpack.R
 import com.example.stepcounterjetpack.models.NavigationItem
 import com.example.stepcounterjetpack.view.theme.ui.AppBackground
 import com.example.stepcounterjetpack.view.theme.ui.AppColor
+import com.example.stepcounterjetpack.view.theme.ui.DefaultTextColor
+import com.example.stepcounterjetpack.view.theme.ui.LightGrey
 import com.example.stepcounterjetpack.view.theme.ui.TitleTextFont
 import com.example.stepcounterjetpack.view.util.CircularSlider
 import com.example.stepcounterjetpack.view.util.navigation.BubbleNavigationBar
@@ -50,9 +56,9 @@ fun MainScreen() {
                 val navigationItems = NavigationItem::class.nestedClasses.map {
                     it.objectInstance as NavigationItem
                 }
-    var selectedItem by remember { mutableIntStateOf(0) }
 
     Scaffold(
+        containerColor = LightGrey,
         topBar = {
             MainScreenToolBar(
                 size = 20.sdp,
@@ -61,7 +67,10 @@ fun MainScreen() {
                 })
         },
         bottomBar = {
-            BubbleNavigationBar {
+            BubbleNavigationBar(modifier = Modifier
+                .padding(horizontal = 10.sdp)
+                .padding(bottom = 10.sdp)
+                .clip(RoundedCornerShape(8.sdp))) {
                 navigationItems.forEach { navigationItem ->
                     BubbleNavigationBarItem(
                         selected = currentRoute == navigationItem.route,
@@ -87,8 +96,6 @@ fun MainScreen() {
             }
         }
 
-
-
     ) {
         Column(
             Modifier
@@ -100,15 +107,15 @@ fun MainScreen() {
                 composable(NavigationItem.ScreenA.route){
                     demo1()
                 }
-//                composable(NavigationItem.ScreenB.route){
-//
-//                }
-//                composable(NavigationItem.ScreenC.route){
-//
-//                }
-//                composable(NavigationItem.ScreenD.route){
-//
-//                }
+                composable(NavigationItem.ScreenB.route){
+                    demo1()
+                }
+                composable(NavigationItem.ScreenC.route){
+                    demo1()
+                }
+                composable(NavigationItem.ScreenD.route){
+                    demo1()
+                }
             }
         }
     }
@@ -118,7 +125,7 @@ fun demo1 (){
 
     Column (Modifier.fillMaxSize()){
         CircularSlider(
-                modifier = Modifier.padding(horizontal = 15.sdp).padding(bottom = 10.sdp).align(Alignment.CenterHorizontally),
+                modifier = Modifier.align(Alignment.CenterHorizontally),
                 backgroundIndicatorStrokeWidth = 80f,
                 foregroundIndicatorStrokeWidth = 80f,
                 indicatorValue = 50
@@ -132,7 +139,7 @@ fun demo1 (){
 fun MainScreenToolBar(
     toolbarTitle: String = "",
     size: Dp = 25.sdp,
-    backgroundColor: Color = AppBackground,
+    backgroundColor: Color = LightGrey,
     onClick: () -> Unit,
 
     ) {

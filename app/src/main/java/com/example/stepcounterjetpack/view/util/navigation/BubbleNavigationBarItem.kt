@@ -20,27 +20,8 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextOverflow
+import com.example.stepcounterjetpack.view.theme.ui.DefaultTextColor
 
-@Composable
-fun RowScope.BubbleNavigationBarItem(
-    modifier: Modifier = Modifier,
-    selected: Boolean,
-    onClick: () -> Unit,
-    @DrawableRes icon: Int,
-    selectedColor: Color,
-    unSelectedBackgroundColor: Color = MaterialTheme.colorScheme.primaryContainer,
-    unSelectedIconColor: Color = MaterialTheme.colorScheme.onPrimaryContainer.copy(alpha = 0.1f),
-    title: String
-) = BubbleNavigationBarItem(
-    modifier,
-    selected,
-    onClick,
-    painterResource(icon),
-    selectedColor,
-    unSelectedBackgroundColor,
-    unSelectedIconColor,
-    title,
-)
 
 @Composable
 fun RowScope.BubbleNavigationBarItem(
@@ -49,10 +30,9 @@ fun RowScope.BubbleNavigationBarItem(
     onClick: () -> Unit,
     icon: ImageVector,
     selectedColor: Color,
-    unSelectedBackgroundColor: Color = MaterialTheme.colorScheme.primaryContainer,
-    unSelectedIconColor: Color = MaterialTheme.colorScheme.onPrimaryContainer.copy(alpha = 0.1f),
-    title: String
-) = BubbleNavigationBarItem(
+    unSelectedBackgroundColor: Color = Color.White,
+    unSelectedIconColor: Color = DefaultTextColor,
+    title: String) = BubbleNavigationBarItem(
     modifier,
     selected,
     onClick,
@@ -70,8 +50,8 @@ fun RowScope.BubbleNavigationBarItem(
     onClick: () -> Unit,
     iconPainter: Painter,
     selectedColor: Color,
-    unSelectedBackgroundColor: Color = MaterialTheme.colorScheme.primaryContainer,
-    unSelectedIconColor: Color = MaterialTheme.colorScheme.onPrimaryContainer.copy(alpha = 0.1f),
+    unSelectedBackgroundColor: Color = Color.White,
+    unSelectedIconColor: Color = DefaultTextColor,
     title: String
 ) {
     val interactionSource =  remember { MutableInteractionSource() }
