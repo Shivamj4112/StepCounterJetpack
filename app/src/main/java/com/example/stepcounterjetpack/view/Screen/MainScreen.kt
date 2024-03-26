@@ -126,6 +126,8 @@ fun demo1 (){
                 foregroundIndicatorStrokeWidth = 80f,
                 indicatorValue = 50
             )
+
+
     }
 }
 
@@ -192,5 +194,5 @@ fun MainScreenToolBar(
 @Preview(showSystemUi = true)
 @Composable
 fun MainScreenPreview() {
-    MainScreen()
+    demo1()
 }
