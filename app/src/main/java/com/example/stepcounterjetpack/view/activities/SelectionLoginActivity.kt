@@ -18,17 +18,6 @@ class SelectionLoginActivity : ComponentActivity() {
         setContent {
             StatusBarColorWhite()
 
-//
-//            sharPref = getSharedPreferences("Signup", MODE_PRIVATE)
-//
-//            if (sharPref.contains("isAccountCreated")){
-//                Toast.makeText(this, "Hello! ${sharPref.getString("userName","")}", Toast.LENGTH_SHORT).show()
-//                startActivity(Intent(this, UserDetailsActivity::class.java))
-//                finish()
-//            }else{
-//
-//            }
-
             val sharedPreferencesLogin: SharedPreferences = getSharedPreferences("Login", MODE_PRIVATE)
             val sharedPreferencesSignUp: SharedPreferences = getSharedPreferences("Signup", MODE_PRIVATE)
             val sharedPreferencesDetail: SharedPreferences = getSharedPreferences("UserDetail", MODE_PRIVATE)
