@@ -84,6 +84,9 @@ dependencies {
     // Sdp and Ssp
     implementation(libs.sdp.compose)
 
+    // Google Accompanist Dependency
+    implementation(libs.accompanist.permissions)
+
     implementation(libs.androidx.fragment.ktx)
 
 
