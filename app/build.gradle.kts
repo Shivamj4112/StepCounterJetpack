@@ -67,6 +67,7 @@ dependencies {
     implementation(libs.androidx.constraintlayout)
     implementation(libs.firebase.auth)
     implementation(libs.firebase.database)
+    implementation(libs.androidx.navigation.compose)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -87,8 +88,10 @@ dependencies {
     // Google Accompanist Dependency
     implementation(libs.accompanist.permissions)
 
+    implementation (libs.bottombar)
+
     implementation(libs.androidx.fragment.ktx)
+    implementation(kotlin("reflect"))
 
 
- 
 }

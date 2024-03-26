@@ -1,6 +1,7 @@
 [versions]
 accompanistPermissions = "0.31.0-alpha"
 agp = "8.3.1"
+bottombar = "1.0.1"
 fragmentKtx = "1.6.2"
 kotlin = "1.9.22"
 coreKtx = "1.12.0"
@@ -21,11 +22,13 @@ constraintlayout = "2.1.4"
 googleServices = "4.4.1"
 firebaseAuth = "22.3.1"
 firebaseDatabase = "20.3.1"
+navigationCompose = "2.7.7"
 
 [libraries]
 accompanist-permissions = { module = "com.google.accompanist:accompanist-permissions", version.ref = "accompanistPermissions" }
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 androidx-fragment-ktx = { module = "androidx.fragment:fragment-ktx", version.ref = "fragmentKtx" }
+bottombar = { module = "com.canopas.compose-animated-navigationbar:bottombar", version.ref = "bottombar" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
@@ -50,6 +53,7 @@ androidx-constraintlayout = { group = "androidx.constraintlayout", name = "const
 google-services = { group = "com.google.gms", name = "google-services", version.ref = "googleServices" }
 firebase-auth = { group = "com.google.firebase", name = "firebase-auth", version.ref = "firebaseAuth" }
 firebase-database = { group = "com.google.firebase", name = "firebase-database", version.ref = "firebaseDatabase" }
+androidx-navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigationCompose" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

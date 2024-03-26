@@ -16,53 +16,116 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.currentBackStackEntryAsState
+import androidx.navigation.compose.rememberNavController
 import com.example.stepcounterjetpack.R
+import com.example.stepcounterjetpack.models.NavigationItem
 import com.example.stepcounterjetpack.view.theme.ui.AppBackground
 import com.example.stepcounterjetpack.view.theme.ui.AppColor
 import com.example.stepcounterjetpack.view.theme.ui.TitleTextFont
 import com.example.stepcounterjetpack.view.util.CircularSlider
+import com.example.stepcounterjetpack.view.util.navigation.BubbleNavigationBar
+import com.example.stepcounterjetpack.view.util.navigation.BubbleNavigationBarItem
 import ir.kaaveh.sdpcompose.sdp
 import ir.kaaveh.sdpcompose.ssp
-
 
 @Composable
 fun MainScreen() {
 
+     val navController = rememberNavController()
+                val navBackStackEntry by navController.currentBackStackEntryAsState()
+                val currentRoute = navBackStackEntry?.destination?.route
+                val navigationItems = NavigationItem::class.nestedClasses.map {
+                    it.objectInstance as NavigationItem
+                }
+    var selectedItem by remember { mutableIntStateOf(0) }
+
     Scaffold(
         topBar = {
-            MainScreenToolBar (
+            MainScreenToolBar(
                 size = 20.sdp,
-                toolbarTitle = "Home",onClick = {
+                toolbarTitle = "Home", onClick = {
 
                 })
+        },
+        bottomBar = {
+            BubbleNavigationBar {
+                navigationItems.forEach { navigationItem ->
+                    BubbleNavigationBarItem(
+                        selected = currentRoute == navigationItem.route,
+                        onClick = {
+                            if(currentRoute != navigationItem.route){
+                                navController.popBackStack()
+                                navController.navigate(navigationItem.route){
+                                    navController.graph.startDestinationRoute?.let { screen_route ->
+                                        popUpTo(screen_route) {
+                                            saveState = true
+                                        }
+                                    }
+                                    launchSingleTop = true
+                                    restoreState = true
+                                }
+                            }
+                        },
+                        icon = navigationItem.icon,
+                        title = navigationItem.title,
+                        selectedColor = navigationItem.selectedColor
+                    )
+                }
+            }
         }
-        // idea :- check tick length and value lenth compasre ands ser color according to it
+
+
 
     ) {
         Column(
             Modifier
                 .fillMaxSize()
-                .padding(it)) {
+                .padding(it)
+        ) {
 
-            CircularSlider(
-                modifier = Modifier.align(Alignment.CenterHorizontally),
+            NavHost(navController = navController, startDestination = NavigationItem.ScreenA.route){
+                composable(NavigationItem.ScreenA.route){
+                    demo1()
+                }
+//                composable(NavigationItem.ScreenB.route){
+//
+//                }
+//                composable(NavigationItem.ScreenC.route){
+//
+//                }
+//                composable(NavigationItem.ScreenD.route){
+//
+//                }
+            }
+        }
+    }
+}
+@Composable
+fun demo1 (){
+
+    Column (Modifier.fillMaxSize()){
+        CircularSlider(
+                modifier = Modifier.padding(horizontal = 15.sdp).padding(bottom = 10.sdp).align(Alignment.CenterHorizontally),
                 backgroundIndicatorStrokeWidth = 80f,
                 foregroundIndicatorStrokeWidth = 80f,
                 indicatorValue = 50
             )
-
-        }
     }
-
-
-
 }
+
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -121,7 +184,6 @@ fun MainScreenToolBar(
         }
     )
 }
-
 
 
 @Preview(showSystemUi = true)

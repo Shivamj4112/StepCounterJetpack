@@ -170,6 +170,7 @@ fun DrawScope.backgroundIndicator(
         val endX = center.x + (radius + tickLength / 2.0) * kotlin.math.cos(Math.toRadians(angle.toDouble()))
         val endY = center.y + (radius + tickLength / 2.0) * kotlin.math.sin(Math.toRadians(angle.toDouble()))
 
+        // idea :- check tick length and value length compare ands ser color according to it
         drawLine(
             color = tickColor,
             start = Offset(startX.toFloat(), startY.toFloat()),
