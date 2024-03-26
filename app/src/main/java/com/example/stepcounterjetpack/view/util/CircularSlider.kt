@@ -29,6 +29,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.max
+import com.example.stepcounterjetpack.view.theme.ui.AppColor
 import com.example.stepcounterjetpack.view.theme.ui.TitleTextFont
 import ir.kaaveh.sdpcompose.sdp
 import ir.kaaveh.sdpcompose.ssp
@@ -41,9 +43,9 @@ fun CircularSlider(
     indicatorValue: Int = 0,
     maxIndicatorValue: Int = 100,
     backgroundIndicatorColor: Color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.1f),
-    backgroundIndicatorStrokeWidth: Float = 100f,
-    foregroundIndicatorColor: Color = MaterialTheme.colorScheme.primary,
-    foregroundIndicatorStrokeWidth: Float = 100f,
+    backgroundIndicatorStrokeWidth: Float = 80f,
+    foregroundIndicatorColor: Color = AppColor,
+    foregroundIndicatorStrokeWidth: Float = 80f,
     bigTextFontSize: TextUnit = MaterialTheme.typography.titleMedium.fontSize,
     bigTextColor: Color = MaterialTheme.colorScheme.onSurface,
     bigTextSuffix: String = "GB",
@@ -110,7 +112,9 @@ fun CircularSlider(
                     sweepAngle = sweepAngle,
                     componentSize = componentSize,
                     indicatorColor = foregroundIndicatorColor,
-                    indicatorStrokeWidth = foregroundIndicatorStrokeWidth
+                    indicatorStrokeWidth = foregroundIndicatorStrokeWidth,
+                    indicatorValue = indicatorValue,
+                    maxIndicatorValue = maxIndicatorValue
                 )
             },
         verticalArrangement = Arrangement.Center,
@@ -175,21 +179,22 @@ fun DrawScope.backgroundIndicator(
     }
 }
 
-
-
-
 fun DrawScope.foregroundIndicator(
     sweepAngle: Float,
     componentSize: Size,
     indicatorColor: Color,
     indicatorStrokeWidth: Float,
-//    indicatorStokeCap: StrokeCap
+    maxIndicatorValue: Int,
+    indicatorValue: Int
 ) {
+    val percentage = indicatorValue.toFloat() / maxIndicatorValue
+    val sweepAngleAdjusted = (290 * percentage).toFloat() // Adjusted sweep angle based on percentage
+
     drawArc(
         size = componentSize,
         color = indicatorColor,
-        startAngle = 150f,
-        sweepAngle = sweepAngle,
+        startAngle = 123f,
+        sweepAngle = sweepAngleAdjusted,
         useCenter = false,
         style = Stroke(
             width = indicatorStrokeWidth,
@@ -201,6 +206,40 @@ fun DrawScope.foregroundIndicator(
         )
     )
 }
+
+
+//fun DrawScope.foregroundIndicator(
+//    sweepAngle: Float,
+//    componentSize: Size,// Color for low values
+//    indicatorColor: Color, // Color for high values
+//    indicatorStrokeWidth: Float,
+//    maxIndicatorValue: Int,
+//    indicatorValue: Int
+//) {
+//    val percentage = indicatorValue.toFloat() / maxIndicatorValue
+//    val sweepAngleAdjusted = (290 * percentage).toFloat() // Adjusted sweep angle based on percentage
+//    val indicatorColor = lerpColor(indicatorColor, percentage)
+//
+//    drawArc(
+//        size = componentSize,
+//        color = indicatorColor,
+//        startAngle = 123f,
+//        sweepAngle = sweepAngleAdjusted,
+//        useCenter = false,
+//        style = Stroke(
+//            width = indicatorStrokeWidth,
+//            cap = StrokeCap.Round
+//        ),
+//        topLeft = Offset(
+//            x = (size.width - componentSize.width) / 2f,
+//            y = (size.height - componentSize.height) / 2f
+//        )
+//    )
+//}
+//fun lerpColor(color: Color, fraction: Float): Color {
+//    return Color(color.red, color.green, color.blue, alpha = fraction * color.alpha)
+//}
+
 
 @Composable
 fun EmbeddedElements(

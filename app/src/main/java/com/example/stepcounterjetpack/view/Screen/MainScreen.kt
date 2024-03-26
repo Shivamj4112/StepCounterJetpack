@@ -42,6 +42,7 @@ fun MainScreen() {
 
                 })
         }
+        // idea :- check tick length and value lenth compasre ands ser color according to it
 
     ) {
         Column(
@@ -51,7 +52,9 @@ fun MainScreen() {
 
             CircularSlider(
                 modifier = Modifier.align(Alignment.CenterHorizontally),
-                backgroundIndicatorStrokeWidth = 80f
+                backgroundIndicatorStrokeWidth = 80f,
+                foregroundIndicatorStrokeWidth = 80f,
+                indicatorValue = 50
             )
 
         }
