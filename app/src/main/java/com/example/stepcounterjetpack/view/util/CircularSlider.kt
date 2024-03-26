@@ -4,8 +4,11 @@ import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.animateIntAsState
 import androidx.compose.animation.core.tween
+import com.example.stepcounterjetpack.R
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -19,12 +22,16 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.graphics.drawscope.DrawScope
 import androidx.compose.ui.graphics.drawscope.Stroke
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
+import com.example.stepcounterjetpack.view.theme.ui.TitleTextFont
+import ir.kaaveh.sdpcompose.sdp
+import ir.kaaveh.sdpcompose.ssp
 
 
 @Composable
@@ -206,18 +213,30 @@ fun EmbeddedElements(
     smallTextFontSize: TextUnit
 ) {
     Text(
-        text = smallText,
-        color = smallTextColor,
-        fontSize = smallTextFontSize,
+        modifier = Modifier.padding(top = 60.sdp),
+        text = "Steps",
+        color = Color.Black,
+        fontSize = 16.ssp,
         textAlign = TextAlign.Center
     )
     Text(
-        text = "$bigText ${bigTextSuffix.take(2)}",
-        color = bigTextColor,
-        fontSize = bigTextFontSize,
+        modifier = Modifier.padding(top = 10.sdp,bottom = 10.sdp),
+        text = "731",
+        color = Color.Black,
+        fontSize = 40.ssp,
         textAlign = TextAlign.Center,
-        fontWeight = FontWeight.Bold
+        fontFamily = TitleTextFont.fontFamily
     )
+    Text(
+        text = "/6000",
+        fontSize = 14.ssp,
+        textAlign = TextAlign.Center,
+    )
+
+    Image(
+        modifier = Modifier.padding(top = 5.sdp).size(50.sdp),
+        painter = painterResource(id = R.drawable.ic_play),
+        contentDescription = "Play")
 }
 
 @Composable
