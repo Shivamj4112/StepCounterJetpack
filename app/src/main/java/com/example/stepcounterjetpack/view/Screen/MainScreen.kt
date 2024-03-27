@@ -346,7 +346,7 @@ fun AccountScreen() {
 
         ElevatedCard(
             modifier = Modifier
-                .padding(top = 10.sdp),
+                .padding(top = 20.sdp),
             elevation = CardDefaults.elevatedCardElevation(1.sdp)) {
 
             Row(
