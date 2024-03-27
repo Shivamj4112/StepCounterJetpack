@@ -3,6 +3,7 @@ package com.example.stepcounterjetpack.view.Screen
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -11,6 +12,7 @@ import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.MoreVert
+import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
@@ -127,6 +129,19 @@ fun demo1 (){
                 indicatorValue = 50
             )
 
+        ElevatedCard {
+
+            Row {
+
+                Column() {
+
+                    Icon(
+                        painter = painterResource(id = R.drawable.ic_clock),
+                        contentDescription = null,
+                        modifier = Modifier
+                }
+            }
+        }
 
     }
 }
