@@ -276,11 +276,8 @@ fun HomeScreen() {
                     )
 
                     SimpleTextComponent(modifier = Modifier, text = "km", fontFamily = BodyTextFont)
-
                 }
-
             }
-
         }
     }
 }

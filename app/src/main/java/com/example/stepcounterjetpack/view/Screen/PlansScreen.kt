@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -25,6 +26,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
@@ -32,8 +34,11 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
+import com.example.stepcounterjetpack.view.activities.theme.ui.AppBackground
 import com.example.stepcounterjetpack.view.activities.theme.ui.AppColor
 import com.example.stepcounterjetpack.view.activities.theme.ui.LightGrey
+import com.example.stepcounterjetpack.view.activities.theme.ui.LightestAppColor
+import com.example.stepcounterjetpack.view.activities.theme.ui.Red
 import com.example.stepcounterjetpack.view.activities.theme.ui.TitleTextFont
 import ir.kaaveh.sdpcompose.sdp
 import ir.kaaveh.sdpcompose.ssp
@@ -49,17 +54,19 @@ fun PlansScreen() {
 
             }
         }
-
     ) {
 
-        var button = remember{ mutableStateOf(true) }
+        var button by remember{ mutableStateOf(true) }
 
-        Column(modifier = Modifier.padding(it).padding(top = 10.sdp)) {
+        Column(modifier = Modifier
+            .padding(it)
+            .padding(horizontal = 10.sdp)
+            .fillMaxSize()
+            .background(LightGrey)) {
 
             Row(modifier = Modifier
                 .fillMaxWidth()
-                .padding(horizontal = 10.sdp)
-                ) {
+                .padding(top = 10.sdp)) {
 
                 Box(
                     modifier = Modifier
@@ -67,7 +74,7 @@ fun PlansScreen() {
                         .height(30.sdp)
                         .weight(1f)
                         .clip(shape = RoundedCornerShape(5.sdp))
-                        .background(color = AppColor)
+                        .background(color = if (button) AppColor else LightestAppColor)
                         .clickable(onClick = {
                             button = true
                         }),
@@ -77,7 +84,7 @@ fun PlansScreen() {
                     SimpleTextComponent(
                         modifier = Modifier,
                         text = "Monthly",
-                        textColor = Color.White,
+                        textColor = if (button) Color.White else Color.Black,
                         fontFamily = TitleTextFont.fontFamily,
                         textSize = 12.ssp
                     )
@@ -90,14 +97,18 @@ fun PlansScreen() {
                         .fillMaxWidth()
                         .height(30.sdp)
                         .weight(1f)
-                        .clip(shape = RoundedCornerShape(10.sdp)),
+                        .clip(shape = RoundedCornerShape(5.sdp))
+                        .background(color = if (button) LightestAppColor else AppColor)
+                        .clickable(onClick = {
+                            button = false
+                        }),
                     contentAlignment = Alignment.Center
                 ) {
 
                     SimpleTextComponent(
                         modifier = Modifier,
                         text = "Yearly",
-                        textColor = Color.Black,
+                        textColor = if (button) Color.Black else Color.White,
                         fontFamily = TitleTextFont.fontFamily,
                         textSize = 12.ssp
                     )
