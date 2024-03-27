@@ -10,8 +10,8 @@ import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.example.stepcounterjetpack.view.theme.ui.AppBackground
-import com.example.stepcounterjetpack.view.theme.ui.AppColor
+import com.example.stepcounterjetpack.view.activities.theme.ui.AppBackground
+import com.example.stepcounterjetpack.view.activities.theme.ui.AppColor
 import ir.kaaveh.sdpcompose.sdp
 
 @Composable

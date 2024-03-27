@@ -30,8 +30,8 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.max
-import com.example.stepcounterjetpack.view.theme.ui.AppColor
-import com.example.stepcounterjetpack.view.theme.ui.TitleTextFont
+import com.example.stepcounterjetpack.view.activities.theme.ui.AppColor
+import com.example.stepcounterjetpack.view.activities.theme.ui.TitleTextFont
 import ir.kaaveh.sdpcompose.sdp
 import ir.kaaveh.sdpcompose.ssp
 

@@ -13,7 +13,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import com.example.stepcounterjetpack.view.Screen.MainScreen
-import com.example.stepcounterjetpack.view.theme.ui.StepCounterJetpackTheme
+import com.example.stepcounterjetpack.view.activities.theme.ui.StepCounterJetpackTheme
 import com.example.stepcounterjetpack.viewModels.MainViewModel
 
 class MainActivity : ComponentActivity() {

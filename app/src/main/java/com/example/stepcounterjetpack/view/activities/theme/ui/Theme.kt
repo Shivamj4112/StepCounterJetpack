@@ -1,4 +1,4 @@
-package com.example.stepcounterjetpack.view.theme.ui
+package com.example.stepcounterjetpack.view.activities.theme.ui
 
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme

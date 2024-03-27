@@ -7,11 +7,9 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import com.example.stepcounterjetpack.view.activities.ui.theme.StepCounterJetpackTheme
+import com.example.stepcounterjetpack.view.Screen.PlansScreen
+import com.example.stepcounterjetpack.view.activities.theme.ui.StepCounterJetpackTheme
 
 class PlansActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -24,7 +22,7 @@ class PlansActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-
+                    PlansScreen()
                 }
             }
         }

@@ -18,7 +18,7 @@ import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import androidx.compose.ui.text.style.TextOverflow
-import com.example.stepcounterjetpack.view.theme.ui.DefaultTextColor
+import com.example.stepcounterjetpack.view.activities.theme.ui.DefaultTextColor
 
 
 @Composable

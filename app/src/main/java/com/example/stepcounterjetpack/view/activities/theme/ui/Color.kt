@@ -1,4 +1,4 @@
-package com.example.stepcounterjetpack.view.theme.ui
+package com.example.stepcounterjetpack.view.activities.theme.ui
 
 import androidx.compose.ui.graphics.Color
 
