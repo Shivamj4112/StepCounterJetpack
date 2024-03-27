@@ -169,7 +169,9 @@ fun HomeScreen(context: Context, mainViewModel: MainViewModel) {
                 .padding(top = 20.sdp),
             elevation = CardDefaults.elevatedCardElevation(1.sdp),
             onClick = {
-                mainViewModel.navigateToPlans(context)
+                mainViewModel.navigateToPlans(context){
+
+                }
             }
         ) {
 

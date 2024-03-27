@@ -34,6 +34,7 @@ class MainViewModel : ViewModel() {
         val intent = Intent(context, PlansActivity::class.java)
         context.startActivity(intent)
 
+        navigationCallback.invoke()
     }
 
 }
