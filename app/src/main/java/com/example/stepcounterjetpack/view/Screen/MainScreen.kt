@@ -3,6 +3,7 @@ package com.example.stepcounterjetpack.view.Screen
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.gestures.scrollable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -14,7 +15,9 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.layout.wrapContentSize
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.material3.CardDefaults
@@ -281,7 +284,11 @@ fun HomeScreen() {
 @Composable
 fun AccountScreen() {
 
-    Column (modifier = Modifier.fillMaxSize().padding(horizontal = 10.sdp)){
+
+    Column (modifier = Modifier
+        .fillMaxSize()
+        .padding(horizontal = 10.sdp)
+        .verticalScroll(rememberScrollState())){
 
         ElevatedCard(
             modifier = Modifier.padding(top = 10.sdp),
@@ -715,6 +722,54 @@ fun AccountScreen() {
                     SimpleTextComponent(
                         modifier = Modifier,
                         text = "Account & Security",
+                        textColor = Color.Black,
+                        fontFamily = TitleTextFont.fontFamily,
+                        textSize = 12.ssp
+                    )
+
+                }
+
+                Image(
+                    modifier = Modifier
+                        .padding(10.sdp)
+                        .size(15.sdp),
+                    painter = painterResource(id = R.drawable.ic_arrow_forward),
+                    contentDescription = null
+                )
+            }
+        }
+
+        ElevatedCard(
+            modifier = Modifier
+                .padding(top = 2.sdp),
+            elevation = CardDefaults.elevatedCardElevation(1.sdp)) {
+
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .clip(shape = RoundedCornerShape(8.sdp))
+                    .background(color = Color.White),
+                verticalAlignment = Alignment.CenterVertically
+            )
+            {
+
+                Image(
+                    modifier = Modifier
+                        .padding(10.sdp)
+                        .size(18.sdp),
+                    painter = painterResource(id = R.drawable.ic_linked),
+                    contentDescription = null,
+                )
+
+
+                Column(modifier = Modifier
+                    .fillMaxWidth()
+                    .weight(1f)
+                    .align(Alignment.CenterVertically)) {
+
+                    SimpleTextComponent(
+                        modifier = Modifier,
+                        text = "Linked Accounts",
                         textColor = Color.Black,
                         fontFamily = TitleTextFont.fontFamily,
                         textSize = 12.ssp
