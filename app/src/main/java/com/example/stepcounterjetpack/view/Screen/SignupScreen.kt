@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentHeight
@@ -179,7 +180,10 @@ fun SignupScreen(context: Activity, signViewModel: SignupViewModel) {
                     .padding(bottom = 10.sdp)
             ) {
 
-                SimpleButton(text = "Sign up", textColor = Color.White,
+                SimpleButton(
+                    modifier = Modifier.height(35.sdp),
+                    text = "Sign up",
+                    textColor = Color.White,
                     onClick = {
                         if (areFieldsValid()){
                             signViewModel.createAccount(context,name,email,password)

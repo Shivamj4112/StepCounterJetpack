@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
@@ -150,7 +151,7 @@ fun LoginScreen(context: Activity, loginViewModel: LoginViewModel) {
                     .padding(bottom = 10.sdp)
             ) {
 
-                SimpleButton(text = "Login", textColor = Color.White,
+                SimpleButton(modifier = Modifier.height(25.sdp), text = "Login", textColor = Color.White,
 
                     onClick = {
                         if (areFieldsValid()){

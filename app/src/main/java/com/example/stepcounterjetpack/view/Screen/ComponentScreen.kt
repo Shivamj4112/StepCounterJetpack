@@ -170,33 +170,16 @@ fun SimpleEditText(
 
 @Composable
 fun SimpleButton(
+    modifier: Modifier,
     text: String,
     fontFamily: FontFamily? = null,
     textColor: Color = DefaultTextColor,
     textSize: TextUnit = 14.ssp,
-    padding: Dp = 0.sdp,
-    paddingVertical: Dp = 0.sdp,
-    paddingHorizontal: Dp = 0.sdp,
-    paddingStart: Dp = 0.sdp,
-    paddingTop: Dp = 0.sdp,
-    paddingEnd: Dp = 0.sdp,
-    paddingBottom: Dp = 0.sdp,
-    height: Dp = 35.sdp,
     backGroundColor: Color = AppColor,
     onClick: () -> Unit
 ) {
     Button(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(all = padding)
-            .padding(horizontal = paddingHorizontal, vertical = paddingVertical)
-            .padding(
-                start = paddingStart,
-                top = paddingTop,
-                end = paddingEnd,
-                bottom = paddingBottom
-            )
-            .height(height = height),
+        modifier = modifier,
         colors = ButtonDefaults.buttonColors(containerColor = backGroundColor),
         onClick = onClick
 

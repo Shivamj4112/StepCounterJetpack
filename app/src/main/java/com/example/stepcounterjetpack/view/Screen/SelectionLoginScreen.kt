@@ -79,8 +79,8 @@ fun SelectionLoginScreen(context: Activity, selectionViewModel: SelectionViewMod
             SignCardsList()
 
             SimpleButton(
+                modifier = Modifier.padding(top = 20.sdp),
                 text = "Sign Up",
-                paddingTop = 20.sdp,
                 textColor = Color.White,
                 textSize = 13.ssp,
                 fontFamily = TitleTextFont.fontFamily,
@@ -90,8 +90,8 @@ fun SelectionLoginScreen(context: Activity, selectionViewModel: SelectionViewMod
             )
 
             SimpleButton(
+                modifier = Modifier.padding(top = 10.sdp),
                 text = "Login",
-                paddingTop = 10.sdp,
                 textColor = AppColor,
                 textSize = 13.ssp,
                 backGroundColor = LightestAppColor,

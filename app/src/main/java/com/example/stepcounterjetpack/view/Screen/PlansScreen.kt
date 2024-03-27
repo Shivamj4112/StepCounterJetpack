@@ -54,10 +54,19 @@ fun PlansScreen() {
     Scaffold(
         topBar = {
 
-            PlansScreenToolBar(toolbarTitle = "Upgrade Plan") {
+            PlansScreenToolBar(toolbarTitle = "Upgrade Plan", onClick = {})
+        },
+        bottomBar = {
 
+            SimpleButton(
+                modifier = Modifier.padding(horizontal = 10.sdp).padding(bottom = 10.sdp).height( 35.sdp).fillMaxWidth(),
+                text = "Continue - ",
+                textColor = Color.White,
+                textSize = 12.ssp) {
+                
             }
         }
+        
     ) {
 
         var button by remember { mutableStateOf(true) }
@@ -316,8 +325,8 @@ fun YearlyPlan() {
     ) {
 
         Column (modifier = Modifier
-             .wrapContentSize()
-             .background(Color.White)){
+            .wrapContentSize()
+            .background(Color.White)){
 
             Box(modifier = Modifier
                 .clip(RoundedCornerShape(bottomStart = 8.sdp))

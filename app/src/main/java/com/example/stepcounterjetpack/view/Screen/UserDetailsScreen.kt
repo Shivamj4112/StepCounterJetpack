@@ -135,10 +135,10 @@ fun UserDetailsScreen(context: Activity, userDetailsViewModel: UserDetailsViewMo
             )
             {
                 SimpleButton(
+                    modifier = Modifier.height( 45.sdp),
                     text = "Previous",
                     textColor = AppColor,
                     fontFamily = TitleTextFont.fontFamily,
-                    height = 45.sdp,
                     backGroundColor = LightestAppColor
                 ) {
                     if (currentScreen > 0) {
@@ -154,10 +154,10 @@ fun UserDetailsScreen(context: Activity, userDetailsViewModel: UserDetailsViewMo
             )
             {
                 SimpleButton(
+                    modifier = Modifier.height( 45.sdp),
                     text = "Continue",
                     textColor = Color.White,
                     fontFamily = TitleTextFont.fontFamily,
-                    height = 45.sdp,
                 ) {
                     if (currentScreen < 5) currentScreen++
                     when (currentScreen) {
