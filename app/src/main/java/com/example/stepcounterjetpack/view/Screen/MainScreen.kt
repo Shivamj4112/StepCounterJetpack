@@ -505,11 +505,10 @@ fun AccountScreen() {
 
                 Image(
                     modifier = Modifier
-                        .padding(8.sdp)
-                        .size(20.sdp),
-                    painter = painterResource(id = R.drawable.ic_weight),
+                        .padding(10.sdp)
+                        .size(18.sdp),
+                    painter = painterResource(id = R.drawable.ic_settings),
                     contentDescription = null,
-                    colorFilter = ColorFilter.tint(Yellow)
                 )
 
 
@@ -520,7 +519,7 @@ fun AccountScreen() {
 
                     SimpleTextComponent(
                         modifier = Modifier,
-                        text = "Water Tracker",
+                        text = "Preferences",
                         textColor = Color.Black,
                         fontFamily = TitleTextFont.fontFamily,
                         textSize = 12.ssp
@@ -538,6 +537,200 @@ fun AccountScreen() {
             }
         }
 
+
+        ElevatedCard(
+            modifier = Modifier
+                .padding(top = 2.sdp),
+            elevation = CardDefaults.elevatedCardElevation(1.sdp)) {
+
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .clip(shape = RoundedCornerShape(8.sdp))
+                    .background(color = Color.White),
+                verticalAlignment = Alignment.CenterVertically
+            )
+            {
+
+                Image(
+                    modifier = Modifier
+                        .padding(10.sdp)
+                        .size(18.sdp),
+                    painter = painterResource(id = R.drawable.ic_user),
+                    contentDescription = null,
+                )
+
+
+                Column(modifier = Modifier
+                    .fillMaxWidth()
+                    .weight(1f)
+                    .align(Alignment.CenterVertically)) {
+
+                    SimpleTextComponent(
+                        modifier = Modifier,
+                        text = "Personal Info",
+                        textColor = Color.Black,
+                        fontFamily = TitleTextFont.fontFamily,
+                        textSize = 12.ssp
+                    )
+
+                }
+
+                Image(
+                    modifier = Modifier
+                        .padding(10.sdp)
+                        .size(15.sdp),
+                    painter = painterResource(id = R.drawable.ic_arrow_forward),
+                    contentDescription = null
+                )
+            }
+        }
+
+
+        ElevatedCard(
+            modifier = Modifier
+                .padding(top = 2.sdp),
+            elevation = CardDefaults.elevatedCardElevation(1.sdp)) {
+
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .clip(shape = RoundedCornerShape(8.sdp))
+                    .background(color = Color.White),
+                verticalAlignment = Alignment.CenterVertically
+            )
+            {
+
+                Image(
+                    modifier = Modifier
+                        .padding(10.sdp)
+                        .size(18.sdp),
+                    painter = painterResource(id = R.drawable.ic_card),
+                    contentDescription = null,
+                )
+
+
+                Column(modifier = Modifier
+                    .fillMaxWidth()
+                    .weight(1f)
+                    .align(Alignment.CenterVertically)) {
+
+                    SimpleTextComponent(
+                        modifier = Modifier,
+                        text = "Payment Methods",
+                        textColor = Color.Black,
+                        fontFamily = TitleTextFont.fontFamily,
+                        textSize = 12.ssp
+                    )
+
+                }
+
+                Image(
+                    modifier = Modifier
+                        .padding(10.sdp)
+                        .size(15.sdp),
+                    painter = painterResource(id = R.drawable.ic_arrow_forward),
+                    contentDescription = null
+                )
+            }
+        }
+
+        ElevatedCard(
+            modifier = Modifier
+                .padding(top = 2.sdp),
+            elevation = CardDefaults.elevatedCardElevation(1.sdp)) {
+
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .clip(shape = RoundedCornerShape(8.sdp))
+                    .background(color = Color.White),
+                verticalAlignment = Alignment.CenterVertically
+            )
+            {
+
+                Image(
+                    modifier = Modifier
+                        .padding(10.sdp)
+                        .size(18.sdp),
+                    painter = painterResource(id = R.drawable.ic_star),
+                    contentDescription = null,
+                )
+
+
+                Column(modifier = Modifier
+                    .fillMaxWidth()
+                    .weight(1f)
+                    .align(Alignment.CenterVertically)) {
+
+                    SimpleTextComponent(
+                        modifier = Modifier,
+                        text = "Billing & Subscriptions",
+                        textColor = Color.Black,
+                        fontFamily = TitleTextFont.fontFamily,
+                        textSize = 12.ssp
+                    )
+
+                }
+
+                Image(
+                    modifier = Modifier
+                        .padding(10.sdp)
+                        .size(15.sdp),
+                    painter = painterResource(id = R.drawable.ic_arrow_forward),
+                    contentDescription = null
+                )
+            }
+        }
+
+
+        ElevatedCard(
+            modifier = Modifier
+                .padding(top = 2.sdp),
+            elevation = CardDefaults.elevatedCardElevation(1.sdp)) {
+
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .clip(shape = RoundedCornerShape(8.sdp))
+                    .background(color = Color.White),
+                verticalAlignment = Alignment.CenterVertically
+            )
+            {
+
+                Image(
+                    modifier = Modifier
+                        .padding(10.sdp)
+                        .size(18.sdp),
+                    painter = painterResource(id = R.drawable.ic_security),
+                    contentDescription = null,
+                )
+
+
+                Column(modifier = Modifier
+                    .fillMaxWidth()
+                    .weight(1f)
+                    .align(Alignment.CenterVertically)) {
+
+                    SimpleTextComponent(
+                        modifier = Modifier,
+                        text = "Account & Security",
+                        textColor = Color.Black,
+                        fontFamily = TitleTextFont.fontFamily,
+                        textSize = 12.ssp
+                    )
+
+                }
+
+                Image(
+                    modifier = Modifier
+                        .padding(10.sdp)
+                        .size(15.sdp),
+                    painter = painterResource(id = R.drawable.ic_arrow_forward),
+                    contentDescription = null
+                )
+            }
+        }
     }
 
 
