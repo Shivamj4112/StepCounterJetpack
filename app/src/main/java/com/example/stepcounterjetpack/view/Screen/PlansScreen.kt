@@ -7,7 +7,6 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -44,7 +43,6 @@ import com.example.stepcounterjetpack.view.activities.theme.ui.AppColor
 import com.example.stepcounterjetpack.view.activities.theme.ui.BodyTextFont
 import com.example.stepcounterjetpack.view.activities.theme.ui.LightGrey
 import com.example.stepcounterjetpack.view.activities.theme.ui.LightestAppColor
-import com.example.stepcounterjetpack.view.activities.theme.ui.LightestAppColor2
 import com.example.stepcounterjetpack.view.activities.theme.ui.TitleTextFont
 import ir.kaaveh.sdpcompose.sdp
 import ir.kaaveh.sdpcompose.ssp
@@ -62,7 +60,7 @@ fun PlansScreen() {
         }
     ) {
 
-        var button by remember { mutableStateOf(false) }
+        var button by remember { mutableStateOf(true) }
 
         Column(
             modifier = Modifier
@@ -83,7 +81,7 @@ fun PlansScreen() {
                         .height(30.sdp)
                         .weight(1f)
                         .clip(shape = RoundedCornerShape(5.sdp))
-                        .background(color = if (button) AppColor else LightestAppColor2)
+                        .background(color = if (button) AppColor else LightestAppColor)
                         .clickable(onClick = {
                             button = true
 
