@@ -49,6 +49,7 @@ import com.example.stepcounterjetpack.view.theme.ui.BodyTextFont
 import com.example.stepcounterjetpack.view.theme.ui.LightGrey
 import com.example.stepcounterjetpack.view.theme.ui.Orange
 import com.example.stepcounterjetpack.view.theme.ui.TitleTextFont
+import com.example.stepcounterjetpack.view.theme.ui.Yellow
 import com.example.stepcounterjetpack.view.util.CircularSlider
 import com.example.stepcounterjetpack.view.util.navigation.BubbleNavigationBar
 import com.example.stepcounterjetpack.view.util.navigation.BubbleNavigationBarItem
@@ -280,101 +281,263 @@ fun HomeScreen() {
 @Composable
 fun AccountScreen() {
 
-    Column {
+    Column (modifier = Modifier.fillMaxSize().padding(horizontal = 10.sdp)){
 
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 10.sdp)
-                .clip(shape = RoundedCornerShape(8.sdp))
-                .background(color = AppColor),
-        )
-        {
-            Box(
+        ElevatedCard(
+            modifier = Modifier.padding(top = 10.sdp),
+            elevation = CardDefaults.elevatedCardElevation(1.sdp)) {
+
+            Row(
                 modifier = Modifier
-                    .wrapContentSize()
-                    .padding(10.sdp),
-                contentAlignment = Alignment.Center
-            ) {
+                    .fillMaxWidth()
+                    .clip(shape = RoundedCornerShape(8.sdp))
+                    .background(color = AppColor),
+            )
+            {
+                Box(
+                    modifier = Modifier
+                        .wrapContentSize()
+                        .padding(10.sdp),
+                    contentAlignment = Alignment.Center
+                ) {
 
-                Image(
-                    modifier = Modifier.size(40.sdp),
-                    painter = painterResource(id = R.drawable.ic_crown_bg),
-                    contentDescription = null
-                )
+                    Image(
+                        modifier = Modifier.size(40.sdp),
+                        painter = painterResource(id = R.drawable.ic_crown_bg),
+                        contentDescription = null
+                    )
 
-                Image(
-                    modifier = Modifier.size(24.sdp),
-                    painter = painterResource(id = R.drawable.ic_crown),
-                    contentDescription = null
-                )
+                    Image(
+                        modifier = Modifier.size(24.sdp),
+                        painter = painterResource(id = R.drawable.ic_crown),
+                        contentDescription = null
+                    )
 
+                }
+                Column(modifier = Modifier.align(Alignment.CenterVertically)) {
+
+                    SimpleTextComponent(
+                        modifier = Modifier,
+                        text = "Upgrade Plan Now!",
+                        textColor = Color.White,
+                        fontFamily = TitleTextFont.fontFamily,
+                        textSize = 16.ssp
+                    )
+
+                    SimpleTextComponent(
+                        modifier = Modifier,
+                        text = "Enjoy all the benefits and explore more possibilities",
+                        textColor = Color.White,
+                        fontFamily = BodyTextFont,
+                        textSize = 8.ssp
+                    )
+                }
             }
-            Column(modifier = Modifier.align(Alignment.CenterVertically)) {
 
-                SimpleTextComponent(
-                    modifier = Modifier,
-                    text = "Upgrade Plan Now!",
-                    textColor = Color.White,
-                    fontFamily = TitleTextFont.fontFamily,
-                    textSize = 16.ssp
+        }
+
+
+        ElevatedCard(
+            modifier = Modifier
+                .padding(top = 10.sdp),
+            elevation = CardDefaults.elevatedCardElevation(1.sdp)) {
+
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .clip(shape = RoundedCornerShape(8.sdp))
+                    .background(color = Color.White),
+                verticalAlignment = Alignment.CenterVertically
+            )
+            {
+
+                Image(
+                    modifier = Modifier
+                        .padding(11.sdp)
+                        .size(35.sdp),
+                    painter = painterResource(id = R.drawable.ic_gl_10),
+                    contentDescription = null
                 )
 
-                SimpleTextComponent(
-                    modifier = Modifier.padding(top = 5.sdp),
-                    text = "Enjoy all the benefits and explore more possibilities",
-                    textColor = Color.White,
-                    fontFamily = BodyTextFont,
-                    textSize = 8.ssp
+
+                Column(modifier = Modifier
+                    .fillMaxWidth()
+                    .weight(1f)
+                    .align(Alignment.CenterVertically)) {
+
+                    SimpleTextComponent(
+                        modifier = Modifier,
+                        text = "Level 9",
+                        textColor = Color.Black,
+                        fontFamily = TitleTextFont.fontFamily,
+                        textSize = 14.ssp
+                    )
+
+                    SimpleTextComponent(
+                        modifier = Modifier,
+                        text = "You are a rising star keep going",
+                        fontFamily = BodyTextFont,
+                        textSize = 8.ssp
+                    )
+                }
+
+                Image(
+                    modifier = Modifier
+                        .padding(10.sdp)
+                        .size(16.sdp),
+                    painter = painterResource(id = R.drawable.ic_arrow_forward),
+                    contentDescription = null
                 )
             }
         }
 
-        Row(
+        ElevatedCard(
             modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 10.sdp)
-                .clip(shape = RoundedCornerShape(8.sdp))
-                .background(color = Color.White),
-        )
-        {
+                .padding(top = 10.sdp),
+            elevation = CardDefaults.elevatedCardElevation(1.sdp)) {
 
-
-            Image(
+            Row(
                 modifier = Modifier
-                    .padding(10.sdp)
-                    .size(40.sdp),
-                painter = painterResource(id = R.drawable.ic_gl_10),
-                contentDescription = null
+                    .fillMaxWidth()
+                    .clip(shape = RoundedCornerShape(8.sdp))
+                    .background(color = Color.White),
+                verticalAlignment = Alignment.CenterVertically
             )
+            {
 
-
-            Column(modifier = Modifier.fillMaxWidth().weight(1f).align(Alignment.CenterVertically)) {
-
-                SimpleTextComponent(
-                    modifier = Modifier,
-                    text = "Level 9",
-                    textColor = Color.Black,
-                    fontFamily = TitleTextFont.fontFamily,
-                    textSize = 14.ssp
+                Image(
+                    modifier = Modifier
+                        .padding(8.sdp)
+                        .size(20.sdp),
+                    painter = painterResource(id = R.drawable.ic_water_drop),
+                    contentDescription = null
                 )
 
-                SimpleTextComponent(
-                    modifier = Modifier.padding(top = 5.sdp),
-                    text = "You are a rising star keep going",
-                    fontFamily = BodyTextFont,
-                    textSize = 8.ssp
+
+                Column(modifier = Modifier
+                    .fillMaxWidth()
+                    .weight(1f)
+                    .align(Alignment.CenterVertically)) {
+
+                    SimpleTextComponent(
+                        modifier = Modifier,
+                        text = "Water Tracker",
+                        textColor = Color.Black,
+                        fontFamily = TitleTextFont.fontFamily,
+                        textSize = 12.ssp
+                    )
+
+                }
+
+                Image(
+                    modifier = Modifier
+                        .padding(10.sdp)
+                        .size(15.sdp),
+                    painter = painterResource(id = R.drawable.ic_arrow_forward),
+                    contentDescription = null
                 )
             }
-
-            Image(
-                modifier = Modifier
-                    .padding(10.sdp)
-                    .size(40.sdp),
-                painter = painterResource(id = R.drawable.ic_arrow_forward),
-                contentDescription = null
-            )
         }
+
+        ElevatedCard(
+            modifier = Modifier
+                .padding(top = 2.sdp),
+            elevation = CardDefaults.elevatedCardElevation(1.sdp)) {
+
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .clip(shape = RoundedCornerShape(8.sdp))
+                    .background(color = Color.White),
+                verticalAlignment = Alignment.CenterVertically
+            )
+            {
+
+                Image(
+                    modifier = Modifier
+                        .padding(8.sdp)
+                        .size(20.sdp),
+                    painter = painterResource(id = R.drawable.ic_weight),
+                    contentDescription = null,
+                    colorFilter = ColorFilter.tint(Yellow)
+                )
+
+
+                Column(modifier = Modifier
+                    .fillMaxWidth()
+                    .weight(1f)
+                    .align(Alignment.CenterVertically)) {
+
+                    SimpleTextComponent(
+                        modifier = Modifier,
+                        text = "Water Tracker",
+                        textColor = Color.Black,
+                        fontFamily = TitleTextFont.fontFamily,
+                        textSize = 12.ssp
+                    )
+
+                }
+
+                Image(
+                    modifier = Modifier
+                        .padding(10.sdp)
+                        .size(15.sdp),
+                    painter = painterResource(id = R.drawable.ic_arrow_forward),
+                    contentDescription = null
+                )
+            }
+        }
+
+
+        ElevatedCard(
+            modifier = Modifier
+                .padding(top = 10.sdp),
+            elevation = CardDefaults.elevatedCardElevation(1.sdp)) {
+
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .clip(shape = RoundedCornerShape(8.sdp))
+                    .background(color = Color.White),
+                verticalAlignment = Alignment.CenterVertically
+            )
+            {
+
+                Image(
+                    modifier = Modifier
+                        .padding(8.sdp)
+                        .size(20.sdp),
+                    painter = painterResource(id = R.drawable.ic_weight),
+                    contentDescription = null,
+                    colorFilter = ColorFilter.tint(Yellow)
+                )
+
+
+                Column(modifier = Modifier
+                    .fillMaxWidth()
+                    .weight(1f)
+                    .align(Alignment.CenterVertically)) {
+
+                    SimpleTextComponent(
+                        modifier = Modifier,
+                        text = "Water Tracker",
+                        textColor = Color.Black,
+                        fontFamily = TitleTextFont.fontFamily,
+                        textSize = 12.ssp
+                    )
+
+                }
+
+                Image(
+                    modifier = Modifier
+                        .padding(10.sdp)
+                        .size(15.sdp),
+                    painter = painterResource(id = R.drawable.ic_arrow_forward),
+                    contentDescription = null
+                )
+            }
+        }
+
     }
 
 
