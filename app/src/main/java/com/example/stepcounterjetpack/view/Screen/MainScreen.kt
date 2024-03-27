@@ -56,18 +56,17 @@ import ir.kaaveh.sdpcompose.sdp
 import ir.kaaveh.sdpcompose.ssp
 
 
-
 @Composable
 fun MainScreen() {
 
     var toolbarTitle by remember { mutableStateOf("Home") }
 
-     val navController = rememberNavController()
-                val navBackStackEntry by navController.currentBackStackEntryAsState()
-                val currentRoute = navBackStackEntry?.destination?.route
-                val navigationItems = NavigationItem::class.nestedClasses.map {
-                    it.objectInstance as NavigationItem
-                }
+    val navController = rememberNavController()
+    val navBackStackEntry by navController.currentBackStackEntryAsState()
+    val currentRoute = navBackStackEntry?.destination?.route
+    val navigationItems = NavigationItem::class.nestedClasses.map {
+        it.objectInstance as NavigationItem
+    }
 
     Scaffold(
         containerColor = LightGrey,
@@ -80,35 +79,35 @@ fun MainScreen() {
         },
         bottomBar = {
 
-                BubbleNavigationBar(
-                    modifier = Modifier
-                        .padding(horizontal = 10.sdp)
-                        .padding(bottom = 10.sdp)
-                        .clip(RoundedCornerShape(8.sdp)),
-                    ) {
-                    navigationItems.forEach { navigationItem ->
-                        BubbleNavigationBarItem(
-                            selected = currentRoute == navigationItem.route,
-                            onClick = {
-                                if(currentRoute != navigationItem.route){
-                                    navController.popBackStack()
-                                    navController.navigate(navigationItem.route){
-                                        navController.graph.startDestinationRoute?.let { screen_route ->
-                                            popUpTo(screen_route) {
-                                                saveState = true
-                                            }
+            BubbleNavigationBar(
+                modifier = Modifier
+                    .padding(horizontal = 10.sdp)
+                    .padding(bottom = 10.sdp)
+                    .clip(RoundedCornerShape(8.sdp)),
+            ) {
+                navigationItems.forEach { navigationItem ->
+                    BubbleNavigationBarItem(
+                        selected = currentRoute == navigationItem.route,
+                        onClick = {
+                            if (currentRoute != navigationItem.route) {
+                                navController.popBackStack()
+                                navController.navigate(navigationItem.route) {
+                                    navController.graph.startDestinationRoute?.let { screen_route ->
+                                        popUpTo(screen_route) {
+                                            saveState = true
                                         }
-                                        launchSingleTop = true
-                                        restoreState = true
                                     }
+                                    launchSingleTop = true
+                                    restoreState = true
                                 }
-                            },
-                            icon = navigationItem.icon,
-                            title = navigationItem.title,
-                            selectedColor = navigationItem.selectedColor
-                        )
-                    }
+                            }
+                        },
+                        icon = navigationItem.icon,
+                        title = navigationItem.title,
+                        selectedColor = navigationItem.selectedColor
+                    )
                 }
+            }
 
 
         }
@@ -119,24 +118,27 @@ fun MainScreen() {
                 .padding(it)
         ) {
 
-            NavHost(navController = navController, startDestination = NavigationItem.ScreenA.route){
-                composable(NavigationItem.ScreenA.route){
+            NavHost(
+                navController = navController,
+                startDestination = NavigationItem.ScreenA.route
+            ) {
+                composable(NavigationItem.ScreenA.route) {
                     toolbarTitle = "Home"
                     HomeScreen()
                 }
-                composable(NavigationItem.ScreenB.route){
+                composable(NavigationItem.ScreenB.route) {
                     toolbarTitle = "Location"
                     HomeScreen()
                 }
-                composable(NavigationItem.ScreenC.route){
+                composable(NavigationItem.ScreenC.route) {
                     toolbarTitle = "Report"
                     HomeScreen()
                 }
-                composable(NavigationItem.ScreenD.route){
+                composable(NavigationItem.ScreenD.route) {
                     toolbarTitle = "History"
                     HomeScreen()
                 }
-                composable(NavigationItem.ScreenE.route){
+                composable(NavigationItem.ScreenE.route) {
                     toolbarTitle = "Account"
                     AccountScreen()
                 }
@@ -144,10 +146,11 @@ fun MainScreen() {
         }
     }
 }
-@Composable
-fun HomeScreen (){
 
-    Column (Modifier.fillMaxSize()) {
+@Composable
+fun HomeScreen() {
+
+    Column(Modifier.fillMaxSize()) {
         CircularSlider(
             modifier = Modifier.align(Alignment.CenterHorizontally),
             backgroundIndicatorStrokeWidth = 80f,
@@ -155,16 +158,19 @@ fun HomeScreen (){
             indicatorValue = 50
         )
 
-        ElevatedCard(modifier = Modifier
-            .padding(horizontal = 15.sdp)
-            .padding(top = 20.sdp),
-            elevation = CardDefaults.elevatedCardElevation(1.sdp)) {
+        ElevatedCard(
+            modifier = Modifier
+                .padding(horizontal = 15.sdp)
+                .padding(top = 20.sdp),
+            elevation = CardDefaults.elevatedCardElevation(1.sdp)
+        ) {
 
             Row(
                 Modifier
                     .fillMaxWidth()
                     .background(Color.White)
-                    .padding(vertical = 9.sdp), horizontalArrangement = Arrangement.Center) {
+                    .padding(vertical = 9.sdp), horizontalArrangement = Arrangement.Center
+            ) {
 
                 Column(
                     modifier = Modifier
@@ -180,20 +186,28 @@ fun HomeScreen (){
                         colorFilter = ColorFilter.tint(Orange)
                     )
 
-                    SimpleTextComponent(modifier = Modifier
-                        .padding(top = 8.sdp, bottom = 3.sdp),
+                    SimpleTextComponent(
+                        modifier = Modifier
+                            .padding(top = 8.sdp, bottom = 3.sdp),
                         text = "0",
                         textSize = 16.ssp,
-                        fontFamily = TitleTextFont.fontFamily ,
-                        textColor = Color.Black)
+                        fontFamily = TitleTextFont.fontFamily,
+                        textColor = Color.Black
+                    )
 
-                    SimpleTextComponent(modifier = Modifier, text = "time", fontFamily = BodyTextFont)
+                    SimpleTextComponent(
+                        modifier = Modifier,
+                        text = "time",
+                        fontFamily = BodyTextFont
+                    )
 
                 }
 
-                VerticalDivider(modifier = Modifier
-                    .height(60.sdp)
-                    .padding(vertical = 2.sdp))
+                VerticalDivider(
+                    modifier = Modifier
+                        .height(60.sdp)
+                        .padding(vertical = 2.sdp)
+                )
 
                 Column(
                     modifier = Modifier
@@ -208,20 +222,28 @@ fun HomeScreen (){
                         contentDescription = null,
                     )
 
-                    SimpleTextComponent(modifier = Modifier
-                        .padding(top = 8.sdp, bottom = 3.sdp),
+                    SimpleTextComponent(
+                        modifier = Modifier
+                            .padding(top = 8.sdp, bottom = 3.sdp),
                         text = "0",
                         textSize = 16.ssp,
-                        fontFamily = TitleTextFont.fontFamily ,
-                        textColor = Color.Black)
+                        fontFamily = TitleTextFont.fontFamily,
+                        textColor = Color.Black
+                    )
 
-                    SimpleTextComponent(modifier = Modifier, text = "kcal", fontFamily = BodyTextFont)
+                    SimpleTextComponent(
+                        modifier = Modifier,
+                        text = "kcal",
+                        fontFamily = BodyTextFont
+                    )
 
                 }
 
-                VerticalDivider(modifier = Modifier
-                    .height(60.sdp)
-                    .padding(vertical = 2.sdp))
+                VerticalDivider(
+                    modifier = Modifier
+                        .height(60.sdp)
+                        .padding(vertical = 2.sdp)
+                )
 
                 Column(
                     modifier = Modifier
@@ -236,12 +258,14 @@ fun HomeScreen (){
                         contentDescription = null,
                     )
 
-                    SimpleTextComponent(modifier = Modifier
-                        .padding(top = 8.sdp, bottom = 3.sdp),
+                    SimpleTextComponent(
+                        modifier = Modifier
+                            .padding(top = 8.sdp, bottom = 3.sdp),
                         text = "0",
                         textSize = 16.ssp,
-                        fontFamily = TitleTextFont.fontFamily ,
-                        textColor = Color.Black)
+                        fontFamily = TitleTextFont.fontFamily,
+                        textColor = Color.Black
+                    )
 
                     SimpleTextComponent(modifier = Modifier, text = "km", fontFamily = BodyTextFont)
 
@@ -254,93 +278,104 @@ fun HomeScreen (){
 }
 
 @Composable
-fun AccountScreen(){
+fun AccountScreen() {
 
     Column {
 
-        Row (modifier = Modifier
-            .fillMaxWidth()
-            .padding(horizontal = 10.sdp)
-            .clip(shape = RoundedCornerShape(8.sdp))
-            .background(color = AppColor),)
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 10.sdp)
+                .clip(shape = RoundedCornerShape(8.sdp))
+                .background(color = AppColor),
+        )
         {
-            Box(modifier = Modifier
-                .wrapContentSize()
-                .padding(10.sdp),
-                contentAlignment = Alignment.Center){
+            Box(
+                modifier = Modifier
+                    .wrapContentSize()
+                    .padding(10.sdp),
+                contentAlignment = Alignment.Center
+            ) {
 
                 Image(
                     modifier = Modifier.size(40.sdp),
                     painter = painterResource(id = R.drawable.ic_crown_bg),
-                    contentDescription = null)
+                    contentDescription = null
+                )
 
                 Image(
                     modifier = Modifier.size(24.sdp),
                     painter = painterResource(id = R.drawable.ic_crown),
-                    contentDescription = null)
+                    contentDescription = null
+                )
 
             }
-            Column (modifier = Modifier.align(Alignment.CenterVertically)) {
+            Column(modifier = Modifier.align(Alignment.CenterVertically)) {
 
                 SimpleTextComponent(
                     modifier = Modifier,
                     text = "Upgrade Plan Now!",
                     textColor = Color.White,
                     fontFamily = TitleTextFont.fontFamily,
-                    textSize = 16.ssp)
+                    textSize = 16.ssp
+                )
 
                 SimpleTextComponent(
                     modifier = Modifier.padding(top = 5.sdp),
                     text = "Enjoy all the benefits and explore more possibilities",
                     textColor = Color.White,
                     fontFamily = BodyTextFont,
-                    textSize = 8.ssp)
+                    textSize = 8.ssp
+                )
             }
         }
 
-        Row (modifier = Modifier
-            .fillMaxWidth()
-            .padding(horizontal = 10.sdp)
-            .clip(shape = RoundedCornerShape(8.sdp))
-            .background(color = Color.White),)
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 10.sdp)
+                .clip(shape = RoundedCornerShape(8.sdp))
+                .background(color = Color.White),
+        )
         {
 
-            Box(modifier = Modifier
-                .wrapContentSize()
-                .padding(10.sdp),
-                contentAlignment = Alignment.Center){
 
-                Image(
-                    modifier = Modifier.size(40.sdp),
-                    painter = painterResource(id = R.drawable.ic_crown_bg),
-                    contentDescription = null)
+            Image(
+                modifier = Modifier
+                    .padding(10.sdp)
+                    .size(40.sdp),
+                painter = painterResource(id = R.drawable.ic_gl_10),
+                contentDescription = null
+            )
 
-                Image(
-                    modifier = Modifier.size(24.sdp),
-                    painter = painterResource(id = R.drawable.ic_crown),
-                    contentDescription = null)
 
-            }
-
-            Column (modifier = Modifier.align(Alignment.CenterVertically)) {
+            Column(modifier = Modifier.fillMaxWidth().weight(1f).align(Alignment.CenterVertically)) {
 
                 SimpleTextComponent(
                     modifier = Modifier,
-                    text = "Upgrade Plan Now!",
-                    textColor = Color.White,
+                    text = "Level 9",
+                    textColor = Color.Black,
                     fontFamily = TitleTextFont.fontFamily,
-                    textSize = 16.ssp)
+                    textSize = 14.ssp
+                )
 
                 SimpleTextComponent(
                     modifier = Modifier.padding(top = 5.sdp),
-                    text = "Enjoy all the benefits and explore more possibilities",
-                    textColor = Color.White,
+                    text = "You are a rising star keep going",
                     fontFamily = BodyTextFont,
-                    textSize = 8.ssp)
+                    textSize = 8.ssp
+                )
             }
+
+            Image(
+                modifier = Modifier
+                    .padding(10.sdp)
+                    .size(40.sdp),
+                painter = painterResource(id = R.drawable.ic_arrow_forward),
+                contentDescription = null
+            )
         }
     }
-
 
 
 }
