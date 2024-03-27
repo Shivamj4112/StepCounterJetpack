@@ -78,8 +78,8 @@ var model = UserModel()
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-//fun UserDetailsScreen(context: Activity, userDetailsViewModel: UserDetailsViewModel) {
-fun UserDetailsScreen() {
+fun UserDetailsScreen(context: Activity, userDetailsViewModel: UserDetailsViewModel) {
+//fun UserDetailsScreen() {
 
     var currentScreen by remember { mutableStateOf(0) }
     var progressCount: Int by remember { mutableStateOf(3) }
@@ -159,49 +159,49 @@ fun UserDetailsScreen() {
                     fontFamily = TitleTextFont.fontFamily,
                     height = 45.sdp,
                 ) {
-//                    if (currentScreen < 5) currentScreen++
+                    if (currentScreen < 5) currentScreen++
                     when (currentScreen) {
                         0 -> if (model.gender.isNotEmpty()) {
                             currentScreen++
                             progressCount++
                         }
-//                        else context.toast("Gender")
+                        else context.toast("Gender")
 
                         1 -> if (model.sedentary.isNotEmpty()) {
                             currentScreen++
                             progressCount++
                         }
-//                        else context.toast("Sedentary")
+                        else context.toast("Sedentary")
 
                         2 -> if (model.age > 0) {
                             currentScreen++
                             progressCount++
                         }
-//                        else context.toast("Age")
+                        else context.toast("Age")
 
                         3 -> if (model.height > 0) {
                             currentScreen++
                             progressCount++
                         }
-//                        else context.toast("Height")
+                        else context.toast("Height")
 
                         4 -> if (model.weight > 0) {
                             currentScreen++
                             progressCount++
                         }
-//                        else context.toast("Weight")
+                        else context.toast("Weight")
 
-//                        5 -> if (model.step > 0) {
-//                            userDetailsViewModel.updateDataInDatabase(
-//                                context,
-//                                model.gender,
-//                                model.sedentary,
-//                                model.age,
-//                                model.heightType,
-//                                model.weightType,
-//                                model.step
-//                            )
-//                        }
+                        5 -> if (model.step > 0) {
+                            userDetailsViewModel.updateDataInDatabase(
+                                context,
+                                model.gender,
+                                model.sedentary,
+                                model.age,
+                                model.heightType,
+                                model.weightType,
+                                model.step
+                            )
+                        }
 
                     }
                 }
@@ -1095,6 +1095,6 @@ fun CustomProgressBar2() {
 @Composable
 fun IntroPreview() {
 
-    UserDetailsScreen()
+//    UserDetailsScreen()
 //    CustomProgressBar2()
 }

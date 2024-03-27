@@ -22,6 +22,9 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
@@ -49,11 +52,14 @@ fun PlansScreen() {
 
     ) {
 
-        Column(modifier = Modifier.padding(it)) {
+        var button = remember{ mutableStateOf(true) }
+
+        Column(modifier = Modifier.padding(it).padding(top = 10.sdp)) {
 
             Row(modifier = Modifier
                 .fillMaxWidth()
-                .padding(horizontal = 10.sdp)) {
+                .padding(horizontal = 10.sdp)
+                ) {
 
                 Box(
                     modifier = Modifier
@@ -61,8 +67,11 @@ fun PlansScreen() {
                         .height(30.sdp)
                         .weight(1f)
                         .clip(shape = RoundedCornerShape(5.sdp))
-                        .background(color = AppColor),
-                    contentAlignment = Alignment.Center
+                        .background(color = AppColor)
+                        .clickable(onClick = {
+                            button = true
+                        }),
+                    contentAlignment = Alignment.Center,
                 ) {
 
                     SimpleTextComponent(
