@@ -1,30 +1,41 @@
 package com.example.stepcounterjetpack.view.Screen
 
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentHeight
+import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.MoreVert
+import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.Divider
 import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
+import androidx.compose.material3.VerticalDivider
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.navigation.compose.NavHost
@@ -34,7 +45,9 @@ import androidx.navigation.compose.rememberNavController
 import com.example.stepcounterjetpack.R
 import com.example.stepcounterjetpack.models.NavigationItem
 import com.example.stepcounterjetpack.view.theme.ui.AppColor
+import com.example.stepcounterjetpack.view.theme.ui.BodyTextFont
 import com.example.stepcounterjetpack.view.theme.ui.LightGrey
+import com.example.stepcounterjetpack.view.theme.ui.Orange
 import com.example.stepcounterjetpack.view.theme.ui.TitleTextFont
 import com.example.stepcounterjetpack.view.util.CircularSlider
 import com.example.stepcounterjetpack.view.util.navigation.BubbleNavigationBar
@@ -121,28 +134,103 @@ fun MainScreen() {
 @Composable
 fun demo1 (){
 
-    Column (Modifier.fillMaxSize()){
+    Column (Modifier.fillMaxSize()) {
         CircularSlider(
-                modifier = Modifier.align(Alignment.CenterHorizontally),
-                backgroundIndicatorStrokeWidth = 80f,
-                foregroundIndicatorStrokeWidth = 80f,
-                indicatorValue = 50
-            )
+            modifier = Modifier.align(Alignment.CenterHorizontally),
+            backgroundIndicatorStrokeWidth = 80f,
+            foregroundIndicatorStrokeWidth = 80f,
+            indicatorValue = 50
+        )
 
-        ElevatedCard {
+        ElevatedCard(modifier = Modifier
+            .padding(horizontal = 15.sdp)
+            .padding(top = 20.sdp),
+            elevation = CardDefaults.elevatedCardElevation(10.sdp)) {
 
-            Row {
+            Row(Modifier.fillMaxWidth().background(Color.White).padding(vertical = 9.sdp), horizontalArrangement = Arrangement.Center) {
 
-                Column() {
+                Column(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .weight(1f),
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                ) {
 
-                    Icon(
+                    Image(
+                        modifier = Modifier.size(18.sdp),
                         painter = painterResource(id = R.drawable.ic_clock),
                         contentDescription = null,
-                        modifier = Modifier
-                }
-            }
-        }
+                        colorFilter = ColorFilter.tint(Orange)
+                    )
 
+                    SimpleTextComponent(modifier = Modifier
+                        .padding(top = 8.sdp, bottom = 3.sdp),
+                        text = "0",
+                        textSize = 16.ssp,
+                        fontFamily = TitleTextFont.fontFamily ,
+                        textColor = Color.Black)
+
+                    SimpleTextComponent(modifier = Modifier, text = "time", fontFamily = BodyTextFont)
+
+                }
+
+                VerticalDivider(modifier = Modifier.height(60.sdp).padding(vertical = 2.sdp))
+
+                Column(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .weight(1f),
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                ) {
+
+                    Image(
+                        modifier = Modifier.size(18.sdp),
+                        painter = painterResource(id = R.drawable.ic_calories),
+                        contentDescription = null,
+                        colorFilter = ColorFilter.tint(Orange)
+                    )
+
+                    SimpleTextComponent(modifier = Modifier
+                        .padding(top = 8.sdp, bottom = 3.sdp),
+                        text = "0",
+                        textSize = 16.ssp,
+                        fontFamily = TitleTextFont.fontFamily ,
+                        textColor = Color.Black)
+
+                    SimpleTextComponent(modifier = Modifier, text = "kcal", fontFamily = BodyTextFont)
+
+                }
+
+                VerticalDivider(modifier = Modifier.height(60.sdp).padding(vertical = 2.sdp))
+
+                Column(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .weight(1f),
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                ) {
+
+                    Image(
+                        modifier = Modifier.size(18.sdp),
+                        painter = painterResource(id = R.drawable.ic_clock),
+                        contentDescription = null,
+                        colorFilter = ColorFilter.tint(Orange)
+                    )
+
+                    SimpleTextComponent(modifier = Modifier
+                        .padding(top = 8.sdp, bottom = 3.sdp),
+                        text = "0",
+                        textSize = 16.ssp,
+                        fontFamily = TitleTextFont.fontFamily ,
+                        textColor = Color.Black)
+
+                    SimpleTextComponent(modifier = Modifier, text = "time", fontFamily = BodyTextFont)
+
+                }
+
+            }
+
+        }
     }
 }
 
