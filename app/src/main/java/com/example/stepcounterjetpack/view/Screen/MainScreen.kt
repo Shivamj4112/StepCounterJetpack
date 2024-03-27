@@ -26,6 +26,9 @@ import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.VerticalDivider
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -51,8 +54,12 @@ import com.example.stepcounterjetpack.view.util.navigation.BubbleNavigationBarIt
 import ir.kaaveh.sdpcompose.sdp
 import ir.kaaveh.sdpcompose.ssp
 
+
+
 @Composable
 fun MainScreen() {
+
+    var toolbarTitle by remember { mutableStateOf("Home") }
 
      val navController = rememberNavController()
                 val navBackStackEntry by navController.currentBackStackEntryAsState()
@@ -66,7 +73,7 @@ fun MainScreen() {
         topBar = {
             MainScreenToolBar(
                 size = 20.sdp,
-                toolbarTitle = "Home", onClick = {
+                toolbarTitle = toolbarTitle, onClick = {
 
                 })
         },
@@ -99,7 +106,6 @@ fun MainScreen() {
                 }
             }
         }
-
     ) {
         Column(
             Modifier
@@ -109,26 +115,31 @@ fun MainScreen() {
 
             NavHost(navController = navController, startDestination = NavigationItem.ScreenA.route){
                 composable(NavigationItem.ScreenA.route){
-                    demo1()
+                    toolbarTitle = "Home"
+                    HomeScreen()
                 }
                 composable(NavigationItem.ScreenB.route){
-                    demo1()
+                    toolbarTitle = "Location"
+                    HomeScreen()
                 }
                 composable(NavigationItem.ScreenC.route){
-                    demo1()
+                    toolbarTitle = "Report"
+                    HomeScreen()
                 }
                 composable(NavigationItem.ScreenD.route){
-                    demo1()
+                    toolbarTitle = "History"
+                    HomeScreen()
                 }
                 composable(NavigationItem.ScreenE.route){
-                    demo1()
+                    toolbarTitle = "Account"
+                    HomeScreen()
                 }
             }
         }
     }
 }
 @Composable
-fun demo1 (){
+fun HomeScreen (){
 
     Column (Modifier.fillMaxSize()) {
         CircularSlider(
@@ -141,7 +152,7 @@ fun demo1 (){
         ElevatedCard(modifier = Modifier
             .padding(horizontal = 15.sdp)
             .padding(top = 20.sdp),
-            elevation = CardDefaults.elevatedCardElevation(10.sdp)) {
+            elevation = CardDefaults.elevatedCardElevation(1.sdp)) {
 
             Row(Modifier.fillMaxWidth().background(Color.White).padding(vertical = 9.sdp), horizontalArrangement = Arrangement.Center) {
 
@@ -228,6 +239,12 @@ fun demo1 (){
     }
 }
 
+@Composable
+fun AccountScreen(){
+
+
+}
+
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -291,5 +308,5 @@ fun MainScreenToolBar(
 @Preview(showSystemUi = true)
 @Composable
 fun MainScreenPreview() {
-    demo1()
+    AccountScreen()
 }
