@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentHeight
+import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.MoreVert
@@ -137,7 +138,7 @@ fun MainScreen() {
                 }
                 composable(NavigationItem.ScreenE.route){
                     toolbarTitle = "Account"
-                    HomeScreen()
+                    AccountScreen()
                 }
             }
         }
@@ -255,6 +256,92 @@ fun HomeScreen (){
 @Composable
 fun AccountScreen(){
 
+    Column {
+
+        Row (modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = 10.sdp)
+            .clip(shape = RoundedCornerShape(8.sdp))
+            .background(color = AppColor),)
+        {
+            Box(modifier = Modifier
+                .wrapContentSize()
+                .padding(10.sdp),
+                contentAlignment = Alignment.Center){
+
+                Image(
+                    modifier = Modifier.size(40.sdp),
+                    painter = painterResource(id = R.drawable.ic_crown_bg),
+                    contentDescription = null)
+
+                Image(
+                    modifier = Modifier.size(24.sdp),
+                    painter = painterResource(id = R.drawable.ic_crown),
+                    contentDescription = null)
+
+            }
+            Column (modifier = Modifier.align(Alignment.CenterVertically)) {
+
+                SimpleTextComponent(
+                    modifier = Modifier,
+                    text = "Upgrade Plan Now!",
+                    textColor = Color.White,
+                    fontFamily = TitleTextFont.fontFamily,
+                    textSize = 16.ssp)
+
+                SimpleTextComponent(
+                    modifier = Modifier.padding(top = 5.sdp),
+                    text = "Enjoy all the benefits and explore more possibilities",
+                    textColor = Color.White,
+                    fontFamily = BodyTextFont,
+                    textSize = 8.ssp)
+            }
+        }
+
+        Row (modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = 10.sdp)
+            .clip(shape = RoundedCornerShape(8.sdp))
+            .background(color = Color.White),)
+        {
+
+            Box(modifier = Modifier
+                .wrapContentSize()
+                .padding(10.sdp),
+                contentAlignment = Alignment.Center){
+
+                Image(
+                    modifier = Modifier.size(40.sdp),
+                    painter = painterResource(id = R.drawable.ic_crown_bg),
+                    contentDescription = null)
+
+                Image(
+                    modifier = Modifier.size(24.sdp),
+                    painter = painterResource(id = R.drawable.ic_crown),
+                    contentDescription = null)
+
+            }
+
+            Column (modifier = Modifier.align(Alignment.CenterVertically)) {
+
+                SimpleTextComponent(
+                    modifier = Modifier,
+                    text = "Upgrade Plan Now!",
+                    textColor = Color.White,
+                    fontFamily = TitleTextFont.fontFamily,
+                    textSize = 16.ssp)
+
+                SimpleTextComponent(
+                    modifier = Modifier.padding(top = 5.sdp),
+                    text = "Enjoy all the benefits and explore more possibilities",
+                    textColor = Color.White,
+                    fontFamily = BodyTextFont,
+                    textSize = 8.ssp)
+            }
+        }
+    }
+
+
 
 }
 
@@ -321,5 +408,5 @@ fun MainScreenToolBar(
 @Preview(showSystemUi = true)
 @Composable
 fun MainScreenPreview() {
-    HomeScreen()
+    AccountScreen()
 }
