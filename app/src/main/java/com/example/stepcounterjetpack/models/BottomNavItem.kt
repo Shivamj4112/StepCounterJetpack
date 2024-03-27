@@ -17,13 +17,13 @@ import com.example.stepcounterjetpack.R
 sealed class NavigationItem(
     val title: String,
     val route: String,
-    val icon: ImageVector, // Change from Int to ImageVector
+    val icon: ImageVector,
     val selectedColor: Color,
 ){
     object ScreenA : NavigationItem(
         title = "Home",
         route = "screenA",
-        icon = Icons.Outlined.Home, // Example of setting an ImageVector from Material Icons
+        icon = Icons.Outlined.Home,
         selectedColor = Color(0xFFE74C3C)
     )
     object ScreenB : NavigationItem(
@@ -35,20 +35,20 @@ sealed class NavigationItem(
     object ScreenC : NavigationItem(
         title = "Report",
         route = "screenC",
-        icon = Icons.Outlined.Info, // Example of loading from drawable resource
+        icon = Icons.Outlined.Info,
         selectedColor = Color(0xFFf4a261)
     )
     object ScreenD : NavigationItem(
         title = "History",
         route = "screenD",
-        icon = Icons.Outlined.Menu, // Example of loading from drawable resource
+        icon = Icons.Outlined.Menu,
         selectedColor = Color(0xFFe76f51)
     )
 
     object ScreenE : NavigationItem(
         title = "Account",
         route = "screenE",
-        icon = Icons.Outlined.AccountCircle, // Example of loading from drawable resource
+        icon = Icons.Outlined.AccountCircle,
         selectedColor = Color(0xFF2ECC71)
     )
 }

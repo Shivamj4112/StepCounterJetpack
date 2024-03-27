@@ -78,33 +78,38 @@ fun MainScreen() {
                 })
         },
         bottomBar = {
-            BubbleNavigationBar(modifier = Modifier
-                .padding(horizontal = 10.sdp)
-                .padding(bottom = 10.sdp)
-                .clip(RoundedCornerShape(8.sdp))) {
-                navigationItems.forEach { navigationItem ->
-                    BubbleNavigationBarItem(
-                        selected = currentRoute == navigationItem.route,
-                        onClick = {
-                            if(currentRoute != navigationItem.route){
-                                navController.popBackStack()
-                                navController.navigate(navigationItem.route){
-                                    navController.graph.startDestinationRoute?.let { screen_route ->
-                                        popUpTo(screen_route) {
-                                            saveState = true
+
+                BubbleNavigationBar(
+                    modifier = Modifier
+                        .padding(horizontal = 10.sdp)
+                        .padding(bottom = 10.sdp)
+                        .clip(RoundedCornerShape(8.sdp)),
+                    ) {
+                    navigationItems.forEach { navigationItem ->
+                        BubbleNavigationBarItem(
+                            selected = currentRoute == navigationItem.route,
+                            onClick = {
+                                if(currentRoute != navigationItem.route){
+                                    navController.popBackStack()
+                                    navController.navigate(navigationItem.route){
+                                        navController.graph.startDestinationRoute?.let { screen_route ->
+                                            popUpTo(screen_route) {
+                                                saveState = true
+                                            }
                                         }
+                                        launchSingleTop = true
+                                        restoreState = true
                                     }
-                                    launchSingleTop = true
-                                    restoreState = true
                                 }
-                            }
-                        },
-                        icon = navigationItem.icon,
-                        title = navigationItem.title,
-                        selectedColor = navigationItem.selectedColor
-                    )
+                            },
+                            icon = navigationItem.icon,
+                            title = navigationItem.title,
+                            selectedColor = navigationItem.selectedColor
+                        )
+                    }
                 }
-            }
+
+
         }
     ) {
         Column(
@@ -154,7 +159,11 @@ fun HomeScreen (){
             .padding(top = 20.sdp),
             elevation = CardDefaults.elevatedCardElevation(1.sdp)) {
 
-            Row(Modifier.fillMaxWidth().background(Color.White).padding(vertical = 9.sdp), horizontalArrangement = Arrangement.Center) {
+            Row(
+                Modifier
+                    .fillMaxWidth()
+                    .background(Color.White)
+                    .padding(vertical = 9.sdp), horizontalArrangement = Arrangement.Center) {
 
                 Column(
                     modifier = Modifier
@@ -181,7 +190,9 @@ fun HomeScreen (){
 
                 }
 
-                VerticalDivider(modifier = Modifier.height(60.sdp).padding(vertical = 2.sdp))
+                VerticalDivider(modifier = Modifier
+                    .height(60.sdp)
+                    .padding(vertical = 2.sdp))
 
                 Column(
                     modifier = Modifier
@@ -207,7 +218,9 @@ fun HomeScreen (){
 
                 }
 
-                VerticalDivider(modifier = Modifier.height(60.sdp).padding(vertical = 2.sdp))
+                VerticalDivider(modifier = Modifier
+                    .height(60.sdp)
+                    .padding(vertical = 2.sdp))
 
                 Column(
                     modifier = Modifier
@@ -308,5 +321,5 @@ fun MainScreenToolBar(
 @Preview(showSystemUi = true)
 @Composable
 fun MainScreenPreview() {
-    AccountScreen()
+    HomeScreen()
 }
