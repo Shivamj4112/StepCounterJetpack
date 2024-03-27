@@ -1,9 +1,9 @@
 package com.example.stepcounterjetpack.view.Screen
 
+import android.content.Context
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.gestures.scrollable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -56,12 +56,13 @@ import com.example.stepcounterjetpack.view.theme.ui.Yellow
 import com.example.stepcounterjetpack.view.util.CircularSlider
 import com.example.stepcounterjetpack.view.util.navigation.BubbleNavigationBar
 import com.example.stepcounterjetpack.view.util.navigation.BubbleNavigationBarItem
+import com.example.stepcounterjetpack.viewModels.MainViewModel
 import ir.kaaveh.sdpcompose.sdp
 import ir.kaaveh.sdpcompose.ssp
 
 
 @Composable
-fun MainScreen() {
+fun MainScreen(context : Context , mainViewModel: MainViewModel) {
 
     var toolbarTitle by remember { mutableStateOf("Home") }
 
@@ -128,19 +129,19 @@ fun MainScreen() {
             ) {
                 composable(NavigationItem.ScreenA.route) {
                     toolbarTitle = "Home"
-                    HomeScreen()
+                    HomeScreen(context , mainViewModel)
                 }
                 composable(NavigationItem.ScreenB.route) {
                     toolbarTitle = "Location"
-                    HomeScreen()
+                    HomeScreen(context , mainViewModel)
                 }
                 composable(NavigationItem.ScreenC.route) {
                     toolbarTitle = "Report"
-                    HomeScreen()
+                    HomeScreen(context , mainViewModel)
                 }
                 composable(NavigationItem.ScreenD.route) {
                     toolbarTitle = "History"
-                    HomeScreen()
+                    HomeScreen(context , mainViewModel)
                 }
                 composable(NavigationItem.ScreenE.route) {
                     toolbarTitle = "Account"
@@ -152,7 +153,7 @@ fun MainScreen() {
 }
 
 @Composable
-fun HomeScreen() {
+fun HomeScreen(context: Context, mainViewModel: MainViewModel) {
 
     Column(Modifier.fillMaxSize()) {
         CircularSlider(
@@ -166,7 +167,10 @@ fun HomeScreen() {
             modifier = Modifier
                 .padding(horizontal = 15.sdp)
                 .padding(top = 20.sdp),
-            elevation = CardDefaults.elevatedCardElevation(1.sdp)
+            elevation = CardDefaults.elevatedCardElevation(1.sdp),
+            onClick = {
+                mainViewModel.navigateToPlans(context)
+            }
         ) {
 
             Row(
@@ -282,8 +286,7 @@ fun HomeScreen() {
 }
 
 @Composable
-fun AccountScreen() {
-
+fun AccountScreen( ) {
 
     Column (modifier = Modifier
         .fillMaxSize()
@@ -292,7 +295,10 @@ fun AccountScreen() {
 
         ElevatedCard(
             modifier = Modifier.padding(top = 10.sdp),
-            elevation = CardDefaults.elevatedCardElevation(1.sdp)) {
+            elevation = CardDefaults.elevatedCardElevation(1.sdp),
+            onClick = {
+
+            }) {
 
             Row(
                 modifier = Modifier

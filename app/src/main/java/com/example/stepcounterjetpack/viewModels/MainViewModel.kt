@@ -29,14 +29,14 @@ import ir.kaaveh.sdpcompose.ssp
 
 class MainViewModel : ViewModel() {
 
+    fun navigateToPlans(context : Context , navigationCallback : () -> Unit){
 
+        val intent = Intent(context, PlansActivity::class.java)
+        context.startActivity(intent)
 
-}
-
-fun navigateToPlans(context : Context){
-
-    val intent = Intent(context, PlansActivity::class.java)
-    context.startActivity(intent)
+    }
 
 }
+
+
 
