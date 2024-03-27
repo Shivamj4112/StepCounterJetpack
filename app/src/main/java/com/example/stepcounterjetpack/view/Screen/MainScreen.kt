@@ -13,15 +13,12 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentHeight
-import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.Divider
 import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.TopAppBar
@@ -35,7 +32,6 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.navigation.compose.NavHost
@@ -157,7 +153,7 @@ fun demo1 (){
                 ) {
 
                     Image(
-                        modifier = Modifier.size(18.sdp),
+                        modifier = Modifier.size(20.sdp),
                         painter = painterResource(id = R.drawable.ic_clock),
                         contentDescription = null,
                         colorFilter = ColorFilter.tint(Orange)
@@ -184,10 +180,9 @@ fun demo1 (){
                 ) {
 
                     Image(
-                        modifier = Modifier.size(18.sdp),
+                        modifier = Modifier.size(20.sdp),
                         painter = painterResource(id = R.drawable.ic_calories),
                         contentDescription = null,
-                        colorFilter = ColorFilter.tint(Orange)
                     )
 
                     SimpleTextComponent(modifier = Modifier
@@ -211,10 +206,9 @@ fun demo1 (){
                 ) {
 
                     Image(
-                        modifier = Modifier.size(18.sdp),
-                        painter = painterResource(id = R.drawable.ic_clock),
+                        modifier = Modifier.size(20.sdp),
+                        painter = painterResource(id = R.drawable.ic_location_outline),
                         contentDescription = null,
-                        colorFilter = ColorFilter.tint(Orange)
                     )
 
                     SimpleTextComponent(modifier = Modifier
@@ -224,7 +218,7 @@ fun demo1 (){
                         fontFamily = TitleTextFont.fontFamily ,
                         textColor = Color.Black)
 
-                    SimpleTextComponent(modifier = Modifier, text = "time", fontFamily = BodyTextFont)
+                    SimpleTextComponent(modifier = Modifier, text = "km", fontFamily = BodyTextFont)
 
                 }
 
